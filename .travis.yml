@@ -21,4 +21,4 @@ deploy:
     skip_cleanup: true
     script: ssh -p22 $PROD_SERVER_USERNAME@$PROD_SERVER "touch toto && echo -e salut > toto && cat toto"
     on:
-      branch: staging
+      branch: master
