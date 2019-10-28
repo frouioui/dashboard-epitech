@@ -9,11 +9,24 @@ script:
 before_install:
   - openssl aes-256-cbc -K $encrypted_1c7f53a7177c_key -iv $encrypted_1c7f53a7177c_iv -in ./ci/Dashboard-Epitech-b336a22ee4c7.json.enc -out /tmp/Dashboard-Epitech-b336a22ee4c7.json -d
 
-deploy:
-  provider: gae
-  keyfile: /tmp/Dashboard-Epitech-b336a22ee4c7.json
-  project: dashboard-epitech-257222
-  config: "./app/app.yaml"
-  on:
-    branch: master
+jobs:
+  include:
+    - stage: Deploy Epitech
+      if: branch IN (master) AND type != cron AND type != pull_request
+      script:
+        - chmod +x ./ci/deploy.sh
+      deploy:
+        provider: script
+        script: ./ci/deploy_epitech_server.sh
+        on:
+          branch: master
+    - stage: Deploy Default App Production Server
+      if: branch IN (master) AND type != cron AND type != pull_request
+      deploy:
+        provider: gae
+        keyfile: /tmp/Dashboard-Epitech-b336a22ee4c7.json
+        project: dashboard-epitech-257222
+        config: "./app/app.yaml"
+        on:
+          branch: master
 
