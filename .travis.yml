@@ -1,18 +1,19 @@
 language: node_js
 
 node_js:
-- 10.16.3
+  - 10.16.3
 
 script:
-- echo "hello"
+  - echo "hello"
 
-before_deploy:
-  - openssl aes-256-cbc -K $encrypted_4571f2083710_key -iv $encrypted_4571f2083710_iv -in ./ci/test-commiteo-2b2dde132075.json.enc -out /tmp/test-commiteo-2b2dde132075.json -d
+before_install:
+  - openssl aes-256-cbc -K $encrypted_1c7f53a7177c_key -iv $encrypted_1c7f53a7177c_iv -in ./ci/Dashboard-Epitech-b336a22ee4c7.json.enc -out /tmp/Dashboard-Epitech-b336a22ee4c7.json -d
 
 deploy:
   provider: gae
-  keyfile: /tmp/test-commiteo-2b2dde132075.json
+  keyfile: /tmp/Dashboard-Epitech-b336a22ee4c7.json
   project: dashboard-epitech-257222
   config: "./app/app.yaml"
   on:
     branch: master
+
