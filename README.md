@@ -5,6 +5,27 @@
 - florent.poinsard@epitech.eu
 - julien.ferrier@epitech.eu
 
+## **Architecture *(the big pitcure)***
+
+Our project is divided into multiple micro-services.
+
+This architecture allows us to work faster and code API that are scalable and that we can easily manage.
+
+This kind of architecture (micro-services) is used more and more by tech companies. It allows :
+- Better team organisation.
+- Less frustration between teams.
+- Less errors in code and production environment.
+- The ability to code with different programming language, making it easier to use the right programming language for the right situation.
+
+### **The services**
+
+- Users API
+- Widget API
+- {Service 1} API
+- {Service 2} API
+- {Service 3} API
+- Frontend
+
 ## **Production deployement**
 
 Our project uses `docker-compose` and `google cloud platform`.
