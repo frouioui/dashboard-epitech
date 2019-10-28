@@ -2,3 +2,6 @@ dispatch:
 
   - url: "pedafy.com/*"
     service: default
+
+  - url: "users.api.pedafy.com/*"
+    service: users_api

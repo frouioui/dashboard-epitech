@@ -21,13 +21,22 @@ jobs:
         skip_cleanup: true
         on:
           branch: master
-    - stage: Deploy Default App Production Server
+    - stage: Deploy Default App to production server
       if: branch IN (master) AND type != cron AND type != pull_request
       deploy:
         provider: gae
         keyfile: /tmp/Dashboard-Epitech-b336a22ee4c7.json
         project: dashboard-epitech-257222
         config: "./app/app.yaml"
+        on:
+          branch: master
+    - stage: Deploy User API to production server
+      if: branch IN (master) AND type != cron AND type != pull_request
+      deploy:
+        provider: gae
+        keyfile: /tmp/Dashboard-Epitech-b336a22ee4c7.json
+        project: dashboard-epitech-257222
+        config: "./api/users/app.yaml"
         on:
           branch: master
 
