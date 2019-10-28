@@ -4,4 +4,4 @@ dispatch:
     service: default
 
   - url: "users.api.pedafy.com/*"
-    service: users_api
+    service: users

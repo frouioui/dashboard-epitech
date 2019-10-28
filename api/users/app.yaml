@@ -1,6 +1,6 @@
 runtime: nodejs10
 
-service: users_api
+service: users
 
 manual_scaling:
   instances: 1
