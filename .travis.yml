@@ -14,7 +14,7 @@ jobs:
     - stage: Deploy Epitech
       if: branch IN (master) AND type != cron AND type != pull_request
       script:
-        - chmod +x ./ci/deploy.sh
+        - chmod +x ./ci/deploy_epitech_server.sh
       deploy:
         provider: script
         script: ./ci/deploy_epitech_server.sh
