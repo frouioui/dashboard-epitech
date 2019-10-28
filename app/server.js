@@ -7,4 +7,4 @@ routes(app);
 
 app.listen(port);
 
-console.log('income & outcome REST API server started on: ' + port);
+console.log('Default App started on: ' + port);

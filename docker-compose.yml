@@ -11,3 +11,15 @@ services:
     image: app-test-dashboard
     ports:
       - 80:8080
+
+  users_api:
+    container_name: users_api
+    build: 
+      context: ./api/users
+      dockerfile: Dockerfile
+    environment:
+      DEV_ENV: "TRUE"
+      PORT: "9000"
+    image: users_api_dashboard
+    ports:
+      - 9000:9000
