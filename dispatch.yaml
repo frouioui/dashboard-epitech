@@ -1,0 +1,4 @@
+dispatch:
+
+  - url: "pedafy.com/*"
+    service: default

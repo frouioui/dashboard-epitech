@@ -6,6 +6,8 @@ services:
     build: 
       context: ./app
       dockerfile: Dockerfile
+    environment:
+      DEV_ENV: "TRUE"
     image: app-test-dashboard
     ports:
       - 80:8080
