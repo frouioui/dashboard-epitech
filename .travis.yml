@@ -18,6 +18,7 @@ jobs:
       deploy:
         provider: script
         script: ./ci/deploy_epitech_server.sh
+        skip_cleanup: true
         on:
           branch: master
     - stage: Deploy Default App Production Server
