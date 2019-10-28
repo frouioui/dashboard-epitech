@@ -17,7 +17,7 @@ services:
       links: 
         - db:db
       ports:
-        - 8888:80
+        - 80:80
       environment:
         MYSQL_USER: user
         MYSQL_PASSWORD: test
