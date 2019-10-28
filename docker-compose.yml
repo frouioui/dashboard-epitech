@@ -21,6 +21,8 @@ services:
       DEV_ENV: "TRUE"
       PORT: "9000"
     image: users_api_dashboard
+    links:
+      - db:database
     depends_on:
       - db
     ports:
