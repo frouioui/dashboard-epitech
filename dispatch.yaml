@@ -1,6 +1,6 @@
 dispatch:
 
-  - url: "api.pedafy.com/*"
+  - url: "api.pedafy.com/v1/users/*"
     service: users
 
   - url: "pedafy.com/*"
