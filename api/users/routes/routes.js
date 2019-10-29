@@ -11,8 +11,8 @@ module.exports = function (app) {
         .get(controllers.getAllUsersRoute) // get all the users
 
     app.route('/v1/users/new')
-        .post(controllers.home) // new user
+        .post(controllers.addNewUserRoute) // new user
 
     app.route('/v1/users/login')
-        .get(controllers.home) // login user
+        .get(controllers.loginUserRoute) // login user
 };
