@@ -57,7 +57,7 @@ function loginUserRoute(req, res) {
         } else {
             let hash = result[0].password
             if (passManager.comparePassword(data.password, hash) == true) {
-                res.status(200).json({ status: 'success', code: 200, data: { message: "Authentificated" } })
+                res.status(200).json({ status: 'success', code: 200, data: { message: "Authenticated" } })
             } else {
                 res.status(401).json({ status: 'failure', code: 401, data: { message: "Wrong password" } })
             }
