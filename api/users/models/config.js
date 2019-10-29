@@ -32,43 +32,21 @@ function connectAndCreateDatabase() {
         con.query("CREATE DATABASE IF NOT EXISTS api_users", function (err, result) {
             if (err) throw err;
             console.log("Database api_users created");
-            connectToDatabase()
+            con.query("USE api_users", (error, results, fields) => {
+                if (err) throw err;
+                connectAndCreateTable()
+            });
         });
     });
 }
 
-function connectToDatabase() {
-    // Connection to database
-    if (process.env.DEV_ENV == "TRUE") {
-        console.log("Connecting to local api_users database")
-        con = mysql.createConnection({
-            host: "database",
-            user: process.env.USER_DATABASE || "root",
-            password: process.env.PASSWORD_DATABASE || "test",
-            database: "api_users",
-        });
-    } else {
-        console.log("Connecting to production api_users database")
-        con = mysql.createConnection({
-            host: "34.76.133.198", // TODO: Use environment variable
-            user: process.env.USER_DATABASE || "root",
-            password: process.env.PASSWORD_DATABASE || "test",
-            database: "api_users",
-        });
-    }
-    connectAndCreateTable()
-}
-
 function connectAndCreateTable() {
     // Connect and create tables if needed
-    con.connect(function (err) {
+    console.log("Connected to database api_users.");
+    var sql = "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, email varchar(255) NOT NULL, password varchar(255) NOT NULL, added_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+    con.query(sql, function (err, result) {
         if (err) throw err;
-        console.log("Connected to database api_users.");
-        var sql = "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, email varchar(255) NOT NULL, password varchar(255) NOT NULL, added_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)";
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log("Table users created");
-        });
+        console.log("Table users created");
     });
 }
 
