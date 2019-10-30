@@ -60,15 +60,54 @@ function connectToDatabase() {
 }
 
 function connectAndCreateTable() {
-    // Connect and create tables if needed
     con.connect(function (err) {
         if (err) throw err;
         console.log("Connected to database api_widget.");
-        // var sql = "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, email varchar(255) NOT NULL, password varchar(255) NOT NULL, added_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)";
-        // con.query(sql, function (err, result) {
-        //     if (err) throw err;
-        //     console.log("Table users created");
-        // });
+        tableServiceCreate()
+    });
+}
+
+function tableServiceCreate() {
+    let sqlTableService = "CREATE TABLE IF NOT EXISTS services (id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL)";
+    con.query(sqlTableService, function (err, result) {
+        if (err) throw err;
+        console.log("Table service created");
+        tableWidgetCreate()
+    });
+}
+
+function tableWidgetCreate() {
+    let sqlTableWidget = "CREATE TABLE IF NOT EXISTS widgets (id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, service_id INT(11) NOT NULL, name VARCHAR(255) NOT NULL, description TEXT, CONSTRAINT fk_service_id FOREIGN KEY (service_id) REFERENCES services(id))";
+    con.query(sqlTableWidget, function (err, result) {
+        if (err) throw err;
+        console.log("Table widgets created");
+        tableWidgetUserCreate()
+    });
+}
+
+function tableWidgetUserCreate() {
+    let sqlTableWidgetsUser = "CREATE TABLE IF NOT EXISTS widgets_user (id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, position INT(11) NOT NULL, user_id INT(11) NOT NULL, widget_id INT(11) NOT NULL, CONSTRAINT fk_widget_id FOREIGN KEY (widget_id) REFERENCES widgets(id), CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES api_users.users(id))";
+    con.query(sqlTableWidgetsUser, function (err, result) {
+        if (err) throw err;
+        console.log("Table widgets_user created");
+        tableWidgetParamsCreate()
+    });
+}
+
+function tableWidgetParamsCreate() {
+    let sqlTableWidgetParams = "CREATE TABLE IF NOT EXISTS widget_params (id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, type VARCHAR(255) NOT NULL, widget_id INT(11) NOT NULL, CONSTRAINT fk_widget_id_params FOREIGN KEY (widget_id) REFERENCES widgets(id))";
+    con.query(sqlTableWidgetParams, function (err, result) {
+        if (err) throw err;
+        console.log("Table widget_params created");
+        tableWidgetUserParamsCreate()
+    });
+}
+
+function tableWidgetUserParamsCreate() {
+    let sqlTableWidgetUserParams = "CREATE TABLE IF NOT EXISTS widget_user_params (id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, value VARCHAR(255) NOT NULL, user_widget_id INT(11) NOT NULL, widget_param_id INT(11) NOT NULL, user_id INT(11) NOT NULL, CONSTRAINT fk_user_widget_id FOREIGN KEY (user_widget_id) REFERENCES widgets_user(id), CONSTRAINT fk_user_widget_param_id FOREIGN KEY (widget_param_id) REFERENCES widget_params(id), CONSTRAINT fk_user_id_params FOREIGN KEY (user_id) REFERENCES api_users.users(id))";
+    con.query(sqlTableWidgetUserParams, function (err, result) {
+        if (err) throw err;
+        console.log("Table widget_user_params created");
     });
 }
 
