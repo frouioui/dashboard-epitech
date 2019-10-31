@@ -1,5 +1,6 @@
 var express = require('express')
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 var app = express()
 var port = process.env.PORT || 8080;
@@ -12,6 +13,8 @@ app.use(
         extended: true
     })
 )
+
+app.use(cors())
 
 app.use(bodyParser.json())
 
