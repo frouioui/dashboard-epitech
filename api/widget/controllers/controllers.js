@@ -1,4 +1,4 @@
-var model = require("../models/models")
+var model = require("../models/widgets")
 
 module.exports = {
     home

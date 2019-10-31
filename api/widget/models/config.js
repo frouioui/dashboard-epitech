@@ -63,7 +63,9 @@ function connectAndCreateTable() {
     con.connect(function (err) {
         if (err) throw err;
         console.log("Connected to database api_widget.");
-        tableServiceCreate()
+        con.changeUser({ database: "api_widget" }, function (err) {
+            tableServiceCreate()
+        })
     });
 }
 
