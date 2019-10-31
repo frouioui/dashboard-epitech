@@ -1,8 +1,10 @@
 'use strict';
+var cors = require('cors')
 
 module.exports = function (app) {
     var controllers = require('../controllers/controllers');
 
+    app.options('*', cors())
     // Incomes
     app.route('/v1/users/home')
         .get(controllers.home) // to delete
