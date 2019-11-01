@@ -28,6 +28,22 @@ services:
     ports:
       - 9000:9000
 
+  widget_api:
+    container_name: widget_api
+    build: 
+      context: ./api/widget
+      dockerfile: Dockerfile
+    environment:
+      DEV_ENV: "TRUE"
+      PORT: "9001"
+    image: widget_api_dashboard
+    links:
+      - db:database
+    depends_on:
+      - db
+    ports:
+      - 9001:9001
+
   db:
     image: mysql:5.7
     ports: 
