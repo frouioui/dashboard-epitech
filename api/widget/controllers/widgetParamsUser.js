@@ -4,7 +4,8 @@ module.exports = {
     getAllUserWidgetParams,
     getUserWidgetParamsByValue,
     addOneUserWidgetParam,
-    deleteOneUserWidgetParam
+    deleteOneUserWidgetParam,
+    modifyValueUserWidgetParam
 }
 
 function getAllUserWidgetParams(req, res) {
@@ -87,3 +88,17 @@ function deleteOneUserWidgetParam(req, res) {
     return
 }
 
+function modifyValueUserWidgetParam(req, res) {
+    res.set('Content-Type', 'application/json');
+    let id = req.params.id
+    let value = req.body.value
+    model.modifyValueUserWidgetParam(req, res, { id: id, value: value }, (req, res, error, result) => {
+        if (error) {
+            console.error(error)
+            res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error" } })
+        } else {
+            res.status(200).json({ status: 'success', code: 200 })
+        }
+    })
+    return
+}

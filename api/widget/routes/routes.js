@@ -9,12 +9,12 @@ module.exports = function (app) {
     var widgetUserParams = require('../controllers/widgetParamsUser');
 
     // Incomes
+    app.route('/v1/widgets/home')
+        .get(controllers.home)
+
     app.route('/v1/widgets')
         .get(widgets.getAllWidgets)
         .post(widgets.addOneWidget)
-
-    app.route('/v1/widgets/home')
-        .get(controllers.home)
 
     app.route('/v1/widgets/search')
         .get(widgets.getOneWidgetByValue)
@@ -52,7 +52,12 @@ module.exports = function (app) {
 
     app.route('/v1/widgets/user/params')
         .get(widgetUserParams.getAllUserWidgetParams)
+
+    app.route('/v1/widgets/user/param')
         .post(widgetUserParams.addOneUserWidgetParam)
+
+    app.route('/v1/widgets/user/param/:id')
+        .put(widgetUserParams.modifyValueUserWidgetParam)
 
     app.route('/v1/widgets/user/params/delete/:id')
         .delete(widgetUserParams.deleteOneUserWidgetParam)

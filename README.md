@@ -20,7 +20,7 @@ This kind of architecture (micro-services) is used more and more by tech compani
 ### **The services**
 
 - Users API ([documentation](./api/users/README.md))
-- Widget API
+- Widget API ([documentation](./api/widget/README.md))
 - {Service 1} API
 - {Service 2} API
 - {Service 3} API

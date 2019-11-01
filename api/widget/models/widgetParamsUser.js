@@ -6,7 +6,8 @@ module.exports = {
     getUserWidgetParamsByUserID,
     getUserWidgetParamsByUserWidgetID,
     addOneUserWidgetParam,
-    deleteUserWidgetParam
+    deleteUserWidgetParam,
+    modifyValueUserWidgetParam
 }
 
 function getAllUserWidgetParams(req, res, dataHandler) {
@@ -41,6 +42,12 @@ function addOneUserWidgetParam(req, res, data, dataHandler) {
 
 function deleteUserWidgetParam(req, res, id, dataHandler) {
     con.query(`DELETE FROM api_widget.widget_user_params WHERE id = ` + id, function (error, results, fields) {
+        dataHandler(req, res, error, results)
+    })
+}
+
+function modifyValueUserWidgetParam(req, res, data, dataHandler) {
+    con.query(`UPDATE api_widget.widget_user_params SET value = '` + data.value + `' WHERE id = ` + data.id, (error, results) => {
         dataHandler(req, res, error, results)
     })
 }
