@@ -1,7 +1,5 @@
 runtime: python37
 
-entrypoint: gunicorn -b :$PORT main:app
-
 service: news
 
 manual_scaling:
