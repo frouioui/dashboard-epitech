@@ -84,6 +84,9 @@ if (isRegisterIn) {
         <Link to="/login">Already have an account?</Link>
         </div>
         { isMismatchPwd &&<Error>Oups! The passwords seem to be different.</Error> }
+        <div class="footer">
+        <h6>A production of Julien Ferrier © Epitech Toulouse, Copyright, All rights reserved.</h6>
+        </div>
       </Card>
     );
   }

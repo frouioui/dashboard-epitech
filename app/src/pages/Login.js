@@ -69,6 +69,9 @@ function Login() {
       <Link to="/signup">Don't have an account?</Link>
       </div>
         { isError &&<Error>The username or password provided were incorrect!</Error> }
+      <div class="footer">
+        <h6>A production of Julien Ferrier © Epitech Toulouse, Copyright, All rights reserved.</h6>
+      </div>
     </Card>
   );
 }
