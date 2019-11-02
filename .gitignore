@@ -2,6 +2,10 @@
 node_modules
 package-lock.json
 
+
+.DS_Store
+
+
 # Docker
 ./volumes
 
@@ -10,3 +14,4 @@ __pycache__
 
 # Development
 .vscode
+

@@ -1,16 +1,18 @@
 version: "3"
 
 services:
-  app:
-    container_name: app
+  frontend:
+    container_name: frontend-dashboard
     build: 
       context: ./app
       dockerfile: Dockerfile
     environment:
       DEV_ENV: "TRUE"
-    image: app-test-dashboard
+    image: frontend-dashboard
     ports:
-      - 80:8080
+      - 80:3000
+    volumes:
+      - "./app:/app"
 
   users_api:
     container_name: users_api
