@@ -38,8 +38,8 @@ const Button = styled.button`
 `;
 
 const Error = styled.div`
-  margin-top: 5%;
   color: red;
+  margin-top: -26rem;
 `;
 
 export { Form, Input, Button, Card, Error };
