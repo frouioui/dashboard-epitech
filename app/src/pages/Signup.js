@@ -47,7 +47,16 @@ if (isRegisterIn) {
     return (
       <Card>
         <Form>
-        <h1 className="registerTitle">Register you on [DASHBOARD]</h1>
+        <h1 className="registerTitle">Register on</h1>
+        <div>
+        <p>P</p>
+        <p>e</p>
+        <p>d</p>
+        <p>a</p>
+        <p>f</p>
+        <p>y</p>
+        <p>.</p>
+        </div>
           <Input type="Adresse mail"
           value={email}
           onChange={e => {
