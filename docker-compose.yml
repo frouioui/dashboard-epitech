@@ -44,6 +44,19 @@ services:
     ports:
       - 9001:9001
 
+  news_api:
+    container_name: news_api
+    build: 
+      context: ./api/news
+      dockerfile: Dockerfile
+    environment:
+      DEV_ENV: "TRUE"
+    image: news_api_dashboard
+    volumes:
+      - "./api/news:/app"
+    ports:
+      - 9002:5000
+  
   db:
     image: mysql:5.7
     ports: 
