@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
+import "../CSS/html_properties_register.css";
 import { Card, Form, Input, Button, Error } from '../components/AuthForm';
 import axios from  'axios';
 import { useAuth } from "../context/auth";
@@ -46,6 +47,7 @@ if (isRegisterIn) {
     return (
       <Card>
         <Form>
+        <h1 className="registerTitle">Register you on [DASHBOARD]</h1>
           <Input type="Adresse mail"
           value={email}
           onChange={e => {
@@ -69,7 +71,9 @@ if (isRegisterIn) {
           />
           <Button onClick={postRegister}>Sign Up</Button>
         </Form>
+        <div className="linked">
         <Link to="/login">Already have an account?</Link>
+        </div>
         { isMismatchPwd &&<Error>Oups! The passwords seem to be different.</Error> }
       </Card>
     );
