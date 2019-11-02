@@ -19,16 +19,17 @@ const Form = styled.div`
 const Input = styled.input`
   padding: 1rem;
   border: 1px solid #999;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5em;
   border-radius: 2%;
+
 `;
 
 const Button = styled.button`
-  background: linear-gradient(to bottom, #6371c7, #5563c1);
+  background: lienar-gradient(to bottom, #6371c7, #5563c1);
   border-color: #3f4eae;
   border-radius: 3px;
-  padding: 1rem;
+  padding: 18px;
   color: white;
   font-weight: 700;
   width: 100%;
