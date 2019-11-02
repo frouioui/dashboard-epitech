@@ -1,6 +1,7 @@
 /*This CSS file is used to design the register page
 for html properties only*/
 
+<<<<<<< HEAD
 
 div p {
     display: inline-flexbox;
@@ -92,14 +93,23 @@ div p {
   }
   
 
+=======
+>>>>>>> 2094e39608499d860c8d569350e2011d78693b43
 /*style of title*/
 .registerTitle {
     font-size: 50px;
     font-weight: 500;
     line-height: 1.4;
+<<<<<<< HEAD
     margin-top: -29rem;
     margin-bottom: 5rem;
     background-image: linear-gradient(to right, #84fab0, #8fd3f4 51%, #84fab0);
+=======
+    margin-top: -13rem;
+    margin-bottom: 5rem;
+    /*padding: 10px 0;*/
+    background-image: -webkit-gradient(linear,0% 0%,25% 100%,from(#fc6),to(#f69));
+>>>>>>> 2094e39608499d860c8d569350e2011d78693b43
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -107,5 +117,8 @@ div p {
 /*style of link*/
 .linked {
     margin-top: -24rem;
+<<<<<<< HEAD
     margin-bottom: 10rem;;
+=======
+>>>>>>> 2094e39608499d860c8d569350e2011d78693b43
 }

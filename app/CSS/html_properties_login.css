@@ -1,0 +1,21 @@
+/*This CSS file is used to design the login page
+for html properties only*/
+
+/*style of title*/
+.registerTitle {
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-top: -13rem;
+    margin-bottom: 5rem;
+    /*padding: 10px 0;*/
+    background-image: -webkit-gradient(linear,0% 0%,25% 100%,from(#fc6),to(#f69));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/*style of link*/
+.linked_2 {
+    display: none;
+}
+
