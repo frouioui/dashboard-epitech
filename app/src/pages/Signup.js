@@ -85,7 +85,7 @@ if (isRegisterIn) {
         </div>
         { isMismatchPwd &&<Error>Oups! The passwords seem to be different.</Error> }
         <div class="footer">
-        <h6>A production of Julien Ferrier © Epitech Toulouse, Copyright, All rights reserved.</h6>
+        <h6>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h6>
         </div>
       </Card>
     );
