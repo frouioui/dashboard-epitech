@@ -4,7 +4,7 @@ services:
   frontend:
     container_name: frontend-dashboard
     build: 
-      context: ./app
+      context: ./app/docker
       dockerfile: Dockerfile
     environment:
       DEV_ENV: "TRUE"
