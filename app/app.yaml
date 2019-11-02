@@ -1,5 +1,7 @@
 runtime: nodejs10
 
+env: flexible
+
 service: default
 
 manual_scaling:
