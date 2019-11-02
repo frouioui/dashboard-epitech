@@ -1,4 +1,17 @@
+# Node
 node_modules
 package-lock.json
-./volumes
+
+
 .DS_Store
+
+
+# Docker
+./volumes
+
+# Python
+__pycache__
+
+# Development
+.vscode
+

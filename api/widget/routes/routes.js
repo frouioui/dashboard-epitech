@@ -1,4 +1,5 @@
 'use strict';
+var cors = require('cors')
 
 module.exports = function (app) {
     var controllers = require('../controllers/controllers');
@@ -7,6 +8,8 @@ module.exports = function (app) {
     var widgetParams = require('../controllers/widgetParams');
     var widgetsUser = require('../controllers/widgetsUser');
     var widgetUserParams = require('../controllers/widgetParamsUser');
+
+    app.options('*', cors())
 
     // Incomes
     app.route('/v1/widgets/home')
