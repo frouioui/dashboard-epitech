@@ -40,7 +40,7 @@ function postRegister() {
   }
 
 if (isRegisterIn) {
-  return <Redirect to="/" />
+  return <Redirect to="/login" />
 }
 
     return (
