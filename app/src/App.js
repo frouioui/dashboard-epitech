@@ -22,14 +22,6 @@ function App(props) {
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens}}>
       <Router>
         <div>
-          <ul>
-          <li>
-            <Link to="/">Home Page</Link>
-          </li>
-          <li>
-            <Link to="/admin">Admin Page</Link>
-          </li>
-          </ul>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
