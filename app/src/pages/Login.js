@@ -12,7 +12,12 @@ function Login() {
   const [password, setPassword] = useState("");
 
   function postLogin() {
-    let url = "http://localhost:9000/v1/users/login/"
+    var url = ""
+    if (process.env.DEV_ENV == "TRUE") {
+      url = "http://localhost:9000/v1/users/login/"
+    } else {
+      url = "https://api.pedafy.com/v1/users/login/"
+    }
     axios.post(url, {
       email: email,
       password: password

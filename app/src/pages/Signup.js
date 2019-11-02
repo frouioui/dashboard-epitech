@@ -17,7 +17,12 @@ function Signup() {
 
 
 function postRegister() {
-  let url = "http://localhost:9000/v1/users/new"
+  var url = ""
+  if (process.env.DEV_ENV == "TRUE") {
+    url = "http://localhost:9000/v1/users/new/"
+  } else {
+    url = "https://api.pedafy.com/v1/users/new/"
+  }
   if (password !== passwordConfirm ) {
     console.log("PASSWORDS MISMATCH")
     setIsMismatchPwd(true);
