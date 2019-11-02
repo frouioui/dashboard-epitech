@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import { Card, Form, Input, Button, Error } from '../components/AuthForm';
-import { useAuth } from "../context/auth";
 
 function Login() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -12,7 +11,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   function postLogin() {
-    let url = "localhost:9000/v1/users/login/"
+    let url = "http://localhost:9000/v1/users/login/"
     axios.post(url, {
       email: email,
       password: password
