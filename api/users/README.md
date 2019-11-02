@@ -19,12 +19,24 @@ This API uses the Richardson Maturity Model, more info [here](https://martinfowl
 | Action | Method | Route |
 | ---- | ---- | ---- |
 | Get all users | `GET` | `/v1/users` |
-| Login user | `GET` | `/v1/users/login` |
+| Login user | `POST` | `/v1/users/login` |
 | Add a new user | `POST` | `/v1/users/new` |
+
+### ***Production URL***
+
+- https://api.pedafy.com/v1/users ...
+
+### ***Development URL***
+
+- http://localhost:9000/v1/users ...
 
 ## **Routes description**
 
 ### **Get all users**
+
+Request type: `GET`.
+
+URL: `/v1/users`.
 
 Empty `GET` request. Returns an array of users.
 
@@ -45,6 +57,10 @@ Here is an example of a **response**:
 ```
 ____
 ### **Add a new user**
+
+Request type: `POST`.
+
+URL: `/v1/users/new`.
 
 Create a new user in the database. Your body must contain the new user's information. The server return the new user's ID.
 
@@ -70,6 +86,10 @@ Here is an example of a **response**:
 
 ____
 ### **Login user**
+
+Request type: `POST`.
+
+URL: `/v1/users/login`.
 
 Login an existing user. You request's body must contain the user's credentials (email and password). The server return wether or not the user is given access to the website or not.
 
