@@ -7,17 +7,16 @@ import { useAuth } from "../context/auth";
 function Signup() {
   const [isRegisterIn, setRegisterIn]
   = useState(false);
-  const [isErrorRegister, setIsErrorRegister] = useState(false);
+  const [setIsErrorRegister] = useState(false);
   const [isMismatchPwd, setIsMismatchPwd] = useState(false);
   const [email, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordconfirm] = useState("");
-  const { setAuthTokens } = 
   useAuth();
 
 
 function postRegister() {
-  let url = "localhost/9000/v1/users/new"
+  let url = "http://localhost:9000/v1/users/new"
   if (password !== passwordConfirm ) {
     console.log("PASSWORDS MISMATCH")
     setIsMismatchPwd(true);
