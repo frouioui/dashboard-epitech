@@ -3,8 +3,21 @@ dispatch:
   - url: "api.pedafy.com/v1/users/*"
     service: users
 
+  - url: "api.pedafy.com/v1/users"
+    service: users
+
   - url: "api.pedafy.com/v1/widgets/*"
     service: widget
 
+  - url: "api.pedafy.com/v1/widgets"
+    service: widget
+
+  - url: "api.pedafy.com/v1/news/*"
+    service: news
+
+  - url: "api.pedafy.com/v1/news"
+    service: news
+
   - url: "pedafy.com/*"
     service: default
+
