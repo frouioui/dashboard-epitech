@@ -5,6 +5,23 @@ for html properties only*/
 
 /*@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700';*/
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+    background-image: linear-gradient(to right, #84fab0, #8fd3f4 51%, #84fab0);
+    color: white;
+ }
+
+ .footer h6 {
+     text-align: left;
+     margin-left: 2rem;
+     margin-top: 2.5rem;
+     color: white;
+ }
+
 div p {
   display: inline-flexbox;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
