@@ -1,6 +1,6 @@
-runtime: nodejs
+runtime: nodejs10
 
-env: flexible
+env: standard
 
 service: default
 
