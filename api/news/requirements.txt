@@ -1,0 +1,3 @@
+Flask
+newsapi-python
+flask-cors
