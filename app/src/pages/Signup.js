@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import "../CSS/html_properties_register.css";
+
 import { Card, Form, Input, Button, Error } from '../components/AuthForm';
 import axios from  'axios';
 import { useAuth } from "../context/auth";
@@ -89,7 +90,7 @@ if (isRegisterIn) {
         <Link to="/login">Already have an account?</Link>
         </div>
         { isMismatchPwd &&<Error>Oups! The passwords seem to be different.</Error> }
-        <div className="footer">
+        <div className="footer2">
         <h6>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h6>
         </div>
       </Card>
