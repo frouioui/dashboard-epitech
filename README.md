@@ -21,7 +21,7 @@ This kind of architecture (micro-services) is used more and more by tech compani
 
 - Users API ([documentation](./api/users/README.md))
 - Widget API ([documentation](./api/widget/README.md))
-- {Service 1} API
+- News Service API ([documentation](./api/news/README.md))
 - {Service 2} API
 - {Service 3} API
 - Frontend
