@@ -1,4 +1,4 @@
-FROM node:10.16.3
+FROM gcr.io/google-appengine/nodejs
 
 WORKDIR /app
 
@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . ./
 
-EXPOSE 3000
+ENV PORT=8080
+
+EXPOSE 8080
 
 CMD [ "npm", "start" ]
