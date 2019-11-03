@@ -19,9 +19,12 @@ function Home(props) {
     <button class="dropbtn">Setting</button>
       <div class="dropdown-content">
         <a href="https://pedafy.com/signup">Add Widget</a>
-        <a href="https://pedafy.com/signup">Delete Widget</a>
+        <a href="https://pedafy.com/signup">Logout</a>
         <a href="#">Use our API</a>
       </div>
+  </div>
+  <div className="body">
+    <button>Add a widget</button>
   </div>
   <div className="footer3">
   </div>
