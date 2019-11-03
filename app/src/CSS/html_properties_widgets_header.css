@@ -40,7 +40,7 @@ for html properties only*/
 
 .body button {
     /*background-color: rgb(84, 183, 223);*/
-    background-color: rgb(255, 90, 95);
+    background-color: #1abc9c;
     color:white;
     padding: 10px;
     width: 15rem;
@@ -107,6 +107,29 @@ for html properties only*/
 
   /* END of style of the widget_header*/
 
+  .container {
+    width: 800px;
+    /*border: 5px solid rgb(111,41,97);*/
+    border-radius: .5em;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+  }
+  
+  .column {
+    flex-direction: column;
+    height: 400px;
+  }
+  
+  .item {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    background-color: rgba(111,41,97,.3);
+    border: 2px solid rgba(111,41,97,.5);
+  }
+
 
 .footer3 {
     position: absolute;
@@ -114,7 +137,38 @@ for html properties only*/
     bottom: 0;
     width: 100%;
     height: 7rem;
-    /*background-image: linear-gradient(rgb(12, 185, 128), rgb(134, 221, 199));*/
     background-color: #1abc9c;
-    /*background-image: linear-gradient(to right, #84fab0, #8fd3f4 51%, #84fab0);*/
+}
+
+.footer3 h6 {
+    text-align: left;
+    margin-left: 2rem;
+    margin-top: 2.5rem;
+    color: white;
+}
+
+.body h5 {
+    margin-top: 4rem;
+    margin-left: 5rem;
+    font-size: 1.8em;
+}
+
+.body h3 {
+  margin-left: 3rem;
+  margin-top: 5rem;
+  color: #1abc9c;
+  font-size: 1.7em;
+}
+
+.body2 button {
+    background-color: salmon;
+    color: white;
+    width: 15rem;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    margin-top: -4.1rem;
+    margin-left: 79.2%;
 }
