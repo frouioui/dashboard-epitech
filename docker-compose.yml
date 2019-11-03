@@ -11,8 +11,6 @@ services:
     image: frontend-dashboard
     ports:
       - 80:8080
-    volumes:
-      - "./app:/app"
 
   users_api:
     container_name: users_api
@@ -43,8 +41,6 @@ services:
       - db:database
     depends_on:
       - db
-    volumes:
-      - ./api/widget:/usr/src/app
     ports:
       - 9001:9001
     restart: unless-stopped
@@ -57,8 +53,6 @@ services:
     environment:
       DEV_ENV: "TRUE"
     image: news_api_dashboard
-    volumes:
-      - "./api/news:/app"
     ports:
       - 9002:5000
 
