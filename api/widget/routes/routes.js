@@ -15,6 +15,9 @@ module.exports = function (app) {
     app.route('/v1/widgets/home')
         .get(controllers.home)
 
+    app.route('/v1/widgets/user/:user_id/all/widgets')
+        .get(widgetsUser.getOneUserAllWidgets)
+
     app.route('/v1/widgets')
         .get(widgets.getAllWidgets)
         .post(widgets.addOneWidget)

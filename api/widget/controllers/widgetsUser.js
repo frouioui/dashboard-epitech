@@ -1,11 +1,89 @@
 var model = require("../models/widgetsUser")
+var modelParamsUser = require("../models/widgetParamsUser")
+var modelParams = require("../models/widgetParams")
+var modelWidget = require("../models/widgets")
 
 module.exports = {
+    getOneUserAllWidgets,
     getAllUserWidget,
     getUserWidgetsByValue,
     addOneUserWidget,
     deleteOneUserWidget,
     modifyPositionUserWidget
+}
+
+function addWidgetUserInformation(req, res, user_widget) {
+    return new Promise(function (resolve, reject) {
+        modelWidget.getOneWidgetByID(req, res, user_widget.widget_id, (req, res, error, resultWidget) => {
+            if (error) {
+                return reject(error);
+            } else {
+                user_widget.name = resultWidget[0].name
+                user_widget.service_id = resultWidget[0].service_id
+                user_widget.description = resultWidget[0].description
+                resolve(user_widget)
+            }
+        })
+    })
+
+}
+
+function addParamUserInformation(req, res, user_widget) {
+    return new Promise(function (resolve, reject) {
+        modelParamsUser.getUserWidgetParamsByUserWidgetID(req, res, user_widget.id, (req, res, error, resultParamsUser) => {
+            if (error) {
+                return reject(error)
+            } else {
+                user_widget.params = resultParamsUser
+                user_widget.params.forEach(param => {
+                    modelParams.getOneWidgetByID(req, res, user_widget.widget_id, (req, res, error, resultParam) => {
+                        if (error) {
+                            return reject(error)
+                        } else {
+                            param.name = resultParam[0].name
+                            param.type = resultParam[0].type
+                            return resolve(user_widget)
+                        }
+                    })
+                });
+            }
+        })
+    })
+}
+
+function getOneUserCompleteWidgetInfo(req, res, user_widget) {
+    return new Promise(function (resolve, reject) {
+        addWidgetUserInformation(req, res, user_widget).then(function (user_w) {
+            addParamUserInformation(req, res, user_widget).then(function (user_w2) {
+                return resolve(user_widget)
+            }).catch((err) => setImmediate(() => { return reject(err) }))
+        }).catch((err) => setImmediate(() => { return reject(err) }));
+    })
+}
+
+function getOneUserAllWidgets(req, res) {
+    res.set('Content-Type', 'application/json');
+    let user_id = req.params.user_id
+
+    model.getUserWidgetsByUserIDOrderPosition(req, res, user_id, (req, res, error, result) => {
+        if (error) {
+            console.error(error)
+            res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error 1" } })
+        } else {
+            var user_widgets = result
+            var promises = [];
+            user_widgets.forEach(user_widget => {
+                promises.push(getOneUserCompleteWidgetInfo(req, res, user_widget));
+            });
+            Promise.all(promises)
+                .then(function (data) {
+                    res.status(200).json({ status: 'success', code: 200, data: user_widgets })
+                })
+                .catch(function (err) {
+                    throw err;
+                });
+        }
+    })
 }
 
 function getAllUserWidget(req, res) {
