@@ -30,6 +30,12 @@ As we said ... each widgets have parameters. Users can add parameters for their 
 
 ## **Routes**
 
+### **Special routes**
+| Action | Method | Route |
+| ---- | ---- | ---- |
+| Get all information widgets user | `GET` | `/v1/widgets/user/{{id}}/all/widgets` |
+
+
 ### **Services**
 | Action | Method | Route |
 | ---- | ---- | ---- |
@@ -68,6 +74,47 @@ As we said ... each widgets have parameters. Users can add parameters for their 
 | Delete a user widget param | `DELETE` | `/v1/widgets/user/params/delete/{{id}}` |
 | Search a user widget param | `GET` | `/v1/widgets/user/params/search`|
 | Modify value of a param | `PUT` | `/v1/widgets/users/param/{{id}}` |
+
+## **Routes description - Special routes**
+
+### **Get all information widgets user**
+
+Request type: `GET`.
+
+URL: `/v1/widgets/user/{{id}}/all/widgets`.
+
+Empty `GET` request. Returns an array containing all the information for the user's widgets and its parameters.
+
+Here is an example of a **response**:
+```json
+{
+    "status": "success",
+    "code": 200,
+    "data": [
+        {
+            "id": 6,
+            "position": 1,
+            "user_id": 1,
+            "widget_id": 1,
+            "name": "Temperature",
+            "service_id": 1,
+            "description": "Display the city's temperature",
+            "params": [
+                {
+                    "id": 5,
+                    "value": "Toulouse",
+                    "user_widget_id": 6,
+                    "widget_param_id": 1,
+                    "user_id": 1,
+                    "name": "city",
+                    "type": "string"
+                }
+            ]
+        }
+    ]
+}
+```
+____
 
 ## **Routes description - Services**
 

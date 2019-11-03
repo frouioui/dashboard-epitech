@@ -43,8 +43,11 @@ services:
       - db:database
     depends_on:
       - db
+    volumes:
+      - ./api/widget:/usr/src/app
     ports:
       - 9001:9001
+    restart: unless-stopped
 
   news_api:
     container_name: news_api
