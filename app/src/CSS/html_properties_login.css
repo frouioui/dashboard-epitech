@@ -11,7 +11,7 @@ for html properties only*/
     bottom: 0;
     width: 100%;
     height: 7rem;
-    background-image: linear-gradient(to right, #84fab0, #8fd3f4 51%, #84fab0);
+    background-color: #1abc9c;
     color: white;
     margin-bottom: -4rem;
  }
