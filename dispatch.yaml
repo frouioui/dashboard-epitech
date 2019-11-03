@@ -1,23 +1,38 @@
 dispatch:
 
+  # USERS API
   - url: "api.pedafy.com/v1/users/*"
     service: users
 
   - url: "api.pedafy.com/v1/users"
     service: users
 
+
+  # WIDGET API
   - url: "api.pedafy.com/v1/widgets/*"
     service: widget
 
   - url: "api.pedafy.com/v1/widgets"
     service: widget
 
+
+  # NEWS API
   - url: "api.pedafy.com/v1/news/*"
     service: news
 
   - url: "api.pedafy.com/v1/news"
     service: news
 
+
+  # INTRA API
+  - url: "api.pedafy.com/v1/intra/*"
+    service: intra
+
+  - url: "api.pedafy.com/v1/intra"
+    service: intra
+
+
+  # FRONTEND SERVICE
   - url: "pedafy.com/*"
     service: default
 
