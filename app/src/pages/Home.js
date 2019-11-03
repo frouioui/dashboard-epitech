@@ -24,9 +24,16 @@ function Home(props) {
       </div>
   </div>
   <div className="body">
-    <button>Add a widget</button>
+    <button><a href="/Addwidget">Add a widget</a></button>
+        <h5>All widgets</h5>
   </div>
+  <div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
   <div className="footer3">
+  <h6>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h6>
   </div>
     </div>
   );
