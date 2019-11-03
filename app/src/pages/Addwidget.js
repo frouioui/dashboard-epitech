@@ -18,6 +18,12 @@ function Addwidget(props) {
    </div>
 </div>
 <div className="body">
+    <h3>Add a widget</h3>
+</div>
+<div className="body2">
+    <form method="get" action="/">
+    <button type="submit">Cancel</button>
+    </form>
 </div>
 <div className="footer3">
 </div>

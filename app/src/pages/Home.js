@@ -24,7 +24,9 @@ function Home(props) {
       </div>
   </div>
   <div className="body">
-    <button>Add a widget</button>
+    <form method="get" action="/addwidget">
+    <button type="submit">Add a widget</button>
+    </form>
   </div>
   <div className="footer3">
   </div>
