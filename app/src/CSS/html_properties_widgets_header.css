@@ -1,0 +1,106 @@
+/*This CSS file is used to design the login page
+for html properties only*/
+
+/*import CSS file from external library*/
+
+/*@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700';*/
+
+
+/*style of the widget_header*/
+
+.header {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+    background-color: #1abc9c;
+  }
+
+/*style of the button_widget_header*/
+
+
+  .header button {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*background-color: #3578E5;*/
+    /*background-color:white;*/
+    background-color: rgb(84, 183, 223);
+    border: none;
+    color:white;
+    padding: 10px;
+    width: 15rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+
+/*style of the widget_header*/
+
+
+  .dropbtn {
+    background-color: white;
+    color: #1abc9c;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    margin-top: -5.7rem;
+    margin-left: 55%;
+  }
+  
+  .dropdown {
+    position: relative;
+    margin-left: 60rem;
+    border-radius: 5px;
+    margin-left: 69%;
+
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-left: 55%;
+    margin-top: -1.8rem;
+
+  }
+  
+  .dropdown-content a {
+    color: #1abc9c;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+  }
+  
+  .dropdown-content a:hover {background-color: white;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: white;}
+
+
+  /* END of style of the widget_header*/
+
+
+.footer3 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+    background-image: linear-gradient(rgb(12, 185, 128), rgb(134, 221, 199));
+}
