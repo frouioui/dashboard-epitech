@@ -53,7 +53,7 @@ background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100
 
 const Error = styled.div`
   color: red;
-  margin-top: -26rem;
+  margin-top: -16rem;
 `;
 
-export { Form, Input, Button, Card, Error};
+export { Form, Input, Button, Card, Error };
