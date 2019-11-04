@@ -27,7 +27,7 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func markRoute(w http.ResponseWriter, r *http.Request) {
-	authToken := r.Header.Get("intra_token")
+	authToken := r.Header.Get("Authorization")
 	marks, err := client.GetLastMarks(authToken)
 	if err != nil {
 		w.WriteHeader(400)
@@ -49,7 +49,7 @@ func markRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func netsoulRoute(w http.ResponseWriter, r *http.Request) {
-	authToken := r.Header.Get("intra_token")
+	authToken := r.Header.Get("Authorization")
 	netsoul, err := client.GetNetsoul(authToken)
 	log.Println(netsoul)
 	if err != nil {
@@ -67,7 +67,7 @@ func netsoulRoute(w http.ResponseWriter, r *http.Request) {
 func gpaAndCreditsRoute(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	cycle := vars["cycle"]
-	authToken := r.Header.Get("intra_token")
+	authToken := r.Header.Get("Authorization")
 	gpa, credits, err := client.GetGPAAndCredits(cycle, authToken)
 	if err != nil {
 		w.WriteHeader(400)
