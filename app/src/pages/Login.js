@@ -35,7 +35,7 @@ function Login() {
   }
 
   if (isLoggedIn) {
-    return <Redirect to="/" />;
+    return <Redirect to="/allwidget" />;
   }
 
   return (
