@@ -33,14 +33,14 @@ As we said ... each widgets have parameters. Users can add parameters for their 
 ### **Special routes**
 | Action | Method | Route |
 | ---- | ---- | ---- |
-| Get all information widgets user | `GET` | `/v1/widgets/user/{{id}}/all/widgets` |
+| Get all information widgets user | `GET` | `/v1/widgets/user/:id/all/widgets` |
 
 
 ### **Services**
 | Action | Method | Route |
 | ---- | ---- | ---- |
 | Get all services | `GET` | `/v1/widgets/services` |
-| Get service by ID | `GET` | `/v1/widgets/service/{{id}}` |
+| Get service by ID | `GET` | `/v1/widgets/service/:id` |
 | Add a new service | `POST` | `/v1/widgets/service` |
 
 ### **Widgets**
@@ -62,8 +62,8 @@ As we said ... each widgets have parameters. Users can add parameters for their 
 | ---- | ---- | ---- |
 | Get all the user widgets | `GET` | `/v1/widgets/user`|
 | Add a user widget | `POST` | `/v1/widgets/user` |
-| Change the position of a user widget | `PUT` | `/v1/widgets/user/position/{{id}}`|
-| Delete a user widget | `DELETE` | `/v1/widgets/user/delete/{{id}}` |
+| Change the position of a user widget | `PUT` | `/v1/widgets/user/position/:id`|
+| Delete a user widget | `DELETE` | `/v1/widgets/user/delete/:id` |
 | Search a user widget | `GET` | `/v1/widgets/user/search` |
 
 ### **User widget params**
@@ -71,9 +71,9 @@ As we said ... each widgets have parameters. Users can add parameters for their 
 | ---- | ---- | ---- |
 | Get all user widgets params | `GET`| `/v1/widgets/params` |
 | Add a user widget param | `POST`| `/v1/widgets/user/params` |
-| Delete a user widget param | `DELETE` | `/v1/widgets/user/params/delete/{{id}}` |
+| Delete a user widget param | `DELETE` | `/v1/widgets/user/params/delete/:id` |
 | Search a user widget param | `GET` | `/v1/widgets/user/params/search`|
-| Modify value of a param | `PUT` | `/v1/widgets/users/param/{{id}}` |
+| Modify value of a param | `PUT` | `/v1/widgets/users/param/:id` |
 
 ## **Routes description - Special routes**
 
