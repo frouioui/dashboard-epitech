@@ -41,6 +41,7 @@ services:
       - db:database
     depends_on:
       - db
+      - users_api
     ports:
       - 9001:9001
     restart: unless-stopped
