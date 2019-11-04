@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -31,7 +30,6 @@ func getUserInfo(authToken string) (user models.User, err error) {
 	}
 
 	err = json.Unmarshal(respBody, &user)
-	log.Println(user)
 	if err != nil {
 		return user, err
 	}
@@ -80,6 +78,10 @@ func GetGPAAndCredits(cycle, authToken string) (gpa float64, credits int, err er
 			userGpa = gpa.Value
 			break
 		}
+	}
+
+	if userGpa == "" {
+		return 0.00, user.Credits, err
 	}
 
 	gpa, err = strconv.ParseFloat(userGpa, 64)

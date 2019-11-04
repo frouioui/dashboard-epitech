@@ -23,12 +23,11 @@ func main() {
 	routes.Assign(r)
 
 	s := &http.Server{
-		Addr:           ":" + port,
-		Handler:        r,
-		IdleTimeout:    5 * time.Second,
-		ReadTimeout:    5 * time.Second,
-		WriteTimeout:   5 * time.Second,
-		MaxHeaderBytes: 1 << 20,
+		Addr:         ":" + port,
+		Handler:      r,
+		IdleTimeout:  10 * time.Second,
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 10 * time.Second,
 	}
 	waiter := make(chan error)
 	log.Println("Starting server ...")
