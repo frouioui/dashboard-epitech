@@ -32,7 +32,6 @@ function connectAndCreateDatabase() {
         con.query("CREATE DATABASE IF NOT EXISTS api_widget", function (err, result) {
             if (err) throw err;
             console.log("Database api_widget created");
-            con.end()
             connectToDatabase()
         });
     });
