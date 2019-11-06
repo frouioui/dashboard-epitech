@@ -10,7 +10,10 @@ import Login from "./Login";
 function Signup() {
   const [isRegisterIn, setRegisterIn]
     = useState(false);
+<<<<<<< HEAD
   const [setIsErrorRegister2] = useState(false);
+=======
+>>>>>>> 89610650ce782cf2d4fe5009f0f37820b6544c75
   const [setIsErrorRegister] = useState(false);
   const [isMismatchPwd, setIsMismatchPwd] = useState(false);
   const [email, setUserName] = useState("");
@@ -21,6 +24,7 @@ function Signup() {
 
   function postRegister() {
     var url = ""
+<<<<<<< HEAD
 
     if (process.env.REACT_APP_DEV_ENV == "TRUE") {
       url = "http://localhost:9000/v1/users/new/"
@@ -33,6 +37,17 @@ function Signup() {
     } else if (email.indexOf("@") == 1) {
         console.log("ERROR INVALID MAIL")
     }
+=======
+    if (process.env.DEV_ENV === "TRUE") {
+      url = "http://localhost:9000/v1/users/new/"
+    } else {
+      url = "https://api.pedafy.com/v1/users/new/"
+    }
+    if (password !== passwordConfirm) {
+      console.log("PASSWORDS MISMATCH")
+      setIsMismatchPwd(true);
+    }
+>>>>>>> 89610650ce782cf2d4fe5009f0f37820b6544c75
     else axios.post(url, {
       email: email,
       password: password
@@ -48,8 +63,11 @@ function Signup() {
     }).catch(e => {
       console.log(e)
       setIsErrorRegister(true)
+<<<<<<< HEAD
       console.log(e)
       setIsErrorRegister2(true)
+=======
+>>>>>>> 89610650ce782cf2d4fe5009f0f37820b6544c75
     });
   }
 

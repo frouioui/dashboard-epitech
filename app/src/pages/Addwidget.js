@@ -1,112 +1,107 @@
-import React, { Component } from "react";
-import App from '../App';
+import React from "react";
 import "../CSS/html_properties_widgets_header.css"
-import axios from 'axios';
-import { useAuth } from "../context/auth";
+import { getAllServices, getAllWidgets } from "../client/widgets";
 
- 
 class AddWidget extends React.Component {
     constructor(props) {
         super(props);
-        console.log("TITI")
+
         this.state = {
-            'items': [],
             isLoaded: false,
+            isError: false,
+            services: [],
+            widgets: []
         }
     }
-    
 
     componentDidMount() {
-        /*const resp1 = await fetch('http://localhost:9001/v1/widgets/services/');
-        console.log(resp1);
-        const resp2 = await fetch('http://localhost:9001/v1/widgets/');
-        console.log(resp2)
-        let items = resp1.map(item => {
-            item.name2 = resp2.find((elem) => {return item.external_id == elem.id}).name
-        });
-        this.setState({
-            isLoaded: true,
-            items: items
-        })*/
-        console.log("TOTO");
-        fetch('http://localhost:9001/v1/widgets/services/').then(res => res.json())
-        .then(json => {
-                /*this.setState ({
-                    isLoaded: true,
-                    items: json, 
-                })*/
-                console.log(json)
-        });
-        fetch('http://localhost:9001/v1/widgets/').then(res => res.json())
-        .then(json => {
-                /*this.setState ({
-                    isLoaded: true,
-                    items: json, 
-                })*/
-                console.log(json)
-        });
+        getAllServices().then(jsonServices => {
+            getAllWidgets().then(jsonWidgets => {
+                this.setState({
+                    widgets: jsonWidgets.data,
+                    services: jsonServices.data,
+                    isLoaded: true
+                })
+            }).catch((err) => setImmediate(() => {
+                // TODO: HANDLE ERRORS -> Display an error message
+                this.setState({
+                    isError: true
+                })
+                console.error(err)
+            }))
+        }).catch((err) => setImmediate(() => {
+            // TODO: HANDLE ERRORS -> Display an error message
+            this.setState({
+                isError: true
+            })
+            console.error(err)
+        }))
     }
 
     render() {
-        var { isLoaded, items } = this.state;
-
-        if (!isLoaded) {
+        if (!this.state.isLoaded) {
             return <div>Loading ...</div>;
+        } else {
+            return (
+                <div>
+                    <div className="header">
+                        <button>Pedafy</button>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">Setting</button>
+                        <div class="dropdown-content">
+                            <a href="https://pedafy.com/signup">Add Widget</a>
+                            <a href="https://pedafy.com/signup">Logout</a>
+                            <a href="#">Use our API</a>
+                        </div>
+                    </div>
+                    <div className="body">
+                        <h3>Add a widget</h3>
+                        <hr class="separator" />
+                    </div>
+
+                    <div className="body2">
+                        <form method="get" action="/allwidget">
+                            <button type="submit">Cancel</button>
+                        </form>
+                    </div>
+                    <div className="header_widgets">
+                        <h6>Widget name</h6>
+                        <h6>Name</h6>
+                    </div>
+                    <div className="block">
+                        <div className="first">
+                            {this.state.services.map(service => (
+                                <h3>{service.name}</h3>
+                            ))}
+                            <input type="radio" checked="checked" name="radio"></input>
+                            <span class="checkmark"></span>
+                            <hr />
+                        </div>
+                        <div className="second">
+                            {this.state.widgets.map(widget => (
+                                <h3>{widget.name}</h3>
+                            ))}
+                            <input onClick="" type="radio" checked="checked" name="radio"></input>
+                            <span class="checkmark"></span>
+                            <hr />
+                        </div>
+                    </div>
+                    <div className="manage_widget">
+                        <h3>Configure your widget</h3>
+                        <div className="bloc">
+                        </div>
+
+                        <div className="submit">
+                            <button>Submit</button>
+                        </div>
+                    </div>
+                    <div className="footer3">
+                    </div>
+                </div>
+            );
         }
-        else {
-        
-        return (
-    <div>
-            <div className="header">
-            <button>Pedafy</button>
-        </div>
-            <div class="dropdown">
-            <button class="dropbtn">Setting</button>
-                <div class="dropdown-content">
-                    <a href="https://pedafy.com/signup">Add Widget</a>
-                    <a href="https://pedafy.com/signup">Logout</a>
-                    <a href="#">Use our API</a>
-                </div>
-            </div>
-            <div className="body">
-            <h3>Add a widget</h3>
-            <hr class="separator"/>
-        </div>
-
-        <div className="body2">
-            <form method="get" action="/allwidget">
-                <button type="submit">Cancel</button>
-            </form>
-        </div>
-        <div className="header_widgets">
-            <h6>Widget name</h6>
-            <h6>Name</h6>
-        </div>
-        <div className="block">
-             <div className="first">
-                {items.data.map(item => (
-                   <h3>{item.name}</h3> 
-                ))}
-                <input type="radio" checked="checked" name="radio"></input>
-                <span class="checkmark"></span>
-                        <hr />
-            </div>
-        </div>
-        <div className="manage_widget">
-            <h3>Configure your widget</h3>
-                <div className="bloc">
-                </div>
-
-                <div className="submit">
-                    <button>Submit</button>
-                </div>
-        </div>
-        <div className="footer3">
-        </div>
-    </div>
-        );
     }
 }
-}
-  
+
 export default AddWidget;
