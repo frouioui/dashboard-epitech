@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../CSS/html_properties_login.css";
 import { Link, Redirect } from "react-router-dom";
-import axios from 'axios';
 import { Card, Form, Input, Button, Error } from '../components/AuthForm';
+import { loginUser } from '../client/users'
 
 function Login() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -11,30 +11,11 @@ function Login() {
   const [password, setPassword] = useState("");
 
   function postLogin() {
-    var url = ""
-<<<<<<< HEAD
-    if (process.env.REACT_APP_DEV_ENV == "TRUE") {
-=======
-    if (process.env.DEV_ENV === "TRUE") {
->>>>>>> 89610650ce782cf2d4fe5009f0f37820b6544c75
-      url = "http://localhost:9000/v1/users/login/"
-    } else {
-      url = "https://api.pedafy.com/v1/users/login/"
-    }
-    axios.post(url, {
-      email: email,
-      password: password
-    }).then(result => {
-      console.log(result)
-      if (result.status === 200) {
-        setLoggedIn(true);
-      } else {
-        setIsError(true);
-      }
-    }).catch(e => {
-      console.log(e)
+    loginUser(email, password).then(res => {
+      setLoggedIn(true);
+    }).catch((err) => setImmediate(() => {
       setIsError(true);
-    });
+    }))
   }
 
   if (isLoggedIn) {
