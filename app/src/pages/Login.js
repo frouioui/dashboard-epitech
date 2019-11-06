@@ -12,7 +12,7 @@ function Login() {
 
   function postLogin() {
     var url = ""
-    if (process.env.DEV_ENV == "TRUE") {
+    if (process.env.REACT_APP_DEV_ENV == "TRUE") {
       url = "http://localhost:9000/v1/users/login/"
     } else {
       url = "https://api.pedafy.com/v1/users/login/"
@@ -52,7 +52,7 @@ function Login() {
       </div>
 
         <Input
-          type="username"
+          type="email"
           value={email}
           onChange={e => {
             setUserName(e.target.value);

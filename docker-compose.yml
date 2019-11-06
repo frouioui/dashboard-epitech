@@ -7,7 +7,7 @@ services:
       context: ./app
       dockerfile: Dockerfile
     environment:
-      DEV_ENV: "TRUE"
+      REACT_APP_DEV_ENV: "TRUE"
     image: frontend-dashboard
     volumes:
       - "./app:/app"
