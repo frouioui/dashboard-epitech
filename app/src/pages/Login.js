@@ -12,7 +12,7 @@ function Login() {
 
   function postLogin() {
     var url = ""
-    if (process.env.DEV_ENV == "TRUE") {
+    if (process.env.DEV_ENV === "TRUE") {
       url = "http://localhost:9000/v1/users/login/"
     } else {
       url = "https://api.pedafy.com/v1/users/login/"
@@ -40,16 +40,16 @@ function Login() {
   return (
     <Card>
       <Form>
-      <h1 className="registerTitle2">Signin</h1>
-      <div>
-      <p>P</p>
-      <p>e</p>
-      <p>d</p>
-      <p>a</p>
-      <p>f</p>
-      <p>y</p>
-      <p>.</p>
-      </div>
+        <h1 className="registerTitle2">Signin</h1>
+        <div>
+          <p>P</p>
+          <p>e</p>
+          <p>d</p>
+          <p>a</p>
+          <p>f</p>
+          <p>y</p>
+          <p>.</p>
+        </div>
 
         <Input
           type="username"
@@ -70,9 +70,9 @@ function Login() {
         <Button onClick={postLogin}>Sign In</Button>
       </Form>
       <div className="linked_2">
-      <Link to="/signup">Don't have an account?</Link>
+        <Link to="/signup">Don't have an account?</Link>
       </div>
-        { isError &&<Error>The username or password provided were incorrect!</Error> }
+      {isError && <Error>The username or password provided were incorrect!</Error>}
       <div className="footer2">
         <h6>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h6>
       </div>
