@@ -28,6 +28,11 @@ function Home(props) {
     <button type="submit">Add a widget</button>
     </form>
   </div>
+  <div className="test">
+    <form method="get" action="/test">
+    <button type="submit">See all services</button>
+    </form>
+  </div>
   <div className="footer4">
   </div>
     </div>
