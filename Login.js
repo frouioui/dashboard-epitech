@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//
 import "../CSS/html_properties_login.css";
 import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
@@ -57,7 +58,7 @@ function Login() {
           onChange={e => {
             setUserName(e.target.value);
           }}
-          placeholder="Email"
+          placeholder="Emal"
         />
         <Input
           type="password"

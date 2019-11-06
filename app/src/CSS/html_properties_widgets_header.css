@@ -37,6 +37,9 @@ for html properties only*/
     border-radius: 5px;
   }
 
+  .zero {
+    background: red;
+  }
 .body button {
     background-color: #1abc9c;
     color:white;
@@ -205,7 +208,7 @@ hr.separator {
 
 .block {
   font-family: Arial, Helvetica, sans-serif;
-  max-height: 250px;
+  max-height: 70px;
   overflow: auto;
   margin-left: 5rem;
   /*border: 2px solid #7becd6;*/
@@ -216,17 +219,23 @@ hr.separator {
   margin-top: -0.5rem;
 }
 
-.block h3 {
+.first h3 {
   font-family: Arial, Helvetica, sans-serif;
-  margin-left: 3rem;
+  margin-left: 5rem;
   color: rgb(92, 88, 88);
-  display: inline-block;
+  display: table;
   margin-right: 6.5rem;
+}
+
+.service h3 {
+display: table;
+margin-left: 3rem;
 }
 
 .block hr {
   border-color: #7becd6;
 }
+
 
 
 input[type=radio] :not(old) {

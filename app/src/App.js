@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import Allwidget from './pages/Allwidget';
 import Addwidget from './pages/Addwidget';
+import Test from './pages/Test';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -20,6 +21,7 @@ function App(props) {
     setAuthTokens(data);
   }
 
+  
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens}}>
       <Router>
@@ -30,10 +32,12 @@ function App(props) {
           <Route path="/allwidget" component={Allwidget} />
           <Route path="/addwidget" component={Addwidget} />
           <Route path="/admin" component={Admin} />
+          <Route path="/test" component={Test} />
         </div>
       </Router>
     </AuthContext.Provider>
   );
 }
+
 
 export default App;

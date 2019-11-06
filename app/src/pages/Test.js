@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import App from '../App';
+import AddWidget from "./Addwidget";
 import "../CSS/html_properties_widgets_header.css"
 import axios from 'axios';
 import { useAuth } from "../context/auth";
 
+/*http://localhost:9001/v1/widgets/services/*/
  
-class AddWidget extends React.Component {
+class Test extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -88,4 +90,4 @@ class AddWidget extends React.Component {
 }
 }
   
-export default AddWidget;
+export default Test;

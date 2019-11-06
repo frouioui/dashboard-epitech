@@ -9,6 +9,8 @@ services:
     environment:
       DEV_ENV: "TRUE"
     image: frontend-dashboard
+    volumes:
+      - "./app:/app"
     ports:
       - 80:8080
 
