@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Oct 30, 2019 at 08:15 AM
+-- Generation Time: Nov 06, 2019 at 09:40 AM
 -- Server version: 5.7.28
 -- PHP Version: 7.2.23
 
@@ -33,6 +33,14 @@ CREATE TABLE `services` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `name`) VALUES
+(1, 'intra'),
+(2, 'news');
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +53,18 @@ CREATE TABLE `widgets` (
   `name` varchar(255) NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `widgets`
+--
+
+INSERT INTO `widgets` (`id`, `service_id`, `name`, `description`) VALUES
+(1, 1, 'GPA and Credits', 'Display your GPA and credits'),
+(2, 1, 'Marks', 'Display your last marks'),
+(3, 1, 'Logtime', 'Display your logtime for the last 7 days'),
+(4, 2, 'Search news', 'Display news corresponding to your search'),
+(5, 2, 'Headlines news', 'Display the headlines corresponding to a search'),
+(6, 2, 'Headlines country', 'Display the headlines in a country');
 
 -- --------------------------------------------------------
 
@@ -71,6 +91,19 @@ CREATE TABLE `widget_params` (
   `type` varchar(255) NOT NULL,
   `widget_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `widget_params`
+--
+
+INSERT INTO `widget_params` (`id`, `name`, `type`, `widget_id`) VALUES
+(1, 'Auth Token', 'string', 1),
+(2, 'Cycle', 'string', 1),
+(3, 'country', 'string', 6),
+(4, 'Keyword', 'string', 5),
+(5, 'Keyword', 'string', 4),
+(6, 'Auth Token', 'string', 3),
+(7, 'Auth Token', 'string', 2);
 
 -- --------------------------------------------------------
 
@@ -116,16 +149,16 @@ ALTER TABLE `widgets_user`
 --
 ALTER TABLE `widget_params`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_widget_id_param` (`widget_id`);
+  ADD KEY `fk_widget_id_params` (`widget_id`);
 
 --
 -- Indexes for table `widget_user_params`
 --
 ALTER TABLE `widget_user_params`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user_id_params` (`user_id`),
-  ADD KEY `fk_user_widget_id` (`user_widget_id`) USING BTREE,
-  ADD KEY `fk_widget_param_id` (`widget_param_id`);
+  ADD KEY `fk_user_widget_id` (`user_widget_id`),
+  ADD KEY `fk_user_widget_param_id` (`widget_param_id`),
+  ADD KEY `fk_user_id_params` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -135,13 +168,13 @@ ALTER TABLE `widget_user_params`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `widgets`
 --
 ALTER TABLE `widgets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `widgets_user`
@@ -153,7 +186,7 @@ ALTER TABLE `widgets_user`
 -- AUTO_INCREMENT for table `widget_params`
 --
 ALTER TABLE `widget_params`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `widget_user_params`
@@ -182,7 +215,7 @@ ALTER TABLE `widgets_user`
 -- Constraints for table `widget_params`
 --
 ALTER TABLE `widget_params`
-  ADD CONSTRAINT `fk_widget_id_param` FOREIGN KEY (`widget_id`) REFERENCES `widgets` (`id`);
+  ADD CONSTRAINT `fk_widget_id_params` FOREIGN KEY (`widget_id`) REFERENCES `widgets` (`id`);
 
 --
 -- Constraints for table `widget_user_params`
@@ -190,7 +223,7 @@ ALTER TABLE `widget_params`
 ALTER TABLE `widget_user_params`
   ADD CONSTRAINT `fk_user_id_params` FOREIGN KEY (`user_id`) REFERENCES `api_users`.`users` (`id`),
   ADD CONSTRAINT `fk_user_widget_id` FOREIGN KEY (`user_widget_id`) REFERENCES `widgets_user` (`id`),
-  ADD CONSTRAINT `fk_widget_param_id` FOREIGN KEY (`widget_param_id`) REFERENCES `widget_params` (`id`);
+  ADD CONSTRAINT `fk_user_widget_param_id` FOREIGN KEY (`widget_param_id`) REFERENCES `widget_params` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
