@@ -6,8 +6,9 @@ import { useAuth } from "../context/auth";
 
  
 class AddWidget extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        console.log("TITI")
         this.state = {
             'items': [],
             isLoaded: false,
@@ -16,13 +17,33 @@ class AddWidget extends React.Component {
     
 
     componentDidMount() {
-        fetch('http://localhost:9001/v1/widgets/services/')
-        .then(res => res.json())
+        /*const resp1 = await fetch('http://localhost:9001/v1/widgets/services/');
+        console.log(resp1);
+        const resp2 = await fetch('http://localhost:9001/v1/widgets/');
+        console.log(resp2)
+        let items = resp1.map(item => {
+            item.name2 = resp2.find((elem) => {return item.external_id == elem.id}).name
+        });
+        this.setState({
+            isLoaded: true,
+            items: items
+        })*/
+        console.log("TOTO");
+        fetch('http://localhost:9001/v1/widgets/services/').then(res => res.json())
         .then(json => {
-                this.setState ({
+                /*this.setState ({
                     isLoaded: true,
                     items: json, 
-                })
+                })*/
+                console.log(json)
+        });
+        fetch('http://localhost:9001/v1/widgets/').then(res => res.json())
+        .then(json => {
+                /*this.setState ({
+                    isLoaded: true,
+                    items: json, 
+                })*/
+                console.log(json)
         });
     }
 
