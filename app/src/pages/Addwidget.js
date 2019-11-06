@@ -12,11 +12,6 @@ class AddWidget extends React.Component {
             services: [],
             widgets: []
         }
-        addUserWidget(7, 1, 1).then(res => {
-            console.log(res)
-        }).catch((err) => setImmediate(() => {
-            console.log(err)
-        }))
     }
 
     componentDidMount() {
