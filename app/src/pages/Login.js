@@ -12,11 +12,7 @@ function Login() {
 
   function postLogin() {
     var url = ""
-<<<<<<< HEAD
     if (process.env.REACT_APP_DEV_ENV == "TRUE") {
-=======
-    if (process.env.DEV_ENV === "TRUE") {
->>>>>>> 89610650ce782cf2d4fe5009f0f37820b6544c75
       url = "http://localhost:9000/v1/users/login/"
     } else {
       url = "https://api.pedafy.com/v1/users/login/"
