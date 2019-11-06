@@ -38,6 +38,21 @@ class AddWidget extends React.Component {
         }))
     }
 
+    getServiceName(service_id) {
+        var res = this.state.services.map(service => {
+            console.log(service_id == service.id)
+            if (service.id == service_id) {
+                return service.name
+            }
+        })
+        return res
+    }
+
+    getParams(id, e) {
+        console.log(id)
+        
+    }
+
     render() {
         if (!this.state.isLoaded) {
             return <div>Loading ...</div>;
@@ -71,27 +86,33 @@ class AddWidget extends React.Component {
                     </div>
                     <div className="block">
                         <div className="first">
-                            {this.state.services.map(service => (
-                                <h3>{service.name}</h3>
-                            ))}
-                            <input type="radio" checked="checked" name="radio"></input>
-                            <span class="checkmark"></span>
-                            <hr />
-                        </div>
-                        <div className="second">
-                            {this.state.widgets.map(widget => (
-                                <h3>{widget.name}</h3>
-                            ))}
-                            <input onClick="" type="radio" checked="checked" name="radio"></input>
-                            <span class="checkmark"></span>
-                            <hr />
+                            <table>
+                                <thead>
+                                <tr>
+                                   <th>Services</th>
+                                   <th>Widgets</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.widgets.map(widget => (
+                                        <tr>
+                                            <td>{this.getServiceName(widget.service_id)}</td>
+                                            <td>{widget.name}</td>
+                                            <td>
+                                                <button widget-id={widget.id} onClick={this.getParams.bind(this, widget.id)}>choose</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                             
+                            </table>
+            
                         </div>
                     </div>
                     <div className="manage_widget">
                         <h3>Configure your widget</h3>
                         <div className="bloc">
                         </div>
-
                         <div className="submit">
                             <button>Submit</button>
                         </div>

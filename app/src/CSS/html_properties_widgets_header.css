@@ -208,7 +208,7 @@ hr.separator {
 
 .block {
   font-family: Arial, Helvetica, sans-serif;
-  max-height: 70px;
+  max-height: 170px;
   overflow: auto;
   margin-left: 5rem;
   /*border: 2px solid #7becd6;*/
@@ -219,7 +219,23 @@ hr.separator {
   margin-top: -0.5rem;
 }
 
+.second h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 20rem;
+  color: rgb(92, 88, 88);
+  display: table;
+  margin-right: 6.5rem;
+}
+
 .first h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 20rem;
+  color: rgb(92, 88, 88);
+  display: table;
+  margin-right: 6.5rem;
+}
+
+.first h2 {
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 5rem;
   color: rgb(92, 88, 88);
