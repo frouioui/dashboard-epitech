@@ -10,7 +10,7 @@ v1.0.0
 
 ## **Description**
 
-The News API enable developers to uses the services we provide on pedafy.com.
+The News API enable developers to uses the services we provide on pedafy.com. Here is the link to the used external service : https://newsapi.org.
 
 This API uses the Richardson Maturity Model, more info [here](https://martinfowler.com/articles/richardsonMaturityModel.html).
 

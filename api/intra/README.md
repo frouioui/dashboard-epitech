@@ -10,7 +10,7 @@ v1.0.0
 
 ## **Description**
 
-The Intranet API enable developers to uses the Epitech Intranet Service we provide on pedafy.com.
+The Intranet API enable developers to uses the Epitech Intranet Service we provide on pedafy.com. Here is the link to the used: intra.epitech.eu.
 
 This API uses the Richardson Maturity Model, more info [here](https://martinfowler.com/articles/richardsonMaturityModel.html).
 

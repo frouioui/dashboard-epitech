@@ -63,7 +63,9 @@ function connectToDatabase() {
                 startCreationTables().then(function (d) {
                     insertDefaultDataIntoTableService().then(function (d) {
                         insertDefaultDataIntoTableWidgets().then(function (d) {
-                            console.log("... database ready!")
+                            insertDefaultDataIntoParamsWidgets().then(function (d) {
+                                console.log("... database ready!")
+                            }).catch((err) => setImmediate(() => { throw err; }))
                         }).catch((err) => setImmediate(() => { throw err; }))
                     }).catch((err) => setImmediate(() => { throw err; }))
                 }).catch((err) => setImmediate(() => { throw err; }))
@@ -91,6 +93,25 @@ function insertDefaultDataIntoTableWidgets() {
             '(2, \"Search news\", \"Display news corresponding to your search\"),' +
             '(2, \"Headlines news\", \"Display the headlines corresponding to a search\"),' +
             '(2, \"Headlines country\", \"Display the headlines in a country\")'
+        con.query(sql, function (err, res) {
+            if (err) { return reject(err) }
+            console.log("Default data inserted")
+            return resolve(res)
+        })
+    })
+}
+
+function insertDefaultDataIntoParamsWidgets() {
+    return new Promise(function (resolve, reject) {
+        var sql = 'INSERT INTO widget_params (name, type, widget_id) VALUES ' +
+            '(\"Auth Token\", \"string\", 1),' + // GPA CREDITS
+            '(\"Cycle\", \"string\", 1),' + // GPA CREDITS
+            '(\"country\", \"string\", 6),' + // HEADLINES COUNTRY
+            '(\"Keyword\", \"string\", 5),' + // HEADLINES
+            '(\"Keyword\", \"string\", 4),' + // NEWS SEARCH
+            '(\"Auth Token\", \"string\", 3),' + // LOGTIME
+            '(\"Auth Token\", \"string\", 2)'; // MARKS
+
         con.query(sql, function (err, res) {
             if (err) { return reject(err) }
             console.log("Default data inserted")
