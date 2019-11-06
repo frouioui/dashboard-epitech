@@ -12,7 +12,6 @@ class AddWidget extends React.Component {
             services: [],
             widgets: []
         }
-
     }
 
     componentDidMount() {
@@ -24,11 +23,17 @@ class AddWidget extends React.Component {
                     isLoaded: true
                 })
             }).catch((err) => setImmediate(() => {
-                // TODO: HANDLE ERRORS
+                // TODO: HANDLE ERRORS -> Display an error message
+                this.setState({
+                    isError: true
+                })
                 console.error(err)
             }))
         }).catch((err) => setImmediate(() => {
-            // TODO: HANDLE ERRORS
+            // TODO: HANDLE ERRORS -> Display an error message
+            this.setState({
+                isError: true
+            })
             console.error(err)
         }))
     }
