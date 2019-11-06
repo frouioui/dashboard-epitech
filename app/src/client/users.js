@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 function getURL() {
     var url = ""
     if (process.env.REACT_APP_DEV_ENV == "TRUE") {
@@ -8,25 +10,20 @@ function getURL() {
     return url
 }
 
-function loginUser() {
+function loginUser(email, password) {
     return new Promise(function (resolve, reject) {
-        let data = { 'email': email, 'password': password }
-        fetch(getURL + '/v1/users/login', { method: 'post', body: JSON.stringify(data) }).then(res => res.json())
-            .then(json => {
-                console.log(json)
-                resolve(json)
-            }).catch((err) => setImmediate(() => { reject(err) }))
+        axios.post(getURL() + '/v1/users/login', { email: email, password: password }).then(res => {
+            console.log(res)
+            resolve(res)
+        }).catch((err) => setImmediate(() => { reject(err) }))
     })
 }
 
 function createUser(email, password) {
     return new Promise(function (resolve, reject) {
-        let data = { 'email': email, 'password': password }
-        fetch(getURL + '/v1/users/new', { method: 'post', body: JSON.stringify(data) }).then(res => res.json())
-            .then(json => {
-                console.log(json)
-                resolve(json)
-            }).catch((err) => setImmediate(() => { reject(err) }))
+        axios.post(getURL() + '/v1/users/new', { email: email, password: password }).then(res => {
+            resolve(res)
+        }).catch((err) => setImmediate(() => { reject(err) }))
     })
 }
 

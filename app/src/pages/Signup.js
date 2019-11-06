@@ -3,13 +3,12 @@ import { Link, Redirect } from 'react-router-dom';
 import "../CSS/html_properties_register.css";
 
 import { Card, Form, Input, Button, Error } from '../components/AuthForm';
-import axios from 'axios';
 import { useAuth } from "../context/auth";
 import Login from "./Login";
+import { createUser } from '../client/users'
 
 function Signup() {
-  const [isRegisterIn, setRegisterIn]
-    = useState(false);
+  const [isRegisterIn, setRegisterIn] = useState(false);
   const [setIsErrorRegister] = useState(false);
   const [isMismatchPwd, setIsMismatchPwd] = useState(false);
   const [email, setUserName] = useState("");
@@ -19,35 +18,15 @@ function Signup() {
 
 
   function postRegister() {
-    var url = ""
-
-    if (process.env.REACT_APP_DEV_ENV == "TRUE") {
-      url = "http://localhost:9000/v1/users/new/"
-    } else {
-      url = "https://api.pedafy.com/v1/users/new/"
-    }
     if (password !== passwordConfirm) {
-      console.log("PASSWORDS MISMATCH")
       setIsMismatchPwd(true);
-    } else if (email.indexOf("@") == 1) {
-        console.log("ERROR INVALID MAIL")
+      return
     }
-    else axios.post(url, {
-      email: email,
-      password: password
-    }).then(result => {
-      console.log(result)
-      if (result.status === 200) {
-        console.log("SUCCESS")
-        setRegisterIn(true);
-      } else {
-        console.log("ERROR")
-        setIsErrorRegister(true);
-      }
-    }).catch(e => {
-      console.log(e)
+    createUser(email, password).then(res => {
+      setRegisterIn(true)
+    }).catch((err) => setImmediate(() => {
       setIsErrorRegister(true)
-    });
+    }))
   }
 
   if (isRegisterIn) {
