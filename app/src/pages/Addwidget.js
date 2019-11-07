@@ -50,7 +50,7 @@ class AddWidget extends React.Component {
 
     getParams(id, e) {
         console.log(id)
-        
+
     }
 
     render() {
@@ -88,10 +88,10 @@ class AddWidget extends React.Component {
                         <div className="first">
                             <table>
                                 <thead>
-                                <tr>
-                                   <th>Services</th>
-                                   <th>Widgets</th>
-                                </tr>
+                                    <tr>
+                                        <th>Services</th>
+                                        <th>Widgets</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     {this.state.widgets.map(widget => (
@@ -104,9 +104,9 @@ class AddWidget extends React.Component {
                                         </tr>
                                     ))}
                                 </tbody>
-                             
+
                             </table>
-            
+
                         </div>
                     </div>
                     <div className="manage_widget">
