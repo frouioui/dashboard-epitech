@@ -2,7 +2,7 @@ import axios from 'axios';
 
 function getURL() {
     var url = ""
-    if (process.env.REACT_APP_DEV_ENV == "TRUE") {
+    if (process.env.REACT_APP_DEV_ENV === "TRUE") {
         url = "http://localhost:9001"
     } else {
         url = "https://api.pedafy.com"

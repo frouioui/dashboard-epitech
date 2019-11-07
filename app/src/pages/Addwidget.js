@@ -1,6 +1,6 @@
 import React from "react";
 import "../CSS/html_properties_widgets_header.css"
-import { getAllServices, getAllWidgets, addUserWidget } from "../client/widgets";
+import { getAllServices, getAllWidgets } from "../client/widgets";
 
 class AddWidget extends React.Component {
     constructor(props) {

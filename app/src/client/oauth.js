@@ -4,7 +4,7 @@ function getAuthorizeGitHub() {
     let scope = "scope=repo"
     var client_id = ""
 
-    if (process.env.REACT_APP_DEV_ENV == "TRUE") {
+    if (process.env.REACT_APP_DEV_ENV === "TRUE") {
         client_id = "client_id=708e6c22ba6e677ff339"
     } else {
         // prod oauth
@@ -16,7 +16,7 @@ function codeOauthGitHub(code) {
     var client_id = ""
     var client_secret = ""
     var url = ""
-    if (process.env.REACT_APP_DEV_ENV == "TRUE") {
+    if (process.env.REACT_APP_DEV_ENV === "TRUE") {
         client_id = "708e6c22ba6e677ff339"
         client_secret = "1a47bd582d062c970a956ab1099ba0614b133325"
         url = "http://localhost:9000/v1/users/oauth/github"

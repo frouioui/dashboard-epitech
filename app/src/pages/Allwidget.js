@@ -12,29 +12,29 @@ function Home(props) {
 
   return (
     <div>
-       <div className="header">
-      <button>Pedafy</button>
+      <div className="header">
+        <button>Pedafy</button>
       </div>
-  <div class="dropdown">
-    <button class="dropbtn">Setting</button>
-      <div class="dropdown-content">
-        <a href="https://pedafy.com/signup">Add Widget</a>
-        <a href="https://pedafy.com/signup">Logout</a>
-        <a href="#">Use our API</a>
+      <div class="dropdown">
+        <button class="dropbtn">Setting</button>
+        <div class="dropdown-content">
+          <a href="https://pedafy.com/signup">Add Widget</a>
+          <a href="https://pedafy.com/signup">Logout</a>
+          <a href="#">Use our API</a>
+        </div>
       </div>
-  </div>
-  <div className="body">
-    <form method="get" action="/addwidget">
-    <button type="submit">Add a widget</button>
-    </form>
-  </div>
-  <div className="test">
-    <form method="get" action="/test">
-    <button type="submit">See all services</button>
-    </form>
-  </div>
-  <div className="footer4">
-  </div>
+      <div className="body">
+        <form method="get" action="/addwidget">
+          <button type="submit">Add a widget</button>
+        </form>
+      </div>
+      <div className="test">
+        <form method="get" action="/test">
+          <button type="submit">See all services</button>
+        </form>
+      </div>
+      <div className="footer4">
+      </div>
     </div>
   );
 }

@@ -26,19 +26,19 @@ class CallbackOauth extends React.Component {
   }
 
   renderRedirect = () => {
-    if (this.state.redirect == true) {
+    if (this.state.redirect === true) {
       return <Redirect to='/allwidget' />
     }
   }
 
   render() {
-    if (this.state.code == "" || this.state.code == null) {
+    if (this.state.code === "" || this.state.code === null) {
       return (<h1>Error with oauth service</h1>)
     }
-    if (this.state.redirect == false) {
+    if (this.state.redirect === false) {
       this.callCodeOauth()
     }
-    if (this.state.redirect == true) {
+    if (this.state.redirect === true) {
       return <Redirect to='/allwidget' />
     }
     return (
