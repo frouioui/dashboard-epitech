@@ -11,7 +11,7 @@ function Signup() {
   const [isRegisterIn, setRegisterIn] = useState(false);
   const [setIsErrorRegister] = useState(false);
   const [isMismatchPwd, setIsMismatchPwd] = useState(false);
-  const [email, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordconfirm] = useState("");
   useAuth();
@@ -22,7 +22,7 @@ function Signup() {
       setIsMismatchPwd(true);
       return
     }
-    createUser(email, password).then(res => {
+    createUser(username, password).then(res => {
       setRegisterIn(true)
     }).catch((err) => setImmediate(() => {
       setIsErrorRegister(true)
@@ -46,12 +46,12 @@ function Signup() {
           <p>y</p>
           <p>.</p>
         </div>
-        <Input type="Adresse mail"
-          value={email}
+        <Input type="Username"
+          value={username}
           onChange={e => {
             setUserName(e.target.value);
           }}
-          placeholder="Mail address"
+          placeholder="Username"
         />
         <Input type="password"
           value={password}

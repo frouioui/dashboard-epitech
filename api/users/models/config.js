@@ -43,7 +43,7 @@ function connectAndCreateDatabase() {
 function connectAndCreateTable() {
     // Connect and create tables if needed
     console.log("Connected to database api_users.");
-    var sql = "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, email varchar(255) NOT NULL, password varchar(255) NOT NULL, added_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+    var sql = "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, login varchar(255) NOT NULL, password varchar(255), added_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table users created");

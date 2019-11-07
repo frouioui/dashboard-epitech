@@ -3,15 +3,20 @@ import "../CSS/html_properties_login.css";
 import { Link, Redirect } from "react-router-dom";
 import { Card, Form, Input, Button, Error } from '../components/AuthForm';
 import { loginUser } from '../client/users'
+import { getAuthorizeGitHub } from '../client/oauth'
+import Cookies from 'universal-cookie';
 
 function Login() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [email, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   function postLogin() {
-    loginUser(email, password).then(res => {
+    loginUser(username, password).then(res => {
+      const cookies = new Cookies();
+      cookies.set('user_id', res.data.id, { path: '/' });
+      cookies.set('auth', 'none', { path: '/' });
       setLoggedIn(true);
     }).catch((err) => setImmediate(() => {
       setIsError(true);
@@ -37,12 +42,12 @@ function Login() {
         </div>
 
         <Input
-          type="email"
-          value={email}
+          type="username"
+          value={username}
           onChange={e => {
             setUserName(e.target.value);
           }}
-          placeholder="Email"
+          placeholder="Username"
         />
         <Input
           type="password"
@@ -56,6 +61,9 @@ function Login() {
       </Form>
       <div className="linked_2">
         <Link to="/signup">Don't have an account?</Link>
+      </div>
+      <div className="linked_3">
+        <a href={getAuthorizeGitHub()}>Login with GitHub</a>
       </div>
       {isError && <Error>The username or password provided were incorrect!</Error>}
       <div className="footer2">

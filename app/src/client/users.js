@@ -10,18 +10,17 @@ function getURL() {
     return url
 }
 
-function loginUser(email, password) {
+function loginUser(login, password) {
     return new Promise(function (resolve, reject) {
-        axios.post(getURL() + '/v1/users/login', { email: email, password: password }).then(res => {
-            console.log(res)
-            resolve(res)
+        axios.post(getURL() + '/v1/users/login', { login: login, password: password }).then(res => {
+            resolve(res.data)
         }).catch((err) => setImmediate(() => { reject(err) }))
     })
 }
 
-function createUser(email, password) {
+function createUser(login, password) {
     return new Promise(function (resolve, reject) {
-        axios.post(getURL() + '/v1/users/new', { email: email, password: password }).then(res => {
+        axios.post(getURL() + '/v1/users/new', { login: login, password: password }).then(res => {
             resolve(res)
         }).catch((err) => setImmediate(() => { reject(err) }))
     })
