@@ -1,6 +1,8 @@
 import React from "react";
 import "../CSS/html_properties_widgets_header.css"
 import { getAllServices, getAllWidgets } from "../client/widgets";
+import Cookies from 'universal-cookie';
+import { Redirect } from 'react-router-dom'
 
 class AddWidget extends React.Component {
     constructor(props) {
@@ -10,7 +12,7 @@ class AddWidget extends React.Component {
             isLoaded: false,
             isError: false,
             services: [],
-            widgets: []
+            widgets: [],
         }
     }
 
@@ -54,6 +56,12 @@ class AddWidget extends React.Component {
     }
 
     render() {
+        var cookies = new Cookies()
+        var user_id = cookies.get('user_id')
+
+        if (!user_id || user_id === "") {
+            return <Redirect to='/login' />
+        }
         if (!this.state.isLoaded) {
             return <div>Loading ...</div>;
         } else {
