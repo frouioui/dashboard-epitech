@@ -26,7 +26,16 @@ function createUser(login, password) {
     })
 }
 
+function getAllUsers() {
+    return new Promise(function (resolve, reject) {
+        axios.get(getURL() + '/v1/users/').then(res => {
+            resolve(res)
+        }).catch((err) => setImmediate(() => { reject(err) }))
+    })
+}
+
 export {
     createUser,
-    loginUser
+    loginUser,
+    getAllUsers
 }

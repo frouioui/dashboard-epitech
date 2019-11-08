@@ -5,11 +5,12 @@ import "../CSS/html_properties_register.css";
 import { Card, Form, Input, Button, Error } from '../components/AuthForm';
 import { useAuth } from "../context/auth";
 import Login from "./Login";
-import { createUser } from '../client/users'
+import { createUser, getAllUsers } from '../client/users'
 
 function Signup() {
   const [isRegisterIn, setRegisterIn] = useState(false);
   const [setIsErrorRegister] = useState(false);
+  const [isUsernameExists, setUsernameExists] = useState(false);
   const [isMismatchPwd, setIsMismatchPwd] = useState(false);
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +23,9 @@ function Signup() {
       setIsMismatchPwd(true);
       return
     }
+    if (isUsernameExists) {
+      return
+    }
     createUser(username, password).then(res => {
       setRegisterIn(true)
     }).catch((err) => setImmediate(() => {
@@ -29,9 +33,32 @@ function Signup() {
     }))
   }
 
+  function checkUsernameExists(e) {
+    var same = false;
+    getAllUsers().then(res => {
+      res.data.data.map(user => {
+        if ((e == user.login) == true) {
+          same = true;
+          return
+        }
+      })
+      if (same == true) {
+        setUsernameExists(true)
+        return true
+      } else {
+        setUsernameExists(false)
+        return false
+      }
+    }).catch((err) => setImmediate(() => {
+      console.error(err)
+      return false
+    }))
+  }
+
   if (isRegisterIn) {
     return <Redirect to="/login" />
   }
+
 
   return (
     <Card>
@@ -50,6 +77,7 @@ function Signup() {
           value={username}
           onChange={e => {
             setUserName(e.target.value);
+            checkUsernameExists(e.target.value);
           }}
           placeholder="Username"
         />
@@ -73,6 +101,9 @@ function Signup() {
         <Link to="/login">Already have an account?</Link>
       </div>
       {isMismatchPwd && <Error>Oups! The passwords seem to be different.</Error>}
+      <div>
+        {isUsernameExists && <Error>This username already exists.</Error>}
+      </div>
       <div className="footer2">
         <h6>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h6>
       </div>
