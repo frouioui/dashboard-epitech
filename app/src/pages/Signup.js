@@ -97,13 +97,17 @@ function Signup() {
         />
         <Button onClick={postRegister}>Sign Up</Button>
       </Form>
-      <div className="linked">
-        <Link to="/login">Already have an account?</Link>
-      </div>
-      {isMismatchPwd && <Error>Oups! The passwords seem to be different.</Error>}
       <div>
         {isUsernameExists && <Error>This username already exists.</Error>}
       </div>
+      <div>
+        {isMismatchPwd && <Error>Oups! The passwords seem to be different.</Error>}
+      </div>
+
+      <div className="linked">
+        <Link to="/login">Already have an account?</Link>
+      </div>
+
       <div className="footer2">
         <h6>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h6>
       </div>
