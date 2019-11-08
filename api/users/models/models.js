@@ -2,8 +2,9 @@ const { con } = require("./config")
 
 module.exports = {
     getAllUsers,
-    getUserByEmail,
-    addNewUser
+    getUserByLogin,
+    addNewUser,
+    addNewUserNoPassword
 }
 
 function getAllUsers(req, res, dataHandler) {
@@ -12,14 +13,20 @@ function getAllUsers(req, res, dataHandler) {
     })
 }
 
-function getUserByEmail(req, res, email, dataHandler) {
-    con.query("SELECT * FROM users WHERE users.email = '" + email + "'", function (error, results, fields) {
+function getUserByLogin(req, res, login, dataHandler) {
+    con.query("SELECT * FROM users WHERE users.login = '" + login + "'", function (error, results, fields) {
         dataHandler(req, res, error, results)
     })
 }
 
 function addNewUser(req, res, data, dataHandler) {
-    con.query("INSERT INTO users (email, password) VALUES ('" + data.email + "', '" + data.password + "')", function (error, results, fields) {
+    con.query("INSERT INTO users (login, password) VALUES ('" + data.login + "', '" + data.password + "')", function (error, results, fields) {
+        dataHandler(req, res, error, results)
+    })
+}
+
+function addNewUserNoPassword(req, res, login, dataHandler) {
+    con.query("INSERT INTO users (login) VALUES ('" + login + "')", function (error, results, fields) {
         dataHandler(req, res, error, results)
     })
 }

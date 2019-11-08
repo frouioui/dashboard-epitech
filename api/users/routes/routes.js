@@ -17,4 +17,7 @@ module.exports = function (app) {
 
     app.route('/v1/users/login')
         .post(controllers.loginUserRoute) // login user
+
+    app.route('/v1/users/oauth/github')
+        .post(controllers.githubLogin)
 };

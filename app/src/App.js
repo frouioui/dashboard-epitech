@@ -1,18 +1,19 @@
-import React, {useState} from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import PrivateRoute from './PrivateRoute';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import Allwidget from './pages/Allwidget';
 import Addwidget from './pages/Addwidget';
+import CallbackOauth from './pages/CallbackOauth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import { AuthContext } from "./context/auth";
 
 function App(props) {
+
   const [authTokens, setAuthTokens] = useState();
 
   const setTokens = (data) => {
@@ -20,8 +21,9 @@ function App(props) {
     setAuthTokens(data);
   }
 
+
   return (
-    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens}}>
+    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
         <div>
           <Route exact path="/" component={Home} />
@@ -30,10 +32,12 @@ function App(props) {
           <Route path="/allwidget" component={Allwidget} />
           <Route path="/addwidget" component={Addwidget} />
           <Route path="/admin" component={Admin} />
+          <Route path="/auth/github" component={CallbackOauth} />
         </div>
       </Router>
     </AuthContext.Provider>
   );
 }
+
 
 export default App;

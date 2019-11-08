@@ -40,6 +40,7 @@ const Button = styled.button`
 const Error = styled.div`
   color: red;
   margin-top: 15rem;
+  
 `;
 
 export { Form, Input, Button, Card, Error };
