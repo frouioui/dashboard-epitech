@@ -7,7 +7,7 @@ function getAuthorizeGitHub() {
     if (process.env.REACT_APP_DEV_ENV === "TRUE") {
         client_id = "client_id=708e6c22ba6e677ff339"
     } else {
-        // prod oauth
+        client_id = "client_id=7104f4c3ca00d47ee366"
     }
     return "https://github.com/login/oauth/authorize?" + client_id + "&" + scope + "&state=123"
 }
@@ -21,7 +21,8 @@ function codeOauthGitHub(code) {
         client_secret = "1a47bd582d062c970a956ab1099ba0614b133325"
         url = "http://localhost:9000/v1/users/oauth/github"
     } else {
-        // add client and secret of the prod
+        client_id = "7104f4c3ca00d47ee366"
+        client_secret = "f76582a7ff19ae7cd8bac4b4fc375616f5dcc4ca"
         url = "https://api.pedafy.com/v1/users/oauth/github"
     }
     return new Promise(function (resolve, reject) {
