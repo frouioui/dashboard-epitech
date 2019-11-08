@@ -23,12 +23,14 @@ function githubLogin(req, res) {
             let login = jsonUser.login
             model.getUserByLogin(req, res, login, (req1, res1, err, resultDb) => {
                 if (err) {
+                    console.log(err)
                     res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error" } })
                     return
                 } else if (resultDb.length == 0) {
                     model.addNewUserNoPassword(req, res, login, (req2, res2, err2, resultDb2) => {
                         if (err2) {
-                            res.status(500).json({ status: 'failure', code: 500, error: err })
+                            console.log(err2)
+                            res.status(500).json({ status: 'failure', code: 500, error: err2 })
                         } else {
                             res.status(200).json({ status: 'success', code: 200, data: { message: "Authenticated", id: resultDb2.insertId, auth: json.data.access_token } })
                         }
@@ -38,6 +40,7 @@ function githubLogin(req, res) {
                 }
             })
         }).catch((err) => setImmediate(() => {
+            console.log(err)
             res.status(500).json({ status: 'failure', code: 500, error: err })
         }))
     }).catch((err) => setImmediate(() => {

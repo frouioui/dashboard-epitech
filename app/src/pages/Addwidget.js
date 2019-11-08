@@ -1,6 +1,7 @@
 import React from "react";
 import "../CSS/html_properties_widgets_header.css"
 import { getAllServices, getAllWidgets } from "../client/widgets";
+import { getParamsOfWidget } from "../client/widgets";
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom'
 
@@ -13,12 +14,14 @@ class AddWidget extends React.Component {
             isError: false,
             services: [],
             widgets: [],
+            params: [],
         }
     }
 
     componentDidMount() {
         getAllServices().then(jsonServices => {
             getAllWidgets().then(jsonWidgets => {
+                
                 this.setState({
                     widgets: jsonWidgets.data,
                     services: jsonServices.data,
@@ -38,7 +41,7 @@ class AddWidget extends React.Component {
             })
             console.error(err)
         }))
-    }
+}
 
     getServiceName(service_id) {
         var res = this.state.services.map(service => {
@@ -51,17 +54,31 @@ class AddWidget extends React.Component {
     }
 
     getParams(id, e) {
+        console.log(e)
         console.log(id)
-
     }
+
+    getParams2(widget_id) {
+        getParamsOfWidget(widget_id).then(getParams => {
+            console.log(getParams)
+            this.setState({
+                params: getParams.data,
+                /*widgets: res.data,*/
+            })
+            return (getParams.data);
+            /*return (res.data);*/
+            console.log(getParams.data);
+            /*console.log(res)*/
+            console.log(widget_id);
+        })
+    }
+
+
+    
 
     render() {
         var cookies = new Cookies()
         var user_id = cookies.get('user_id')
-
-        if (!user_id || user_id === "") {
-            return <Redirect to='/login' />
-        }
         if (!this.state.isLoaded) {
             return <div>Loading ...</div>;
         } else {
@@ -89,38 +106,48 @@ class AddWidget extends React.Component {
                         </form>
                     </div>
                     <div className="header_widgets">
+                        <h6>Service name</h6>
                         <h6>Widget name</h6>
-                        <h6>Name</h6>
                     </div>
                     <div className="block">
                         <div className="first">
                             <table>
                                 <thead>
-                                    <tr>
-                                        <th>Services</th>
-                                        <th>Widgets</th>
-                                    </tr>
+                                <tr>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.widgets.map(widget => (
+                                    {this.state.widgets.map(widget => (  
                                         <tr>
+                                            <div className="hr">
+                                            <hr />
+                                            </div>
+                                   
+                                            <div className="serviceName">
                                             <td>{this.getServiceName(widget.service_id)}</td>
+                                            </div>
+                                            <div className="test">
                                             <td>{widget.name}</td>
-                                            <td>
-                                                <button widget-id={widget.id} onClick={this.getParams.bind(this, widget.id)}>choose</button>
-                                            </td>
+                                            </div>
+                                            <div className="bti">
+                                                <button widget-id={widget.id} onClick={this.getParams2.bind(this, widget.id)}>Select</button>
+                                                </div>
                                         </tr>
                                     ))}
                                 </tbody>
-
                             </table>
-
                         </div>
                     </div>
                     <div className="manage_widget">
                         <h3>Configure your widget</h3>
+                        {this.state.params.map(parametres => (
                         <div className="bloc">
+                                <h4>{parametres.name}</h4>
+                                <div className="textModif">
+                                <input type="text" placeholder="New param"></input>
+                                </div>
                         </div>
+                        ))}
                         <div className="submit">
                             <button>Submit</button>
                         </div>
