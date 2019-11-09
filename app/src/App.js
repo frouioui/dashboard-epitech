@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Signup from './pages/Signup';
-import Allwidget from './pages/Allwidget';
+import Allwidgets from './pages/Allwidget';
 import Addwidget from './pages/Addwidget';
 import CallbackOauth from './pages/CallbackOauth';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,7 +29,7 @@ function App(props) {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/allwidget" component={Allwidget} />
+          <Route path="/allwidget" component={Allwidgets} />
           <Route path="/addwidget" component={Addwidget} />
           <Route path="/admin" component={Admin} />
           <Route path="/auth/github" component={CallbackOauth} />
