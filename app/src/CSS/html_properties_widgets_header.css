@@ -249,6 +249,22 @@ hr.separator {
   border-right: none;
 }
 
+.changePosition input[type=text] {
+  border-color: #7becd6;
+  margin-top: 2rem;
+  margin-left: 3rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.changePosition {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+
 .first h3 {
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 20rem;
@@ -296,13 +312,13 @@ input[type=radio] :not(old) {
   border: none;
   color:white;
   padding: 15px;
-  width: 25rem;
+  width: 30rem;
   text-align: center;
   display: block;
   margin: 0 auto;
   cursor: pointer;
   border-radius: 5px;
-  margin-top: 3rem;
+  margin-top:  10rem;
   margin-bottom: 6rem;
 }
 
