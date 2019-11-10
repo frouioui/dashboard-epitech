@@ -76,7 +76,7 @@ function connectToDatabase() {
 
 function insertDefaultDataIntoTableService() {
     return new Promise(function (resolve, reject) {
-        var sql = 'INSERT INTO services (name) VALUES ("intra"), ("news")'
+        var sql = 'INSERT INTO services (name) VALUES ("intra"), ("news"), ("github")'
         con.query(sql, function (err, res) {
             if (err) { return reject(err) }
             return resolve(res)
@@ -92,7 +92,9 @@ function insertDefaultDataIntoTableWidgets() {
             '(1, \"Logtime\", \"Display your logtime for the last 7 days\"),' +
             '(2, \"Search news\", \"Display news corresponding to your search\"),' +
             '(2, \"Headlines news\", \"Display the headlines corresponding to a search\"),' +
-            '(2, \"Headlines country\", \"Display the headlines in a country\")'
+            '(2, \"Headlines country\", \"Display the headlines in a country\"),' +
+            '(3, \"Repo last issue\", \"Get the last issue of a repo\"),' +
+            '(3, \"Repo last PR\", \"Get the last Pull Request of a repo\")'
         con.query(sql, function (err, res) {
             if (err) { return reject(err) }
             console.log("Default data inserted")
@@ -110,7 +112,11 @@ function insertDefaultDataIntoParamsWidgets() {
             '(\"Keyword\", \"string\", 5),' + // HEADLINES
             '(\"Keyword\", \"string\", 4),' + // NEWS SEARCH
             '(\"Auth Token\", \"string\", 3),' + // LOGTIME
-            '(\"Auth Token\", \"string\", 2)'; // MARKS
+            '(\"Auth Token\", \"string\", 2),' + // MARKS
+            '(\"Repo\", \"string\", 7),' + // GITHUB - ISSUE
+            '(\"Owner\", \"string\", 7),' + // GITHUB - ISSUE
+            '(\"Repo\", \"string\", 8),' + // GITHUB - PULL
+            '(\"Owner\", \"string\", 8)'; // GITHUB - PULL
 
         con.query(sql, function (err, res) {
             if (err) { return reject(err) }
