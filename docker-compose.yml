@@ -70,7 +70,20 @@ services:
     ports:
       - 9003:8080
     restart: unless-stopped
-  
+
+  github_api:
+    container_name: github_api
+    build: 
+      context: ./api/github
+      dockerfile: Dockerfile
+    environment:
+      DEV_ENV: "TRUE"
+      PORT: 9000
+    image: github_api_dashboard
+    ports:
+      - 9004:9000
+    restart: unless-stopped
+
   db:
     image: mysql:5.7
     ports: 
