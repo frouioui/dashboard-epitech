@@ -118,8 +118,8 @@ for html properties only*/
 
 .column {
     float: left;
-    width: 33.33%;
-    height: 30rem!important;
+    width: 20%;
+    height: 30rem !important;
 }
 
 @media screen and (max-width: 600px) {

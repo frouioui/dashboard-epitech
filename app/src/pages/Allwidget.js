@@ -2,6 +2,7 @@ import React from "react";
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom'
 import { getAllWidgetsOfOneUser } from "../client/widgets";
+import { getGPAAndCredits } from '../client/intra';
 
 import "../CSS/allwidgets.css"
 
@@ -52,24 +53,35 @@ class Allwidgets extends React.Component {
     )
   }
 
+  fetchData(widget) {
+    console.log(widget)
+    switch (widget.name) {
+      case "GPA and Credits":
+        getGPAAndCredits(widget.params).then(res => {
+          console.log(res)
+          if (res.error) { return <h5>error</h5> }
+          return <h5>toto</h5>
+        }).catch((err) => setImmediate(() => { console.error(err) }))
+
+      default:
+        break;
+    }
+  }
+
+
   displayWidgets() {
     return (
       <div>
         {this.state.userWidgets.map(widget => (
           <div class="column">
             <div class="widgetsbox">
-              <h6>{widget.id}</h6>
+              <h6>{widget.name}</h6>
+              <h6>{widget.description}</h6>
+              <h6>{widget.description}</h6>
+              <div>{this.fetchData(widget)}</div>
             </div>
           </div>
         ))}
-        {this.state.userWidgets.map(widget => (
-          <div class="column">
-            <div class="widgetsbox">
-              <h6>{widget.id}</h6>
-            </div>
-          </div>
-        ))
-        }
       </div>
     )
   }
@@ -94,9 +106,6 @@ class Allwidgets extends React.Component {
           </form>
         </div>
         <div class="container-widget">
-          {this.displayWidgets()}
-          {this.displayWidgets()}
-          {this.displayWidgets()}
           {this.displayWidgets()}
         </div>
       </div>
