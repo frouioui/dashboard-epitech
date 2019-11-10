@@ -3,6 +3,7 @@ import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom'
 import { getAllWidgetsOfOneUser } from "../client/widgets";
 import { getGPAAndCredits, getMarks, getNetsoul } from '../client/intra';
+import { getHeadlines, getHeadlinesCountry, getNewsKeyword } from '../client/news'
 
 import "../CSS/allwidgets.css"
 
@@ -63,12 +64,55 @@ class Allwidgets extends React.Component {
               console.log(res2)
               widget.value = (
                 <div>
-                  <h4>{res2.data.data} hours</h4>
+                  <h4>{res2.data.data} hours this week!</h4>
                 </div>
               )
               this.setState({ userWidgets: res.data })
             }).catch((err) => setImmediate(() => { console.error(err) }))
             break;
+
+          case "Search news":
+            getNewsKeyword(widget.params).then(res2 => {
+              console.log(res2)
+              widget.value = (
+                <div>
+                  <h4>{res2.data.data.title}</h4>
+                  <h6>{res2.data.data.author ? res2.data.data.author : "no author"}</h6>
+                  <h6><a href={res2.data.data.url}>Learn more!</a></h6>
+                </div>
+              )
+              this.setState({ userWidgets: res.data })
+            }).catch((err) => setImmediate(() => { console.error(err) }))
+            break;
+
+          case "Headlines news":
+            getHeadlines(widget.params).then(res2 => {
+              console.log(res2)
+              widget.value = (
+                <div>
+                  <h4>{res2.data.data.title}</h4>
+                  <h6>{res2.data.data.author ? res2.data.data.author : "no author"}</h6>
+                  <h6><a href={res2.data.data.url}>Learn more!</a></h6>
+                </div>
+              )
+              this.setState({ userWidgets: res.data })
+            }).catch((err) => setImmediate(() => { console.error(err) }))
+            break;
+
+          case "Headlines country":
+            getHeadlinesCountry(widget.params).then(res2 => {
+              console.log(res2)
+              widget.value = (
+                <div>
+                  <h4>{res2.data.data.title}</h4>
+                  <h6>{res2.data.data.author ? res2.data.data.author : "no author"}</h6>
+                  <h6><a href={res2.data.data.url}>Learn more!</a></h6>
+                </div>
+              )
+              this.setState({ userWidgets: res.data })
+            }).catch((err) => setImmediate(() => { console.error(err) }))
+            break;
+
           default:
             break;
         }
