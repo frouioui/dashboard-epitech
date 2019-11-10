@@ -36,9 +36,9 @@ function Home(props) {
           <button type="submit">Add a widget</button>
         </form>
       </div>
-      <div className="test">
-        <form method="get" action="/test">
-          <button type="submit">See all services</button>
+      <div className="body3">
+        <form method="get" action="/modify/widget/2">
+          <button type="submit">Modify a widget</button>
         </form>
       </div>
       <div className="footer4">

@@ -1,12 +1,14 @@
 import React from "react";
 import "../CSS/html_properties_widgets_header.css"
-import { getParamsOfWidget, addUserWidget, getAllServices, getAllWidgets, addUserParam } from "../client/widgets";
+import { getParamsOfWidget, addUserWidget, getAllServices, getAllWidgets, addUserParam, modifyWidgetPosition } from "../client/widgets";
 import Cookies from 'universal-cookie';
-import { Redirect } from 'react-router-dom'
+import Login from "./Login";
+import { Link, Redirect } from 'react-router-dom';
 
 class AddWidget extends React.Component {
     constructor(props) {
         super(props);
+        
 
         this.state = {
             isLoaded: false,
@@ -14,6 +16,7 @@ class AddWidget extends React.Component {
             services: [],
             widgets: [],
             params: [],
+            currentWidget: 0
         }
     }
 
@@ -56,6 +59,7 @@ class AddWidget extends React.Component {
     }
 
     getParams2(widget_id) {
+        this.setState({currentWidget: widget_id})
         getParamsOfWidget(widget_id).then(getParams => {
             console.log(getParams)
             this.setState({
@@ -66,23 +70,43 @@ class AddWidget extends React.Component {
         })
     }
 
-    addParams(user_id, value, param_id, widget_id) {
-        addUserWidget(user_id, 1, widget_id).then(res => {
-            addUserParam(user_id, value, param_id, res.data.data).then(AddParams => {
-                // redirect
-                return <Redirect to="/allwidget" />
-            }).catch((err) => setImmediate(() => {
-                console.log(err)
-            })) 
+    addWidgetUser(position, widget_id) {
+        var cookies = new Cookies()
+        var user_id = cookies.get('user_id')
+
+        addUserWidget(user_id, position, widget_id).then(res => {
+            this.state.params.map(param => {
+                this.addParams(user_id, param.value, param.id, res.data.data)
+            })
         }).catch((err) => setImmediate(() => {
             console.log(err)
         })) 
     }
 
-    handleValueChange = (param, e) => {
-        param.value = e.target.value
+    addParams(user_id, value, param_id, widget_id) {
+        addUserParam(user_id, value, param_id, widget_id).then({
+                
+        }).catch((err) => setImmediate(() => {
+            console.log(err)
+        })) 
     }
-    
+
+    handleValueChange = (id, e) => {
+        var tt = this.state.params;
+        tt.map(param => {
+            if (param.id == id) {
+                param.value = e.target.value;
+                param.param_id = e.target.param_id;
+            }
+        })
+        this.setState ({
+            params: tt
+        })
+    }
+
+    handleOnClick = (e) => {
+        this.addWidgetUser(1, this.state.currentWidget)
+    }
 
 
     render() {
@@ -110,7 +134,7 @@ class AddWidget extends React.Component {
                     </div>
 
                     <div className="body2">
-                        <form method="get" action="/allwidget">
+                        <form method="get" action="/allwidget/2">
                             <button type="submit">Cancel</button>
                         </form>
                     </div>
@@ -138,7 +162,7 @@ class AddWidget extends React.Component {
                                             <div className="test">
                                             <td>{widget.name}</td>
                                             </div>
-                                            <div className="bti">
+                                                <div className="bti">
                                                 <button widget-id={widget.id} onClick={this.getParams2.bind(this, widget.id)}>Select</button>
                                                 </div>
                                         </tr>
@@ -153,20 +177,29 @@ class AddWidget extends React.Component {
                         <div className="bloc">
                                 <h4>{parametres.name}</h4>
                                 <div className="textModif">
-                                <input type="text" value={parametres.value} name="value" onChange={this.handleValueChange.bind(this, parametres)} placeholder="New param"></input>
+                                <input type="text" value={parametres.value} name="value" onChange={this.handleValueChange.bind(this, parametres.id)} placeholder="New param"></input>
                                 </div>
-                                <div className="changePosition">
-                                <input type="text" value="1" name="value" onChange={this.handleValueChange.bind(this, parametres)} placeholder="New position"></input>
-                                </div>
-
                         </div>
                         ))}
-                         {this.state.params.map(parametres => (
-                             
-                        <div className="submit">
-                            <button add-params={parametres.user_id, parametres.value, parametres.param_id, parametres.widget_id} onClick={() => this.addParams(user_id, parametres.value, parametres.id, parametres.widget_id)}>Add</button>
+                        <div className="box">
+                               <select name="position">
+                                   <option value="postion">position</option>
+                                   <option value="1">1</option>
+                                   <option value="2">2</option>
+                                   <option value="3">3</option>
+                                   <option value="4">4</option>
+                                   <option value="5">5</option>
+                                   <option value="6">6</option>
+                                   <option value="7">7</option>
+                                   <option value="8">8</option>
+                                   <option value="9">9</option>
+                                </select> 
                         </div>
-                          ))}
+    
+                        <div className="submit">
+                            <button onClick={() => this.handleOnClick(this)}>Add</button>
+                        </div>
+                      
                     </div>
                     <div className="footer3">
                     </div>

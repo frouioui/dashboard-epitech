@@ -42,6 +42,7 @@ for html properties only*/
   }
 .body button {
     background-color: #1abc9c;
+    display: inline-block;
     color:white;
     padding: 10px;
     width: 15rem;
@@ -49,6 +50,18 @@ for html properties only*/
     border: none;
     margin-top: 3rem;
     margin-left: 2rem;
+}
+
+.body3 button {
+  background-color: salmon;
+  display: inline-block;
+  color:white;
+  padding: 10px;
+  width: 15rem;
+  border-radius: 5px;
+  border: none;
+  margin-top: 3rem;
+  margin-left: 2rem;
 }
 
 
@@ -164,14 +177,14 @@ for html properties only*/
 
 .body h3 {
   margin-left: 3rem;
-  margin-top: 5rem;
+  margin-top: 10rem;
   color: #1abc9c;
   font-size: 1.7em;
 }
 
 .manage_widget h3 {
   margin-left: 3rem;
-  margin-top: 15rem;
+  margin-top: 8rem;
   color: #1abc9c;
   font-size: 1.7em;
 }
@@ -242,11 +255,69 @@ hr.separator {
 }
 
 .textModif input[type=text] {
-  border-color: #7becd6;
-  margin-top: 2rem;
+  border-color: rgb(84, 183, 223);
+  margin-top: 1rem;
+  margin: 1.5rem;
   border-top: none;
   border-left: none;
   border-right: none;
+}
+
+.modifInput input[type=text] {
+  border-color: rgb(84, 183, 223);
+  margin-top: 1rem;
+  margin-left: 3rem;
+  margin-top: 3rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 2rem;
+  color: salmon;
+}
+
+.box {
+  position: relative;
+  left: 55%;
+  margin-top: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.box select {
+  background-color: rgb(84, 183, 223);
+  color: white;
+  padding: 10px;
+  width: 150px;
+  border: none;
+  font-size: 14px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
 }
 
 .changePosition input[type=text] {
@@ -306,6 +377,24 @@ input[type=radio] :not(old) {
   background-color: white;
 }
 
+.submitModif button {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: rgb(84, 183, 223);
+  border: none;
+  color:white;
+  padding: 15px;
+  width: 30rem;
+  text-align: center;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top:  13rem;
+  margin-bottom: 5rem;
+  margin-left: 3rem;
+}
+
 .submit button {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   background-color: rgb(84, 183, 223);
@@ -315,11 +404,13 @@ input[type=radio] :not(old) {
   width: 30rem;
   text-align: center;
   display: block;
+  position: relative;
   margin: 0 auto;
   cursor: pointer;
   border-radius: 5px;
-  margin-top:  10rem;
-  margin-bottom: 6rem;
+  margin-top:  5rem;
+  margin-bottom: 5rem;
+  margin-left: 3rem;
 }
 
 .first button {
