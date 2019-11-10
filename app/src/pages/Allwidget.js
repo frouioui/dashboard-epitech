@@ -173,7 +173,7 @@ class Allwidgets extends React.Component {
     Promise.all(promises).then(function (data) {
       deleteOneWidget(widget.id).then(res => {
         this.getAllWidgetsUser()
-      }).catch(err => { })
+      }).catch(err => { console.error(err) })
     }).catch(function (err) {
       console.error(err)
     });
@@ -198,17 +198,6 @@ class Allwidgets extends React.Component {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      <div className="body">
-        <form method="get" action="/addwidget">
-          <button type="submit">Add a widget</button>
-        </form>
-      </div>
-      <div className="body3">
-        <form method="get" action="/modify/widget/2">
-          <button type="submit">Modify a widget</button>
-        </form>
-=======
     )
   }
 
@@ -225,7 +214,6 @@ class Allwidgets extends React.Component {
             </div>
           </div>
         ))}
->>>>>>> 141753a4e49ef9a360597c5fdf509873f7ee3379
       </div>
     )
   }
