@@ -171,7 +171,7 @@ for html properties only*/
 
 .manage_widget h3 {
   margin-left: 3rem;
-  margin-top: 10rem;
+  margin-top: 15rem;
   color: #1abc9c;
   font-size: 1.7em;
 }
@@ -182,7 +182,7 @@ hr.separator {
   position: relative;
   margin-left: 3rem;
   margin-top: -0.1rem;
-  width: 200px;
+  width: 250px;
   opacity: 0.3;
 }
 
@@ -208,7 +208,8 @@ hr.separator {
 
 .block {
   font-family: Arial, Helvetica, sans-serif;
-  max-height: 170px;
+  max-height: 270px;
+  max-width: 520px;
   overflow: auto;
   margin-left: 5rem;
   /*border: 2px solid #7becd6;*/
@@ -227,6 +228,43 @@ hr.separator {
   margin-right: 6.5rem;
 }
 
+.bloc h4 {
+  color: salmon;
+  margin-top: 7rem;
+  margin-left: 3rem;
+  font-size: 2.2rem;
+}
+
+.textModif {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.textModif input[type=text] {
+  border-color: #7becd6;
+  margin-top: 2rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.changePosition input[type=text] {
+  border-color: #7becd6;
+  margin-top: 2rem;
+  margin-left: 3rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.changePosition {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+
 .first h3 {
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 20rem;
@@ -234,6 +272,7 @@ hr.separator {
   display: table;
   margin-right: 6.5rem;
 }
+
 
 .first h2 {
   font-family: Arial, Helvetica, sans-serif;
@@ -248,11 +287,11 @@ display: table;
 margin-left: 3rem;
 }
 
-.block hr {
+.hr hr {
+  position: relative;
   border-color: #7becd6;
+  width: 500px;
 }
-
-
 
 input[type=radio] :not(old) {
   position: absolute;
@@ -263,7 +302,7 @@ input[type=radio] :not(old) {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 40rem;
+  height: 10rem;
   background-color: white;
 }
 
@@ -273,11 +312,51 @@ input[type=radio] :not(old) {
   border: none;
   color:white;
   padding: 15px;
-  width: 25rem;
+  width: 30rem;
   text-align: center;
   display: block;
   margin: 0 auto;
   cursor: pointer;
   border-radius: 5px;
-  margin-bottom: 8rem;
+  margin-top:  10rem;
+  margin-bottom: 6rem;
+}
+
+.first button {
+  background-color: salmon;
+  color: white;
+  width: 15rem;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  margin-top: -4.1rem;
+  margin-left: 105%;
+}
+
+.serviceName td {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 2rem;
+  display: inline-block;
+  margin-left: 4rem;
+  color: #1abc9c;
+}
+
+.widgetName td {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 2rem;
+  display: inline-block;
+  margin-left: 20rem;
+}
+
+.test {
+  margin-left: 22rem;
+  margin-bottom: -2rem;
+  font-size: 1.8rem;
+  color: darkgrey;
+}
+
+.bti button {
+  margin-left: 37rem;
 }
