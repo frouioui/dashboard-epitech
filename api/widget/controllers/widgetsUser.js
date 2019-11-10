@@ -16,6 +16,7 @@ function addWidgetUserInformation(req, res, user_widget) {
     return new Promise(function (resolve, reject) {
         modelWidget.getOneWidgetByID(req, res, user_widget.widget_id, (req, res, error, resultWidget) => {
             if (error) {
+                console.error(error)
                 return reject(error);
             } else {
                 user_widget.name = resultWidget[0].name
@@ -28,6 +29,37 @@ function addWidgetUserInformation(req, res, user_widget) {
 
 }
 
+function wrapperNameAndTypeParam(req, res, param) {
+    return new Promise(function (resolve, reject) {
+        modelParams.getOneWidgetByID(req, res, param.widget_param_id, (req, res, error, resultParam) => {
+            if (error) {
+                console.error(error)
+                return reject(error)
+            } else {
+                param.name = resultParam[0].name
+                param.type = resultParam[0].type
+                return resolve(param)
+            }
+        })
+    })
+}
+
+function getNameAndTypeParam(req, res, user_widget) {
+    return new Promise(function (resolve, reject) {
+        var promises = [];
+        user_widget.params.forEach(param => {
+            promises.push(wrapperNameAndTypeParam(req, res, param));
+        });
+        Promise.all(promises)
+            .then(function (data) {
+                return resolve(data)
+            })
+            .catch(function (err) {
+                return reject(err)
+            });
+    })
+}
+
 function addParamUserInformation(req, res, user_widget) {
     return new Promise(function (resolve, reject) {
         modelParamsUser.getUserWidgetParamsByUserWidgetID(req, res, user_widget.id, (req, res, error, resultParamsUser) => {
@@ -35,17 +67,9 @@ function addParamUserInformation(req, res, user_widget) {
                 return reject(error)
             } else {
                 user_widget.params = resultParamsUser
-                user_widget.params.forEach(param => {
-                    modelParams.getOneWidgetByID(req, res, user_widget.widget_id, (req, res, error, resultParam) => {
-                        if (error) {
-                            return reject(error)
-                        } else {
-                            param.name = resultParam[0].name
-                            param.type = resultParam[0].type
-                            return resolve(user_widget)
-                        }
-                    })
-                });
+                getNameAndTypeParam(req, res, user_widget).then(user_widget_info => {
+                    return resolve(user_widget_info)
+                }).catch((err) => setImmediate(() => { return reject(err) }))
             }
         })
     })

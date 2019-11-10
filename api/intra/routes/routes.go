@@ -14,11 +14,11 @@ import (
 // Assign all the routes to a mux Router
 func Assign(r *mux.Router) {
 	log.Println("Setting up routes ...")
-	r.HandleFunc("/v1/intra/", homeRoute).Methods(http.MethodGet)
-	r.HandleFunc("/v1/intra", homeRoute).Methods(http.MethodGet)
-	r.HandleFunc("/v1/intra/grade/{cycle}", gpaAndCreditsRoute).Methods(http.MethodGet)
-	r.HandleFunc("/v1/intra/netsoul", netsoulRoute).Methods(http.MethodGet)
-	r.HandleFunc("/v1/intra/marks", markRoute).Methods(http.MethodGet)
+	r.HandleFunc("/v1/intra/", homeRoute).Methods(http.MethodGet, http.MethodOptions)
+	r.HandleFunc("/v1/intra", homeRoute).Methods(http.MethodGet, http.MethodOptions)
+	r.HandleFunc("/v1/intra/grade/{cycle}", gpaAndCreditsRoute).Methods(http.MethodGet, http.MethodOptions)
+	r.HandleFunc("/v1/intra/netsoul", netsoulRoute).Methods(http.MethodGet, http.MethodOptions)
+	r.HandleFunc("/v1/intra/marks", markRoute).Methods(http.MethodGet, http.MethodOptions)
 	log.Println("Routes set.")
 }
 
