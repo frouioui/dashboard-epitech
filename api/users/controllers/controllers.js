@@ -44,6 +44,7 @@ function githubLogin(req, res) {
             res.status(500).json({ status: 'failure', code: 500, error: err })
         }))
     }).catch((err) => setImmediate(() => {
+        console.log(err)
         res.status(400).json({ status: 'failure', code: 400, error: err })
     }))
 }

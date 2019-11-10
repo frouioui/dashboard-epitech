@@ -26,7 +26,7 @@ function addNewUser(req, res, data, dataHandler) {
 }
 
 function addNewUserNoPassword(req, res, login, dataHandler) {
-    con.query("INSERT INTO users (login) VALUES ('" + login + "')", function (error, results, fields) {
+    con.query("INSERT INTO users (login, password) VALUES ('" + login + "', NULL)", function (error, results, fields) {
         dataHandler(req, res, error, results)
     })
 }
