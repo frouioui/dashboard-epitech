@@ -2,7 +2,7 @@ import React from "react";
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom'
 import { getAllWidgetsOfOneUser } from "../client/widgets";
-import { getGPAAndCredits } from '../client/intra';
+import { getGPAAndCredits, getMarks, getNetsoul } from '../client/intra';
 
 import "../CSS/allwidgets.css"
 
@@ -27,6 +27,52 @@ class Allwidgets extends React.Component {
         userWidgets: res.data,
         userWidgetLoaded: true
       })
+      res.data.forEach(widget => {
+        switch (widget.name) {
+          case "GPA and Credits":
+            getGPAAndCredits(widget.params).then(res2 => {
+              widget.value = (
+                <div>
+                  <h4>GPA: <b>{res2.data.data.gpa}</b></h4>
+                  <h4>Credits: <b>{res2.data.data.credits}</b></h4>
+                </div>
+              )
+              this.setState({ userWidgets: res.data })
+            }).catch((err) => setImmediate(() => { console.error(err) }))
+            break;
+
+          case "Marks":
+            getMarks(widget.params).then(res2 => {
+              console.log(res2)
+              widget.value = (
+                <div>
+                  {res2.data.data.map(e => (
+                    <div>
+                      <h4>{e.title}</h4>
+                      <h5>Mark: <b>{e.note}</b> <a href={e.title_link}>see more</a> </h5>
+                    </div>
+                  ))}
+                </div>
+              )
+              this.setState({ userWidgets: res.data })
+            }).catch((err) => setImmediate(() => { console.error(err) }))
+            break;
+
+          case "Logtime":
+            getNetsoul(widget.params).then(res2 => {
+              console.log(res2)
+              widget.value = (
+                <div>
+                  <h4>{res2.data.data} hours</h4>
+                </div>
+              )
+              this.setState({ userWidgets: res.data })
+            }).catch((err) => setImmediate(() => { console.error(err) }))
+            break;
+          default:
+            break;
+        }
+      });
     }).catch((err) => setImmediate(() => {
       console.error(err)
       this.setState({
@@ -53,22 +99,6 @@ class Allwidgets extends React.Component {
     )
   }
 
-  fetchData(widget) {
-    console.log(widget)
-    switch (widget.name) {
-      case "GPA and Credits":
-        getGPAAndCredits(widget.params).then(res => {
-          console.log(res)
-          if (res.error) { return <h5>error</h5> }
-          return <h5>toto</h5>
-        }).catch((err) => setImmediate(() => { console.error(err) }))
-
-      default:
-        break;
-    }
-  }
-
-
   displayWidgets() {
     return (
       <div>
@@ -77,8 +107,7 @@ class Allwidgets extends React.Component {
             <div class="widgetsbox">
               <h6>{widget.name}</h6>
               <h6>{widget.description}</h6>
-              <h6>{widget.description}</h6>
-              <div>{this.fetchData(widget)}</div>
+              <h3>{widget.value}</h3>
             </div>
           </div>
         ))}

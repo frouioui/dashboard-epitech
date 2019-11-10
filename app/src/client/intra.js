@@ -20,7 +20,6 @@ async function getGPAAndCredits(params) {
             auth = param.value
         }
     })
-    console.log(cycle)
     return new Promise(function (resolve, reject) {
         axios.get(getURL() + '/v1/intra/grade/' + cycle, { headers: { 'Authorization': auth } }).then(res => {
             resolve(res)
@@ -28,6 +27,36 @@ async function getGPAAndCredits(params) {
     })
 }
 
+async function getMarks(params) {
+    var auth = "";
+    await params.forEach(param => {
+        if (param.name == "Auth Token") {
+            auth = param.value
+        }
+    })
+    return new Promise(function (resolve, reject) {
+        axios.get(getURL() + '/v1/intra/marks', { headers: { 'Authorization': auth } }).then(res => {
+            resolve(res)
+        }).catch((err) => setImmediate(() => { reject(err) }))
+    })
+}
+
+async function getNetsoul(params) {
+    var auth = "";
+    await params.forEach(param => {
+        if (param.name == "Auth Token") {
+            auth = param.value
+        }
+    })
+    return new Promise(function (resolve, reject) {
+        axios.get(getURL() + '/v1/intra/netsoul', { headers: { 'Authorization': auth } }).then(res => {
+            resolve(res)
+        }).catch((err) => setImmediate(() => { reject(err) }))
+    })
+}
+
 export {
-    getGPAAndCredits
+    getGPAAndCredits,
+    getMarks,
+    getNetsoul
 }
