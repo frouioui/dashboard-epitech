@@ -197,7 +197,9 @@ class AddWidget extends React.Component {
                         </div>
     
                         <div className="submit">
+                        <form method="get" action="/allwidget">
                             <button onClick={() => this.handleOnClick(this)}>Add</button>
+                        </form>
                         </div>
                       
                     </div>

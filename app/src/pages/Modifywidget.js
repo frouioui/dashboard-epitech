@@ -95,7 +95,9 @@ class Modifywidget extends React.Component {
             ))}
             </div>
                 <div className="submitModif">
+                    <form method="get" action="/allwidget">
                     <button onClick={() => this.handleOnClickModify(this)}>Modify</button>
+                    </form>                    
                 </div>
         </div>
         <div className="footer4">
