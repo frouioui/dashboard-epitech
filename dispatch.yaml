@@ -32,6 +32,14 @@ dispatch:
     service: intra
 
 
+  # GITHUB API
+  - url: "api.pedafy.com/v1/github/*"
+    service: github
+
+  - url: "api.pedafy.com/v1/github"
+    service: github
+
+
   # FRONTEND SERVICE
   - url: "pedafy.com/*"
     service: default

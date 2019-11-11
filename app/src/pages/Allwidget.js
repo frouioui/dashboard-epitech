@@ -211,6 +211,7 @@ class Allwidgets extends React.Component {
               <h6>{widget.description}</h6>
               <h3>{widget.loaded == true ? widget.value : "loading ..."}</h3>
               <button onClick={() => this.deleteWidget(widget)}>Delete</button>
+              <button> <a href={"/modify/widget/" + widget.id}>Modify</a> </button>
             </div>
           </div>
         ))}
