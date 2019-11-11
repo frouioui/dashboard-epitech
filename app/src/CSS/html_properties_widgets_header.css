@@ -42,6 +42,7 @@ for html properties only*/
   }
 .body button {
     background-color: #1abc9c;
+    display: inline-block;
     color:white;
     padding: 10px;
     width: 15rem;
@@ -49,6 +50,18 @@ for html properties only*/
     border: none;
     margin-top: 3rem;
     margin-left: 2rem;
+}
+
+.body3 button {
+  background-color: salmon;
+  display: inline-block;
+  color:white;
+  padding: 10px;
+  width: 15rem;
+  border-radius: 5px;
+  border: none;
+  margin-top: 3rem;
+  margin-left: 2rem;
 }
 
 
@@ -164,14 +177,14 @@ for html properties only*/
 
 .body h3 {
   margin-left: 3rem;
-  margin-top: 5rem;
+  margin-top: 10rem;
   color: #1abc9c;
   font-size: 1.7em;
 }
 
 .manage_widget h3 {
   margin-left: 3rem;
-  margin-top: 10rem;
+  margin-top: 8rem;
   color: #1abc9c;
   font-size: 1.7em;
 }
@@ -182,7 +195,7 @@ hr.separator {
   position: relative;
   margin-left: 3rem;
   margin-top: -0.1rem;
-  width: 200px;
+  width: 250px;
   opacity: 0.3;
 }
 
@@ -208,7 +221,8 @@ hr.separator {
 
 .block {
   font-family: Arial, Helvetica, sans-serif;
-  max-height: 170px;
+  max-height: 270px;
+  max-width: 520px;
   overflow: auto;
   margin-left: 5rem;
   /*border: 2px solid #7becd6;*/
@@ -227,6 +241,101 @@ hr.separator {
   margin-right: 6.5rem;
 }
 
+.bloc h4 {
+  color: salmon;
+  margin-top: 7rem;
+  margin-left: 3rem;
+  font-size: 2.2rem;
+}
+
+.textModif {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.textModif input[type=text] {
+  border-color: rgb(84, 183, 223);
+  margin-top: 1rem;
+  margin: 1.5rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.modifInput input[type=text] {
+  border-color: rgb(84, 183, 223);
+  margin-top: 1rem;
+  margin-left: 3rem;
+  margin-top: 3rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 2rem;
+  color: salmon;
+}
+
+.box {
+  position: relative;
+  left: 55%;
+  margin-top: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.box select {
+  background-color: rgb(84, 183, 223);
+  color: white;
+  padding: 10px;
+  width: 150px;
+  border: none;
+  font-size: 14px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
+.changePosition input[type=text] {
+  border-color: #7becd6;
+  margin-top: 2rem;
+  margin-left: 3rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.changePosition {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+
 .first h3 {
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 20rem;
@@ -234,6 +343,7 @@ hr.separator {
   display: table;
   margin-right: 6.5rem;
 }
+
 
 .first h2 {
   font-family: Arial, Helvetica, sans-serif;
@@ -248,11 +358,11 @@ display: table;
 margin-left: 3rem;
 }
 
-.block hr {
+.hr hr {
+  position: relative;
   border-color: #7becd6;
+  width: 500px;
 }
-
-
 
 input[type=radio] :not(old) {
   position: absolute;
@@ -263,8 +373,26 @@ input[type=radio] :not(old) {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 40rem;
+  height: 10rem;
   background-color: white;
+}
+
+.submitModif button {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: rgb(84, 183, 223);
+  border: none;
+  color:white;
+  padding: 15px;
+  width: 30rem;
+  text-align: center;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top:  13rem;
+  margin-bottom: 5rem;
+  margin-left: 3rem;
 }
 
 .submit button {
@@ -273,11 +401,53 @@ input[type=radio] :not(old) {
   border: none;
   color:white;
   padding: 15px;
-  width: 25rem;
+  width: 30rem;
   text-align: center;
   display: block;
+  position: relative;
   margin: 0 auto;
   cursor: pointer;
   border-radius: 5px;
-  margin-bottom: 8rem;
+  margin-top:  5rem;
+  margin-bottom: 5rem;
+  margin-left: 3rem;
+}
+
+.first button {
+  background-color: salmon;
+  color: white;
+  width: 15rem;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  margin-top: -4.1rem;
+  margin-left: 105%;
+}
+
+.serviceName td {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 2rem;
+  display: inline-block;
+  margin-left: 4rem;
+  color: #1abc9c;
+}
+
+.widgetName td {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 2rem;
+  display: inline-block;
+  margin-left: 20rem;
+}
+
+.test {
+  margin-left: 22rem;
+  margin-bottom: -2rem;
+  font-size: 1.8rem;
+  color: darkgrey;
+}
+
+.bti button {
+  margin-left: 37rem;
 }

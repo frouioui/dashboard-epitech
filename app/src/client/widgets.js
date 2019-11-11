@@ -86,6 +86,15 @@ function addUserWidget(user_id, position, widget_id) {
     })
 }
 
+function addUserParam(user_id, value, param_id, widget_id) {
+    return new Promise(function (resolve, reject) {
+        axios.post(getURL() + '/v1/widgets/user/param', { user_id: user_id, value: value, widget_user_id: widget_id, widget_param_id: param_id }).then(res => {
+            console.log(res)
+            resolve(res)
+        }).catch((err) => setImmediate(() => { reject(err) }))
+    })
+}
+
 function getParamsOfUserWidget(widget_id) {
     return new Promise(function (resolve, reject) {
         fetch(getURL() + '/v1/widgets/user/params/search?key=widget_user_id&value=' + widget_id).then(res => res.json())
@@ -114,5 +123,6 @@ export {
     modifyWidgetPosition,
     addUserWidget,
     getParamsOfUserWidget,
-    getParamsOfWidget
+    getParamsOfWidget,
+    addUserParam
 }

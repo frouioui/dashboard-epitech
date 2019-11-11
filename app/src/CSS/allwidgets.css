@@ -1,0 +1,174 @@
+/*This CSS file is used to design the login page
+for html properties only*/
+
+/*import CSS file from external library*/
+
+/*@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700';*/
+
+
+/*style of the widget_header*/
+
+.header {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+    /*background-color: #1abc9c;*/
+    background-image: linear-gradient(to right, #84fab0, #8fd3f4 51%, #84fab0);
+
+  }
+
+/*style of the button_widget_header*/
+
+  .header button {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: rgb(84, 183, 223);
+    border: none;
+    color:white;
+    padding: 10px;
+    width: 15rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+.zero {
+  background: red;
+}
+.body button {
+    background-color: #1abc9c;
+    color:white;
+    padding: 10px;
+    width: 15rem;
+    border-radius: 5px;
+    border: none;
+    margin-top: 3rem;
+    margin-left: 2rem;
+}
+
+
+/*style of the widget_header*/
+
+
+  .dropbtn {
+    background-color: white;
+    color: #1abc9c;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    margin-top: -5.7rem;
+    margin-left: 55%;
+  }
+  
+  .dropdown {
+    position: relative;
+    margin-left: 60rem;
+    border-radius: 5px;
+    margin-left: 69%;
+
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-left: 55%;
+    margin-top: -1.8rem;
+
+  }
+  
+  .dropdown-content a {
+    color: #1abc9c;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+  }
+  
+  .dropdown-content a:hover {background-color: white;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: white;}
+
+
+  /* END of style of the widget_header*/
+
+/* STYLE RESPONSIVE / COLUMN FOR WIDGERS */
+
+.container-widget {
+  width: 100%;
+  border-radius: .5em;
+  padding: 20px;
+}
+
+.column {
+    float: left;
+    width: 20%;
+    height: 30rem !important;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.widgetsbox {
+  width: 90%;
+  height: 90%;
+  padding: 10px;
+  margin: 20px;
+  background-color: rgba(199, 199, 199, 0.3);
+  border: 2px solid rgba(23, 153, 0, 0.5);
+}
+
+
+
+
+/* FOOTER */
+
+.footer3 {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+    background-color: #1abc9c;
+}
+
+.footer4 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7rem;
+  background-color: #1abc9c;
+}
+
+.footer3 h6 {
+    text-align: left;
+    margin-left: 2rem;
+    margin-top: 2.5rem;
+    color: white;
+}

@@ -30,7 +30,7 @@ function githubLogin(req, res) {
                     model.addNewUserNoPassword(req, res, login, (req2, res2, err2, resultDb2) => {
                         if (err2) {
                             console.log(err2)
-                            res.status(500).json({ status: 'failure', code: 500, error: err })
+                            res.status(500).json({ status: 'failure', code: 500, error: err2 })
                         } else {
                             res.status(200).json({ status: 'success', code: 200, data: { message: "Authenticated", id: resultDb2.insertId, auth: json.data.access_token } })
                         }
