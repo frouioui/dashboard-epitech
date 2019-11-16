@@ -63,7 +63,7 @@ As we said ... each widgets have parameters. Users can add parameters for their 
 | Get all the user widgets | `GET` | `/v1/widgets/user`|
 | Add a user widget | `POST` | `/v1/widgets/user` |
 | Change the position of a user widget | `PUT` | `/v1/widgets/user/position/:id`|
-| Delete a user widget | `DELETE` | `/v1/widgets/user/delete/:id` |
+| Delete a user widget | `DELETE` | `/v1/widgets/user/:user_id/delete/widget/:id` |
 | Search a user widget | `GET` | `/v1/widgets/user/search` |
 
 ### **User widget params**
@@ -417,7 +417,7 @@ ____
 
 Request type: `DELETE`.
 
-URL: `/v1/widgets/user/delete/{{id}}`.
+URL: `/v1/widgets/user/{user_id}/delete/widget/{id}`.
 
 Delete a user's widget.
 

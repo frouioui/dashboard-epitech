@@ -50,9 +50,9 @@ function deleteOneWidgetParam(param_id) {
     })
 }
 
-function deleteOneWidget(widget_id) {
+function deleteOneWidget(user_id, widget_id) {
     return new Promise(function (resolve, reject) {
-        fetch(getURL() + '/v1/widgets/user/delete/' + widget_id, { method: 'delete' }).then(res => res.json())
+        fetch(getURL() + '/v1/widgets/user/' + user_id + '/delete/widget/' + widget_id, { method: 'delete' }).then(res => res.json())
             .then(json => {
                 resolve(json)
             }).catch((err) => setImmediate(() => { reject(err) }))
@@ -68,9 +68,18 @@ function modifyParamValue(param_id, new_value) {
     })
 }
 
-function modifyWidgetPosition(widget_id, new_position) {
+function modifyWidgetPosition(user_id, widget_id, new_position) {
     return new Promise(function (resolve, reject) {
-        axios.put(getURL() + '/v1/widgets/user/position/' + widget_id, { position: new_position }).then(res => {
+        axios.put(getURL() + '/v1/widgets/user/position/' + widget_id, { position: new_position, user_id: user_id }).then(res => {
+            console.log(res)
+            resolve(res)
+        }).catch((err) => setImmediate(() => { reject(err) }))
+    })
+}
+
+function getLastWidgetPosition(user_id) {
+    return new Promise(function (resolve, reject) {
+        axios.get(getURL() + '/v1/widgets/user/last/position?user_id=' + user_id).then(res => {
             console.log(res)
             resolve(res)
         }).catch((err) => setImmediate(() => { reject(err) }))
@@ -124,5 +133,6 @@ export {
     addUserWidget,
     getParamsOfUserWidget,
     getParamsOfWidget,
-    addUserParam
+    addUserParam,
+    getLastWidgetPosition
 }

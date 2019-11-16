@@ -38,11 +38,11 @@ class Allwidgets extends React.Component {
             )
           } else {
             widget.value = (
-            <div>
-              <h4>Come one! A small effort</h4>
-              <h4>GPA:</h4> <h2><b>{res2.data.data.gpa}</b></h2>
-              <h4>Credits:</h4><h2><b>{res2.data.data.credits}</b></h2>
-            </div>
+              <div>
+                <h4>Come one! A small effort</h4>
+                <h4>GPA:</h4> <h2><b>{res2.data.data.gpa}</b></h2>
+                <h4>Credits:</h4><h2><b>{res2.data.data.credits}</b></h2>
+              </div>
             )
           }
           widget.loaded = true
@@ -74,17 +74,17 @@ class Allwidgets extends React.Component {
         getNetsoul(widget.params).then(res2 => {
           console.log(res2)
           if (res2.data.data > 50)
-          widget.value = (
-            <div class="LogValid">
-              <h4>Great !</h4><h2>{res2.data.data}</h2><h5><b>hours</b> this week!</h5>
-            </div>
-          ) 
+            widget.value = (
+              <div class="LogValid">
+                <h4>Great !</h4><h2>{res2.data.data}</h2><h5><b>hours</b> this week!</h5>
+              </div>
+            )
           else {
             widget.value = (
-            <div className="LogErrors">
-              <h4>Isn't enought...</h4>
-              <h2>{res2.data.data}</h2><h5><b>hours</b> this week!</h5>
-            </div>
+              <div className="LogErrors">
+                <h4>Isn't enought...</h4>
+                <h2>{res2.data.data}</h2><h5><b>hours</b> this week!</h5>
+              </div>
             )
           }
           widget.loaded = true
@@ -225,7 +225,7 @@ class Allwidgets extends React.Component {
       promises.push(deleteOneWidgetParam(param.id));
     });
     Promise.all(promises).then(function (data) {
-      deleteOneWidget(widget.id).then(res => {
+      deleteOneWidget(this.state.user_id, widget.id).then(res => {
         this.getAllWidgetsUser()
       }).catch(err => { console.error(err) })
     }).catch(function (err) {
@@ -255,8 +255,8 @@ class Allwidgets extends React.Component {
         <div className="footer12">
         </div>
         <div className="production">
-            <h5>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h5>
-          </div>
+          <h5>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h5>
+        </div>
       </div>
     )
   }
@@ -276,7 +276,7 @@ class Allwidgets extends React.Component {
               <br></br>
               <button onClick={() => this.deleteWidget(widget)}><b>Delete</b></button>
               <div className="modify_widget">
-              <button><a href={"/modify/widget/" + widget.id}>Modify</a></button>
+                <button><a href={"/modify/widget/" + widget.id}>Modify</a></button>
               </div>
             </div>
           </div>

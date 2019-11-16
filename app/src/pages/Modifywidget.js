@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Redirect } from "react";
 import "../CSS/html_properties_widgets_header.css"
 import { getParamsOfUserWidget } from "../client/widgets";
 import { modifyParamValue } from "../client/widgets";
@@ -21,14 +21,7 @@ class Modifywidget extends React.Component {
     componentDidMount() {
         const { widget_id } = this.props.match.params
 
-        fetch(`http://localhost/9001/v1/modify/widget/${widget_id}`)
-            .then((widget_id) => {
-                this.setState(() => ({ widget_id }))
-                console.log(widget_id)
-            })
-        console.log(widget_id)
         getParamsOfUserWidget(widget_id).then(jsonParams => {
-            console.log(jsonParams)
             this.setState({
                 params: jsonParams.data
             })
@@ -38,7 +31,6 @@ class Modifywidget extends React.Component {
     }
 
     handleValueChange = (id, e) => {
-        console.log(id)
         var tt = this.state.params;
         tt.map(param => {
             if (param.id === id) {
@@ -73,20 +65,20 @@ class Modifywidget extends React.Component {
             return <Redirect to='/allwidget' />
         }
         return (
-        <div>
-         <div className="header">
-        <button>Pedafy</button>
-        </div>
-        <div class="dropdown">
-                        <button class="dropbtn">Setting</button>
-                        <div class="dropdown-content">
-                            <a href="https://pedafy.com/signup">Add Widget</a>
-                            <a href="https://pedafy.com/signup">Logout</a>
-                            <a href="https://pedafy.com/signup">Use our API</a>
-                        </div>
-        </div>
-        <div className="body">
-        <div className="body2">
+            <div>
+                <div className="header">
+                    <button>Pedafy</button>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Setting</button>
+                    <div class="dropdown-content">
+                        <a href="https://pedafy.com/signup">Add Widget</a>
+                        <a href="https://pedafy.com/signup">Logout</a>
+                        <a href="https://pedafy.com/signup">Use our API</a>
+                    </div>
+                </div>
+                <div className="body">
+                    <div className="body2">
                         <form method="get" action="/allwidget/">
                             <button type="submit">Cancel</button>
                         </form>

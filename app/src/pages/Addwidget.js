@@ -1,9 +1,8 @@
 import React from "react";
 import "../CSS/html_properties_widgets_header.css"
-import { getParamsOfWidget, addUserWidget, getAllServices, getAllWidgets, addUserParam, modifyWidgetPosition, getParamsOfUserWidget } from "../client/widgets";
+import { getLastWidgetPosition, getParamsOfWidget, addUserWidget, getAllServices, getAllWidgets, addUserParam } from "../client/widgets";
 import Cookies from 'universal-cookie';
-import Login from "./Login";
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class AddWidget extends React.Component {
     constructor(props) {
@@ -17,7 +16,8 @@ class AddWidget extends React.Component {
             widgets: [],
             params: [],
             currentWidget: 0,
-            redirectMainPage: false
+            redirectMainPage: false,
+            lastPosition: 0
         }
     }
 
@@ -30,18 +30,28 @@ class AddWidget extends React.Component {
                     isLoaded: true
                 })
             }).catch((err) => setImmediate(() => {
-                // TODO: HANDLE ERRORS -> Display an error message
                 this.setState({
                     isError: true
                 })
                 console.error(err)
             }))
         }).catch((err) => setImmediate(() => {
-            // TODO: HANDLE ERRORS -> Display an error message
             this.setState({
                 isError: true
             })
             console.error(err)
+        }))
+        this.getLastPosition()
+    }
+
+    getLastPosition() {
+        var cookies = new Cookies()
+        var user_id = cookies.get('user_id')
+
+        getLastWidgetPosition(user_id).then(res => {
+            this.setState({ lastPosition: res.data.data + 1 })
+        }).catch((err) => setImmediate(() => {
+            console.log(err)
         }))
     }
 
@@ -54,32 +64,12 @@ class AddWidget extends React.Component {
         return res
     }
 
-    getParams(id, e) {
-        console.log(e)
-        console.log(id)
-    }
-
-
-    displayCycle(widget_id) {
-        console.log("yes")
-        getParamsOfWidget(widget_id).then(displayCycle => {
-            if (widget_id === 1) {
-                console.log("ok frere")
-
-            }
-            else {
-                console.log("try again")
-            }
-        })
-    }
-
     getParams2(widget_id) {
         this.setState({ currentWidget: widget_id })
         getParamsOfWidget(widget_id).then(getParams => {
             console.log(getParams)
             this.setState({
-                params: getParams.data,
-                /*widgets: res.data,*/
+                params: getParams.data
             })
             return (getParams.data);
         })
@@ -108,8 +98,6 @@ class AddWidget extends React.Component {
             console.log(err)
         }))
     }
-
-
 
     handleOnClick = (e) => {
         this.addWidgetUser(1, this.state.currentWidget)
@@ -225,6 +213,45 @@ class AddWidget extends React.Component {
 
     }
 
+    renderOneWidgetSelection(widget) {
+        var cookies = new Cookies()
+        var auth = cookies.get('auth')
+
+        if ((!auth || auth === "") && auth !== "none" && (widget.name == "Repo last issue" || widget.name == "Repo last PR")) {
+            return (
+                <tr>
+                    <div className="hr">
+                        <hr />
+                    </div>
+
+                    <div className="serviceName">
+                        <td>{this.getServiceName(widget.service_id)}</td>
+                    </div>
+                    <div className="test">
+                        <td>Login with GitHub to use this widget</td>
+                    </div>
+                </tr>
+            )
+        }
+        return (
+            <tr>
+                <div className="hr">
+                    <hr />
+                </div>
+
+                <div className="serviceName">
+                    <td>{this.getServiceName(widget.service_id)}</td>
+                </div>
+                <div className="test">
+                    <td>{widget.name}</td>
+                </div>
+                <div className="bti">
+                    <button widget-id={widget.id} onClick={this.getParams2.bind(this, widget.id)}>Select</button>
+                </div>
+            </tr>
+        )
+    }
+
     render() {
         var cookies = new Cookies()
         var user_id = cookies.get('user_id')
@@ -232,6 +259,8 @@ class AddWidget extends React.Component {
             return <div>Loading ...</div>;
         } else if (this.state.redirectMainPage) {
             return <Redirect to='/allwidget' />
+        } else if (!user_id || user_id === "") {
+            return <Redirect to='/login' />
         } else {
             return (
                 <div>
@@ -241,7 +270,7 @@ class AddWidget extends React.Component {
                     </div>
 
                     <div className="body2">
-                        <form method="get" action="/allwidget/2">
+                        <form method="get" action="/allwidget">
                             <button type="submit">Cancel</button>
                         </form>
                     </div>
@@ -258,21 +287,9 @@ class AddWidget extends React.Component {
                                 </thead>
                                 <tbody>
                                     {this.state.widgets.map(widget => (
-                                        <tr>
-                                            <div className="hr">
-                                                <hr />
-                                            </div>
-
-                                            <div className="serviceName">
-                                                <td>{this.getServiceName(widget.service_id)}</td>
-                                            </div>
-                                            <div className="test">
-                                                <td>{widget.name}</td>
-                                            </div>
-                                            <div className="bti">
-                                                <button widget-id={widget.id} onClick={this.getParams2.bind(this, widget.id)}>Select</button>
-                                            </div>
-                                        </tr>
+                                        <div>
+                                            {this.renderOneWidgetSelection(widget)}
+                                        </div>
                                     ))}
                                 </tbody>
                             </table>
@@ -286,18 +303,7 @@ class AddWidget extends React.Component {
                             </div>
                         ))}
                         <div className="box">
-                            <select name="position">
-                                <option value="postion">position</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                            </select>
+                            <input type="number" value={this.state.lastPosition} name="position"></input>
                         </div>
 
                         <div className="submit">
