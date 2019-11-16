@@ -82,7 +82,21 @@ func calculOneRateRoute(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 500, err)
 	}
 
+	resp := ReponseCalcul{
+		From:       from[0],
+		To:         to[0],
+		FromAmount: amount[0],
+		Result:     rateValue * amountFloat,
+	}
+
+	respJSON, err := json.Marshal(resp)
+	if err != nil {
+		w.WriteHeader(500)
+		log.Println(err)
+		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 500, err)
+	}
+
 	w.WriteHeader(200)
-	fmt.Fprintf(w, `{"status": "success", "code": %d, "data": %.2f}`, 200, rateValue*amountFloat)
+	fmt.Fprintf(w, `{"status": "success", "code": %d, "data": %s}`, 200, string(respJSON))
 	return
 }
