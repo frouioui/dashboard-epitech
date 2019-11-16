@@ -75,4 +75,13 @@ jobs:
         config: "./api/github/app.yaml"
         on:
           branch: master
+    - stage: Deploy Currency API to production server
+      if: branch IN (master) AND type != cron AND type != pull_request
+      deploy:
+        provider: gae
+        keyfile: /tmp/Dashboard-Epitech-b336a22ee4c7.json
+        project: dashboard-epitech-257222
+        config: "./api/currency/app.yaml"
+        on:
+          branch: master
 

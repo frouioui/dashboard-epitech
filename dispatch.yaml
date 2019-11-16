@@ -40,6 +40,14 @@ dispatch:
     service: github
 
 
+  # CURRENCY API
+  - url: "api.pedafy.com/v1/currency/*"
+    service: github
+
+  - url: "api.pedafy.com/v1/currency"
+    service: github
+
+
   # FRONTEND SERVICE
   - url: "pedafy.com/*"
     service: default
