@@ -47,10 +47,13 @@ module.exports = function (app) {
         .get(widgetsUser.getAllUserWidget)
         .post(widgetsUser.addOneUserWidget)
 
+    app.route('/v1/widgets/user/last/position')
+        .get(widgetsUser.getLastPositionUserWidget)
+
     app.route('/v1/widgets/user/position/:id')
         .put(widgetsUser.modifyPositionUserWidget)
 
-    app.route('/v1/widgets/user/delete/:id')
+    app.route('/v1/widgets/user/:user_id/delete/widget/:id')
         .delete(widgetsUser.deleteOneUserWidget)
 
     app.route('/v1/widgets/user/search')

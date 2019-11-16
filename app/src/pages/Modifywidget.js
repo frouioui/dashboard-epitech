@@ -6,25 +6,26 @@ import { modifyParamValue } from "../client/widgets";
 
 class Modifywidget extends React.Component {
     constructor(props) {
-    super()
+        super()
 
-    this.handleValueChange = this.handleValueChange.bind(this);
+        this.handleValueChange = this.handleValueChange.bind(this);
     }
 
     state = {
         widget_id: null,
         params: [],
-        widgets: []
+        widgets: [],
+        redirectMainPage: false
     }
 
     componentDidMount() {
         const { widget_id } = this.props.match.params
 
         fetch(`http://localhost/9001/v1/modify/widget/${widget_id}`)
-        .then((widget_id) => {
-            this.setState(() => ({ widget_id} ))
-            console.log(widget_id)
-        })
+            .then((widget_id) => {
+                this.setState(() => ({ widget_id }))
+                console.log(widget_id)
+            })
         console.log(widget_id)
         getParamsOfUserWidget(widget_id).then(jsonParams => {
             console.log(jsonParams)
@@ -46,16 +47,18 @@ class Modifywidget extends React.Component {
             }
             return (param)
         })
-        this.setState ({
+        this.setState({
             params: tt
         })
     }
 
     validateParams(param_id, new_value) {
-        modifyParamValue(param_id, new_value).then({
-
-        }).catch((err) => setImmediate(() => {
-                console.log(err)
+        modifyParamValue(param_id, new_value).then((
+            this.setState({
+                redirectMainPage: true
+            })
+        )).catch((err) => setImmediate(() => {
+            console.log(err)
         }))
     }
 
@@ -65,7 +68,10 @@ class Modifywidget extends React.Component {
         })
     }
 
-    render () {
+    render() {
+        if (this.state.redirectMainPage) {
+            return <Redirect to='/allwidget' />
+        }
         return (
         <div>
          <div className="header">
@@ -85,23 +91,21 @@ class Modifywidget extends React.Component {
                             <button type="submit">Cancel</button>
                         </form>
                     </div>
-             <div className="body">
-                <h3>Modify a widget</h3>
-            </div>
-            <div className="modifInput">
-            {this.state.params.map(param => (
-                 <input type="text" value={param.value} name="value" onChange={this.handleValueChange.bind(this, param.id)} />
-            ))}
-            </div>
-                <div className="submitModif">
-                    <form method="get" action="/allwidget">
-                    <button onClick={() => this.handleOnClickModify(this)}>Modify</button>
-                    </form>                    
+                    <div className="body">
+                        <h3>Modify a widget</h3>
+                    </div>
+                    <div className="modifInput">
+                        {this.state.params.map(param => (
+                            <input type="text" value={param.value} name="value" onChange={this.handleValueChange.bind(this, param.id)} />
+                        ))}
+                    </div>
+                    <div className="submitModif">
+                        <button onClick={() => this.handleOnClickModify(this)}>Modify</button>
+                    </div>
                 </div>
-        </div>
-        <div className="footer4">
-        </div>
-        </div>
+                <div className="footer4">
+                </div>
+            </div>
         );
     }
 }

@@ -302,6 +302,10 @@ class AddWidget extends React.Component {
 
                         <div className="submit">
                             <button onClick={() => this.handleOnClick(this)}>Add</button>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 893cf7ba0942d96fe820d715142da5feb82ff731
                         </div>
 
                     </div>
