@@ -30,17 +30,22 @@ function Login() {
   return (
     <Card>
       <Form>
-        <h1 className="registerTitle2">Signin</h1>
-        <div>
-          <p>P</p>
-          <p>e</p>
-          <p>d</p>
-          <p>a</p>
-          <p>f</p>
-          <p>y</p>
+      <div className="header4">
+        </div>
+        <div className="titre">
+          <p>S</p>
+          <p>i</p>
+          <p>g</p>
+          <p>n</p>
+          <p>u</p>
+          <p>p</p>
           <p>.</p>
         </div>
-
+        <form method="get" action="/signup">
+      <div className="back_toHome">
+      <button type="submit">Back</button>
+      </div>
+      </form>
         <Input
           type="username"
           value={username}
@@ -66,8 +71,7 @@ function Login() {
         <a href={getAuthorizeGitHub()}>Login with GitHub</a>
       </div>
       {isError && <Error>The username or password provided were incorrect!</Error>}
-      <div className="footer2">
-        <h6>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h6>
+      <div className="footer10">
       </div>
     </Card>
   );

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import "../CSS/html_properties_register.css";
 
-import { Card, Form, Input, Button, Error } from '../components/AuthForm';
+import { Card, Form, Input, Button, Error } from '../components/SignForm';
 import { useAuth } from "../context/auth";
-import Login from "./Login";
 import { createUser, getAllUsers } from '../client/users'
+
 
 function Signup() {
   const [isRegisterIn, setRegisterIn] = useState(false);
@@ -16,7 +16,6 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordconfirm] = useState("");
   useAuth();
-
 
   function postRegister() {
     if (password !== passwordConfirm) {
@@ -37,12 +36,12 @@ function Signup() {
     var same = false;
     getAllUsers().then(res => {
       res.data.data.map(user => {
-        if ((e == user.login) == true) {
+        if ((e === user.login) === true) {
           same = true;
           return
         }
       })
-      if (same == true) {
+      if (same === true) {
         setUsernameExists(true)
         return true
       } else {
@@ -63,16 +62,19 @@ function Signup() {
   return (
     <Card>
       <Form>
-        <h1 className="registerTitle">Register on</h1>
-        <div>
-          <p>P</p>
-          <p>e</p>
-          <p>d</p>
-          <p>a</p>
-          <p>f</p>
-          <p>y</p>
+      <div>
+        <div className="header4">
+        </div>
+        <div className="titre">
+          <p>S</p>
+          <p>i</p>
+          <p>g</p>
+          <p>n</p>
+          <p>i</p>
+          <p>n</p>
           <p>.</p>
         </div>
+      </div>
         <Input type="Username"
           value={username}
           onChange={e => {
@@ -107,8 +109,9 @@ function Signup() {
       <div className="linked">
         <Link to="/login">Already have an account?</Link>
       </div>
-
-      <div className="footer2">
+      <div className="footer0">
+      </div>
+      <div className="prod">
         <h6>A production of Julien Ferrier & Florent Poinsard © Epitech Toulouse, Copyright, All rights reserved.</h6>
       </div>
     </Card>

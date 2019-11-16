@@ -5,6 +5,17 @@ for html properties only*/
 
 /*@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700';*/
 
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+
+
+:root {
+  --color-1: #21D4FD;
+  --color-2: #B721FF;
+  --color-3: #08AEEA;
+  --color-4: #2AF598;
+}
+
 
 /*style of the widget_header*/
 
@@ -37,6 +48,8 @@ for html properties only*/
     border-radius: 5px;
   }
 
+  
+
 .zero {
   background: red;
 }
@@ -51,6 +64,16 @@ for html properties only*/
     margin-left: 2rem;
 }
 
+.bt_delete {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 
 /*style of the widget_header*/
 
@@ -116,10 +139,119 @@ for html properties only*/
   padding: 20px;
 }
 
+.container-widget2 button {
+  position: relative;
+  background-color: #1abc9c;
+  display: inline-block;
+  color: white;
+  padding: 20px;
+  margin-left: 1rem;
+  width: 20rem;
+  border: none;
+}
+
+.container-widget2 button {
+  background-color: #1abc9c;
+  display: inline-block;
+  color: white;
+  border: none;
+  float: left;
+  max-width: 100%;
+  width:30%;
+  height: 2.5rem !important;
+  margin-top: -110%;
+  margin-left: 70%;
+}
+
+.container-widget button {
+  background-color: red; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  border-radius: 2rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 7px 10px;
+  margin-top: -1%;
+  margin-bottom: 1rem;
+}
+
+.modify_widget button {
+  background-color: green;
+}
+
+.header_allW2 {
+  position: absolute;
+  left: 0;
+  bottom: 4rem;
+  width: 100%;
+  height: 20%;
+  margin-bottom: 45%;
+  transform: skewY(-3deg);
+  z-index: -1;
+  background: linear-gradient(19deg, var(--color-1), var(--color-2));
+
+
+  /*background-color: #1abc9c;*/
+  /*background-image: linear-gradient(to right, #84fab0, #8fd3f4 51%, #84fab0);*/
+
+}
+
+.LogValid h4 {
+  color: green;
+}
+
+.LogErrors h4{
+    color: red;
+}
+
+.header_allW {
+  position: absolute;
+  left: 0;
+  bottom: 4rem;
+  width: 100%;
+  height: 20%;
+  margin-bottom: 45%;
+  transform: skewY(-3deg);
+  z-index: -1;
+  background: linear-gradient(19deg, var(--color-1), var(--color-2));
+
+
+  /*background-color: #1abc9c;*/
+  /*background-image: linear-gradient(to right, #84fab0, #8fd3f4 51%, #84fab0);*/
+
+}
+
+
+.footer12 {
+position: absolute;
+    left: 0;
+    bottom: -20rem;
+    width: 100%;
+    height: 25%;
+    margin-bottom: -10%;
+    transform: skewY(2deg);
+    z-index: -1;
+    background: linear-gradient(19deg, var(--color-1), var(--color-2));
+}
+
+
+.production h5 {
+  display: none;
+  position: relative;
+  font-family: 'Varela Round', sans-serif;
+  color: darkgrey;
+  margin-left: 3rem;
+  margin-top: 30rem;
+}
+
 .column {
-    float: left;
-    width: 20%;
-    height: 30rem !important;
+  float: left;
+  width: 20%;
+  height: 30rem !important;
+  margin-top: 7rem;
 }
 
 @media screen and (max-width: 600px) {
@@ -134,15 +266,44 @@ for html properties only*/
   clear: both;
 }
 
-.widgetsbox {
-  width: 90%;
-  height: 90%;
-  padding: 10px;
-  margin: 20px;
-  background-color: rgba(199, 199, 199, 0.3);
-  border: 2px solid rgba(23, 153, 0, 0.5);
+.widgetsbox2 {
+  
+  border-radius: 3%;
+  min-width: 60%;
+  min-height: 40%;
+  max-width: 160%;
+  max-height: 105%;
+  margin: 30rem;
+  border: 1px solid salmon;
+  font-family: 'Varela Round', sans-serif;
+  display: inline-block;
 }
 
+
+.widgetsbox {
+  width: 100%;
+  min-width: 40%;
+  height: 120%;
+  min-height: 20%;
+  padding: 10px;
+  margin: 30px;
+  background-color: rgba(199, 199, 199, 0.3);
+  border: 1px solid white;
+}
+
+
+.widgetsbox h5 {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.9rem;
+  color: purple;
+}
+
+.widgetsbox h6 {
+  display: none;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.7rem;
+  color: darkgrey;
+}
 
 
 

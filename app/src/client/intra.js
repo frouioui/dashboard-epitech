@@ -14,9 +14,9 @@ async function getGPAAndCredits(params) {
     var cycle = "";
     var auth = "";
     await params.forEach(param => {
-        if (param.name == "Cycle") {
+        if (param.name === "Cycle") {
             cycle = param.value
-        } else if (param.name == "Auth Token") {
+        } else if (param.name === "Auth Token") {
             auth = param.value
         }
     })
@@ -30,7 +30,7 @@ async function getGPAAndCredits(params) {
 async function getMarks(params) {
     var auth = "";
     await params.forEach(param => {
-        if (param.name == "Auth Token") {
+        if (param.name === "Auth Token") {
             auth = param.value
         }
     })
@@ -44,7 +44,7 @@ async function getMarks(params) {
 async function getNetsoul(params) {
     var auth = "";
     await params.forEach(param => {
-        if (param.name == "Auth Token") {
+        if (param.name === "Auth Token") {
             auth = param.value
         }
     })

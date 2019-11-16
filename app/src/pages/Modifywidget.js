@@ -2,8 +2,6 @@ import React from "react";
 import "../CSS/html_properties_widgets_header.css"
 import { getParamsOfUserWidget } from "../client/widgets";
 import { modifyParamValue } from "../client/widgets";
-import queryString from 'query-string';
-import { Link, Redirect } from 'react-router-dom';
 
 
 class Modifywidget extends React.Component {
@@ -42,10 +40,11 @@ class Modifywidget extends React.Component {
         console.log(id)
         var tt = this.state.params;
         tt.map(param => {
-            if (param.id == id) {
+            if (param.id === id) {
                 param.value = e.target.value;
                 param.param_id = e.target.param_id;
             }
+            return (param)
         })
         this.setState ({
             params: tt
@@ -77,7 +76,7 @@ class Modifywidget extends React.Component {
                         <div class="dropdown-content">
                             <a href="https://pedafy.com/signup">Add Widget</a>
                             <a href="https://pedafy.com/signup">Logout</a>
-                            <a href="#">Use our API</a>
+                            <a href="https://pedafy.com/signup">Use our API</a>
                         </div>
         </div>
         <div className="body">

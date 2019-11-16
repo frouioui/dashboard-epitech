@@ -13,7 +13,7 @@ function getURL() {
 async function getNewsKeyword(params) {
     var keyword = "";
     await params.forEach(param => {
-        if (param.name == "Keyword") {
+        if (param.name === "Keyword") {
             keyword = param.value
         }
     })
@@ -27,7 +27,7 @@ async function getNewsKeyword(params) {
 async function getHeadlines(params) {
     var keyword = "";
     await params.forEach(param => {
-        if (param.name == "Keyword") {
+        if (param.name === "Keyword") {
             keyword = param.value
         }
     })
@@ -41,7 +41,7 @@ async function getHeadlines(params) {
 async function getHeadlinesCountry(params) {
     var country = "";
     await params.forEach(param => {
-        if (param.name == "country") {
+        if (param.name === "country") {
             country = param.value
         }
     })

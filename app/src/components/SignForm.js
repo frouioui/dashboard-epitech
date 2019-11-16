@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 const Card = styled.div`
   box-sizing: border-box;
   max-width: 410px;
@@ -14,33 +15,47 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin: -5%;
 `;
 
 const Input = styled.input`
-  padding: 1rem;
-  border: 1px solid #999;
-  margin-bottom: 0.5rem;
-  font-size: 1.5em;
-  border-radius: 2%;
-
+margin-top: 0rem;
+padding: 2.5rem;
+margin-bottom: 2.8rem;
+font-size: 0.8rem;
+border-top: none;
+border-left: none;
+border-right: none;
+border-radius: 2px;
+border-color: #8fd3f4;
+font-size: 1.5em;
 `;
 
 const Button = styled.button`
-  background: lienar-gradient(to bottom, #6371c7, #5563c1);
-  border-color: #3f4eae;
-  border-radius: 3px;
-  padding: 18px;
-  color: white;
-  font-weight: 700;
-  width: 100%;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
+font-size: 1.5em;
+flex: 1 1 auto;
+margin: 5px;
+padding: 18px;
+text-align: center;
+transition: 0.5s;
+background-size: 200% auto;
+color: white;
+border: none;
+margin-top: 12rem;
+/* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+box-shadow: 0 0 20px #eee;
+border-radius: 15px;
+background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+`;
+
+const Link = styled.div`
+color: red;
+margin-top: -16rem;
 `;
 
 const Error = styled.div`
   color: red;
-  margin-top: 15rem;
-  
+  margin-top: -20rem;
 `;
 
-export { Form, Input, Button, Card, Error };
+export { Form, Input, Button, Card, Link, Error };

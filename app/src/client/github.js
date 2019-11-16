@@ -11,15 +11,15 @@ function getURL() {
 }
 
 async function getLastIssueRepo(params, auth) {
-    if (!auth || auth == "") {
+    if (!auth || auth === "") {
         return "no token"
     }
     var repo = "";
     var owner = "";
     await params.forEach(param => {
-        if (param.name == "Repo") {
+        if (param.name === "Repo") {
             repo = param.value
-        } else if (param.name == "Owner") {
+        } else if (param.name === "Owner") {
             owner = param.value
         }
     })
@@ -31,15 +31,15 @@ async function getLastIssueRepo(params, auth) {
 }
 
 async function getLastIssuePull(params, auth) {
-    if (!auth || auth == "") {
+    if (!auth || auth === "") {
         return "no token"
     }
     var repo = "";
     var owner = "";
     await params.forEach(param => {
-        if (param.name == "Repo") {
+        if (param.name === "Repo") {
             repo = param.value
-        } else if (param.name == "Owner") {
+        } else if (param.name === "Owner") {
             owner = param.value
         }
     })
