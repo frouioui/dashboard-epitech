@@ -1,0 +1,14 @@
+Florent:
+1 ajouter les positions dans le frontend
+2 faire les timer en backend
+3 update l'appel au delete et aux URL de positions dans le client du frontend
+4 fix le fetch et instead appeler la lib dans le frontend modifyWidget component did mount
+5 integrer les timers sur le frontend
+6 enlever tous les debug / console.log
+7 gestion d'erreur si non log in avec GitHub pour l'ajout des widgets
+8 redirect quand non log in
+
+Julien:
+1 update les values des params dans l'ajout des params dans le add widget
+2 frontend sur la page du modify
+3 ajouter les select et l'update des value dans le modify params

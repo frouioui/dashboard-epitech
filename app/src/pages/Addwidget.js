@@ -65,13 +65,13 @@ class AddWidget extends React.Component {
         getParamsOfWidget(widget_id).then(displayCycle => {
             if (widget_id === 1) {
                 console.log("ok frere")
-                
+
             }
             else {
                 console.log("try again")
             }
         })
-        }
+    }
 
     getParams2(widget_id) {
         this.setState({ currentWidget: widget_id })
@@ -109,7 +109,7 @@ class AddWidget extends React.Component {
         }))
     }
 
-    
+
 
     handleOnClick = (e) => {
         this.addWidgetUser(1, this.state.currentWidget)
@@ -136,8 +136,8 @@ class AddWidget extends React.Component {
                     <h4>{parametres.name}</h4>
                     <div className="optionForCycle">
                         <select name="value">
-                        <option value={parametres.value} name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>bachelor</option>
-                        <option value={parametres.value} name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>master</option>
+                            <option value={parametres.value} name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>bachelor</option>
+                            <option value={parametres.value} name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>master</option>
                         </select>
                     </div>
                 </div>
@@ -148,27 +148,27 @@ class AddWidget extends React.Component {
                     <h4>{parametres.name}</h4>
                     <div className="optionForCountries">
                         <select name="country">
-                        <option value="dz" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Algeria</option>
-                        <option value="de" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Germany</option>
-                        <option value="au" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Australia</option>
-                        <option value="be" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Belgium</option>
-                        <option value="br" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Brasil</option>
-                        <option value="ca" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Canada</option>
-                        <option value="dk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Denmark</option>
-                        <option value="es" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Spain</option>
-                        <option value="us" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>United-States of America</option>
-                        <option value="fr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>France</option>
-                        <option value="gr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Greece</option>
-                        <option value="in" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>India</option>
-                        <option value="it" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Italia</option>
-                        <option value="jp" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Japan</option>
-                        <option value="ma" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Morocco</option>
-                        <option value="mc" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Monaco</option>
-                        <option value="nl" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Netherlands</option>
-                        <option value="pt" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Portugal</option>
-                        <option value="gb" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Great-Britain</option>
-                        <option value="ch" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Swiss</option>
-                        <option value="tn" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Tunisia</option>
+                            <option value="dz" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Algeria</option>
+                            <option value="de" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Germany</option>
+                            <option value="au" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Australia</option>
+                            <option value="be" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Belgium</option>
+                            <option value="br" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Brasil</option>
+                            <option value="ca" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Canada</option>
+                            <option value="dk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Denmark</option>
+                            <option value="es" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Spain</option>
+                            <option value="us" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>United-States of America</option>
+                            <option value="fr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>France</option>
+                            <option value="gr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Greece</option>
+                            <option value="in" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>India</option>
+                            <option value="it" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Italia</option>
+                            <option value="jp" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Japan</option>
+                            <option value="ma" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Morocco</option>
+                            <option value="mc" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Monaco</option>
+                            <option value="nl" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Netherlands</option>
+                            <option value="pt" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Portugal</option>
+                            <option value="gb" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Great-Britain</option>
+                            <option value="ch" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Swiss</option>
+                            <option value="tn" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Tunisia</option>
                         </select>
                     </div>
                 </div>
@@ -176,41 +176,41 @@ class AddWidget extends React.Component {
         } else if (false) {
             return (
                 <div>
-            <div className="optionForCurrencies">
-                <select name="currencies">
-                <option value="aud" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Australian dollar</option>
-                <option value="brl" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Brazilian real</option>
-                <option value="chf" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Swiss franc</option>
-                <option value="czk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Czech koruna</option>
-                <option value="eur" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Euro</option>
-                <option value="hkd" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Hong Kong dollar</option>
-                <option value="mxn" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Mexican peso</option>
-                <option value="try" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Turkish lira</option>  
-                <option value="usd" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>United States of America</option>  
-                <option value="isk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Icelandic krona</option>  
-                <option value="php" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Philippine peso</option>  
-                <option value="dkk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Danish krone</option>  
-                <option value="huf" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Turkish lira</option>  
-                <option value="ron" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Romanian leu</option>  
-                <option value="sek" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Swedish krona/kronor</option>  
-                <option value="idr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Indonesian rupiah</option>  
-                <option value="inr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Indian rupee</option>  
-                <option value="rub" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Russian ruble</option>  
-                <option value="hrk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Croation kuna</option>  
-                <option value="jpy" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Japanese yen</option>  
-                <option value="thb" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Thai baht</option>  
-                <option value="sgd" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Singapore dollar</option>  
-                <option value="pln" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Polish zloty</option>  
-                <option value="bgn" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Bulgarian lev</option>  
-                <option value="cny" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Chinese yuan</option>  
-                <option value="nok" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Norwegian krone</option>  
-                <option value="zar" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>South African rand</option>  
-                <option value="ils" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Israeli new shekel</option> 
-                <option value="krw" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>South Korean won</option>  
-                <option value="myr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Malaysian ringgit</option>  
-                </select>
+                    <div className="optionForCurrencies">
+                        <select name="currencies">
+                            <option value="aud" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Australian dollar</option>
+                            <option value="brl" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Brazilian real</option>
+                            <option value="chf" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Swiss franc</option>
+                            <option value="czk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Czech koruna</option>
+                            <option value="eur" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Euro</option>
+                            <option value="hkd" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Hong Kong dollar</option>
+                            <option value="mxn" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Mexican peso</option>
+                            <option value="try" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Turkish lira</option>
+                            <option value="usd" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>United States of America</option>
+                            <option value="isk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Icelandic krona</option>
+                            <option value="php" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Philippine peso</option>
+                            <option value="dkk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Danish krone</option>
+                            <option value="huf" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Turkish lira</option>
+                            <option value="ron" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Romanian leu</option>
+                            <option value="sek" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Swedish krona/kronor</option>
+                            <option value="idr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Indonesian rupiah</option>
+                            <option value="inr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Indian rupee</option>
+                            <option value="rub" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Russian ruble</option>
+                            <option value="hrk" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Croation kuna</option>
+                            <option value="jpy" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Japanese yen</option>
+                            <option value="thb" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Thai baht</option>
+                            <option value="sgd" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Singapore dollar</option>
+                            <option value="pln" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Polish zloty</option>
+                            <option value="bgn" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Bulgarian lev</option>
+                            <option value="cny" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Chinese yuan</option>
+                            <option value="nok" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Norwegian krone</option>
+                            <option value="zar" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>South African rand</option>
+                            <option value="ils" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Israeli new shekel</option>
+                            <option value="krw" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>South Korean won</option>
+                            <option value="myr" name="value" onChange={this.handleValueChange.bind(this, parametres.id)}>Malaysian ringgit</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
             )
         } else {
             return (
@@ -222,7 +222,7 @@ class AddWidget extends React.Component {
                 </div>
             )
         }
-        
+
     }
 
     render() {
@@ -302,10 +302,6 @@ class AddWidget extends React.Component {
 
                         <div className="submit">
                             <button onClick={() => this.handleOnClick(this)}>Add</button>
-<<<<<<< HEAD
-=======
-
->>>>>>> 893cf7ba0942d96fe820d715142da5feb82ff731
                         </div>
 
                     </div>
