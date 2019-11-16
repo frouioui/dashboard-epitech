@@ -23,7 +23,8 @@ This kind of architecture (micro-services) is used more and more by tech compani
 - Widget API ([documentation](./api_widgets.md))
 - News Service API ([documentation](./api_news.md)) 
 - Intranet Epitech Service API ([documentation](./api_intra.md))
-- {Service 3} API
+- Currency API ([documentation](./api_currency.md))
+- GitHub API ([documentation](./api_github.md))
 - Frontend
 
 ## **Production deployement**

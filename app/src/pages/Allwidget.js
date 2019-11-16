@@ -5,6 +5,7 @@ import { getAllWidgetsOfOneUser, deleteOneWidget, deleteOneWidgetParam } from ".
 import { getGPAAndCredits, getMarks, getNetsoul } from '../client/intra';
 import { getHeadlines, getHeadlinesCountry, getNewsKeyword } from '../client/news'
 import { getLastIssuePull, getLastIssueRepo } from '../client/github'
+import { getCurrency, getCurrencyTranslation } from '../client/currency'
 
 import "../CSS/allwidgets.css"
 
@@ -142,6 +143,35 @@ class Allwidgets extends React.Component {
         }).catch((err) => setImmediate(() => { console.error(err) }))
         break;
 
+      case "Exchange rate currency":
+        console.log(widget.params)
+        getCurrency(widget.params).then(res2 => {
+          console.log(res2)
+          var from = Object.keys(res2.data.data.rates)[0]
+          widget.value = (
+            <div>
+              <h4>{res2.data.data.base} = {res2.data.data.rates[from]} {from}</h4>
+            </div>
+          )
+          widget.loaded = true
+          this.setState({ userWidgets: allWidgets })
+        }).catch((err) => setImmediate(() => { console.error(err) }))
+        break;
+
+      case "Calculate money to currency":
+        console.log(widget.params)
+        getCurrencyTranslation(widget.params).then(res2 => {
+          console.log(res2)
+          widget.value = (
+            <div>
+              <h4>{res2.data.data.from_amount} {res2.data.data.from} = {res2.data.data.amount} {res2.data.data.to}</h4>
+            </div>
+          )
+          widget.loaded = true
+          this.setState({ userWidgets: allWidgets })
+        }).catch((err) => setImmediate(() => { console.error(err) }))
+        break;
+
       default:
         break;
     }
@@ -211,6 +241,7 @@ class Allwidgets extends React.Component {
               <h6>{widget.description}</h6>
               <h3>{widget.loaded == true ? widget.value : "loading ..."}</h3>
               <button onClick={() => this.deleteWidget(widget)}>Delete</button>
+              <button> <a href={"/modify/widget/" + widget.id}>Modify</a> </button>
             </div>
           </div>
         ))}
