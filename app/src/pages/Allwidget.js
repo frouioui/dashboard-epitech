@@ -5,6 +5,7 @@ import { getAllWidgetsOfOneUser, deleteOneWidget, deleteOneWidgetParam } from ".
 import { getGPAAndCredits, getMarks, getNetsoul } from '../client/intra';
 import { getHeadlines, getHeadlinesCountry, getNewsKeyword } from '../client/news'
 import { getLastIssuePull, getLastIssueRepo } from '../client/github'
+import { getCurrency, getCurrencyTranslation } from '../client/currency'
 
 import "../CSS/allwidgets.css"
 
@@ -135,6 +136,33 @@ class Allwidgets extends React.Component {
             <div>
               <h4> <b>#{res2.data.data.number}</b> -> {res2.data.data.name}</h4>
               <h6><a href={res2.data.data.url}>Go to PR.</a></h6>
+            </div>
+          )
+          widget.loaded = true
+          this.setState({ userWidgets: allWidgets })
+        }).catch((err) => setImmediate(() => { console.error(err) }))
+        break;
+
+      case "Exchange rate currency":
+        console.log(widget.params)
+        getCurrency(widget.params).then(res2 => {
+          console.log(res2)
+          widget.value = (
+            <div>
+              <h4>{res2.data.data}</h4>
+            </div>
+          )
+          widget.loaded = true
+          this.setState({ userWidgets: allWidgets })
+        }).catch((err) => setImmediate(() => { console.error(err) }))
+        break;
+
+      case "Calculate money to currency":
+        getCurrencyTranslation(widget.params).then(res2 => {
+          console.log(res2)
+          widget.value = (
+            <div>
+              <h4>{console.log(res2)}</h4>
             </div>
           )
           widget.loaded = true

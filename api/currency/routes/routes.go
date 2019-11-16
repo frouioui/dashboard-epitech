@@ -1,8 +1,13 @@
 package routes
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
+
+	"github.com/frouioui/dashboard-epitech/api/currency/client"
 
 	"github.com/gorilla/mux"
 )
@@ -12,9 +17,8 @@ func Assign(r *mux.Router) {
 	log.Println("Setting up routes ...")
 	r.HandleFunc("/v1/currency/", homeRoute).Methods(http.MethodGet, http.MethodOptions)
 	r.HandleFunc("/v1/currency", homeRoute).Methods(http.MethodGet, http.MethodOptions)
-	// r.HandleFunc("/v1/intra/grade/{cycle}", gpaAndCreditsRoute).Methods(http.MethodGet, http.MethodOptions)
-	// r.HandleFunc("/v1/intra/netsoul", netsoulRoute).Methods(http.MethodGet, http.MethodOptions)
-	// r.HandleFunc("/v1/intra/marks", markRoute).Methods(http.MethodGet, http.MethodOptions)
+	r.HandleFunc("/v1/currency/convert", getOneRateRoute).Methods(http.MethodGet, http.MethodOptions)
+	r.HandleFunc("/v1/currency/calcul", calculOneRateRoute).Methods(http.MethodGet, http.MethodOptions)
 	log.Println("Routes set.")
 }
 
@@ -22,69 +26,63 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(`{"status": "success", "code": 200}`))
 }
 
-// func markRoute(w http.ResponseWriter, r *http.Request) {
-// 	authToken := r.Header.Get("Authorization")
-// 	marks, err := client.GetLastMarks(authToken)
-// 	if err != nil {
-// 		w.WriteHeader(400)
-// 		log.Println(err)
-// 		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 400, err)
-// 		return
-// 	}
+func getOneRateRoute(w http.ResponseWriter, r *http.Request) {
+	to, okTo := r.URL.Query()["to"]
+	from, okFrom := r.URL.Query()["from"]
 
-// 	marksB, err := json.Marshal(marks)
-// 	if err != nil {
-// 		w.WriteHeader(500)
-// 		log.Println(err)
-// 		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 500, err)
-// 	}
+	if !okTo || !okFrom || len(to[0]) < 1 || len(from[0]) < 1 {
+		w.WriteHeader(400)
+		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 400, "invalid query params")
+		return
+	}
+	rate, err := client.GetRateForOneCurrency(from[0], to[0])
+	if err != nil {
+		w.WriteHeader(400)
+		log.Println(err)
+		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 400, err)
+		return
+	}
 
-// 	w.WriteHeader(200)
-// 	fmt.Fprintf(w, `{"status": "success", "code": %d, "data": %s}`, 200, string(marksB))
-// 	return
-// }
+	rateJSON, err := json.Marshal(rate)
+	if err != nil {
+		w.WriteHeader(500)
+		log.Println(err)
+		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 500, err)
+	}
 
-// func netsoulRoute(w http.ResponseWriter, r *http.Request) {
-// 	authToken := r.Header.Get("Authorization")
-// 	netsoul, err := client.GetNetsoul(authToken)
-// 	log.Println(netsoul)
-// 	if err != nil {
-// 		w.WriteHeader(400)
-// 		log.Println(err)
-// 		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 400, err)
-// 		return
-// 	}
+	w.WriteHeader(200)
+	fmt.Fprintf(w, `{"status": "success", "code": %d, "data": %s}`, 200, rateJSON)
+	return
+}
 
-// 	w.WriteHeader(200)
-// 	fmt.Fprintf(w, `{"status": "success", "code": %d, "data": "%.0f"}`, 200, netsoul)
-// 	return
-// }
+func calculOneRateRoute(w http.ResponseWriter, r *http.Request) {
+	to, okTo := r.URL.Query()["to"]
+	from, okFrom := r.URL.Query()["from"]
+	amount, okAmount := r.URL.Query()["amount"]
 
-// func gpaAndCreditsRoute(w http.ResponseWriter, r *http.Request) {
-// 	vars := mux.Vars(r)
-// 	cycle := vars["cycle"]
-// 	authToken := r.Header.Get("Authorization")
-// 	gpa, credits, err := client.GetGPAAndCredits(cycle, authToken)
-// 	if err != nil {
-// 		w.WriteHeader(400)
-// 		log.Println(err)
-// 		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 400, err)
-// 		return
-// 	}
+	if !okTo || !okFrom || !okAmount || len(to[0]) < 1 || len(from[0]) < 1 || len(amount[0]) < 1 {
+		w.WriteHeader(400)
+		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 400, "invalid query params")
+		return
+	}
+	rate, err := client.GetRateForOneCurrency(from[0], to[0])
+	if err != nil {
+		w.WriteHeader(400)
+		log.Println(err)
+		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 400, err)
+		return
+	}
 
-// 	info := responseGPAAndCredits{
-// 		Gpa:     gpa,
-// 		Credits: credits,
-// 	}
+	rateValue := rate.Rate[to[0]]
 
-// 	infoB, err := json.Marshal(info)
-// 	if err != nil {
-// 		w.WriteHeader(500)
-// 		log.Println(err)
-// 		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 500, err)
-// 	}
+	amountFloat, err := strconv.ParseFloat(amount[0], 64)
+	if err != nil {
+		w.WriteHeader(500)
+		log.Println(err)
+		fmt.Fprintf(w, `{"status": "failure", "code": %d, "message": "%s"}`, 500, err)
+	}
 
-// 	w.WriteHeader(200)
-// 	fmt.Fprintf(w, `{"status": "success", "code": %d, "data": %s}`, 200, string(infoB))
-// 	return
-// }
+	w.WriteHeader(200)
+	fmt.Fprintf(w, `{"status": "success", "code": %d, "data": %.2f}`, 200, rateValue*amountFloat)
+	return
+}

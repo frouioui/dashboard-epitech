@@ -84,6 +84,18 @@ services:
       - 9004:9000
     restart: unless-stopped
 
+  currency_api:
+    container_name: currency_api
+    build: 
+      context: ./api/currency
+      dockerfile: Dockerfile
+    environment:
+      DEV_ENV: "TRUE"
+    image: currency_api_dashboard
+    ports:
+      - 9005:8080
+    restart: unless-stopped
+
   db:
     image: mysql:5.7
     ports: 

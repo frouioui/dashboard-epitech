@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 06, 2019 at 09:40 AM
+-- Generation Time: Nov 15, 2019 at 11:47 PM
 -- Server version: 5.7.28
 -- PHP Version: 7.2.23
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `api_widget`
 --
+CREATE DATABASE IF NOT EXISTS `api_widget` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `api_widget`;
 
 -- --------------------------------------------------------
 
@@ -39,7 +41,9 @@ CREATE TABLE `services` (
 
 INSERT INTO `services` (`id`, `name`) VALUES
 (1, 'intra'),
-(2, 'news');
+(2, 'news'),
+(3, 'github'),
+(4, 'currency');
 
 -- --------------------------------------------------------
 
@@ -64,7 +68,11 @@ INSERT INTO `widgets` (`id`, `service_id`, `name`, `description`) VALUES
 (3, 1, 'Logtime', 'Display your logtime for the last 7 days'),
 (4, 2, 'Search news', 'Display news corresponding to your search'),
 (5, 2, 'Headlines news', 'Display the headlines corresponding to a search'),
-(6, 2, 'Headlines country', 'Display the headlines in a country');
+(6, 2, 'Headlines country', 'Display the headlines in a country'),
+(7, 3, 'Repo last issue', 'Get the last issue of a repo'),
+(8, 3, 'Repo last PR', 'Get the last Pull Request of a repo'),
+(9, 4, 'Exchange rate currency', 'Get the exchange rate for one given currency into another'),
+(10, 4, 'Calculate money to currency', 'Calculate the amount of money from one currency to another');
 
 -- --------------------------------------------------------
 
@@ -103,7 +111,16 @@ INSERT INTO `widget_params` (`id`, `name`, `type`, `widget_id`) VALUES
 (4, 'Keyword', 'string', 5),
 (5, 'Keyword', 'string', 4),
 (6, 'Auth Token', 'string', 3),
-(7, 'Auth Token', 'string', 2);
+(7, 'Auth Token', 'string', 2),
+(8, 'Repo', 'string', 7),
+(9, 'Owner', 'string', 7),
+(10, 'Repo', 'string', 8),
+(11, 'Owner', 'string', 8),
+(12, 'From currency', 'string', 9),
+(13, 'To currency', 'string', 9),
+(14, 'From currency', 'string', 10),
+(15, 'Amount', 'string', 10),
+(16, 'To currency', 'string', 10);
 
 -- --------------------------------------------------------
 
@@ -168,31 +185,31 @@ ALTER TABLE `widget_user_params`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `widgets`
 --
 ALTER TABLE `widgets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `widgets_user`
 --
 ALTER TABLE `widgets_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `widget_params`
 --
 ALTER TABLE `widget_params`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `widget_user_params`
 --
 ALTER TABLE `widget_user_params`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
