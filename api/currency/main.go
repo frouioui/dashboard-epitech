@@ -8,7 +8,7 @@ import (
 
 	"github.com/gorilla/handlers"
 
-	"github.com/frouioui/dashboard-epitech/api/intra/routes"
+	"github.com/frouioui/dashboard-epitech/api/currency/routes"
 
 	"github.com/gorilla/mux"
 )

@@ -9,13 +9,15 @@ module.exports = {
     getUserWidgetsByValue,
     addOneUserWidget,
     deleteOneUserWidget,
-    modifyPositionUserWidget
+    modifyPositionUserWidget,
+    getLastPositionUserWidget
 }
 
 function addWidgetUserInformation(req, res, user_widget) {
     return new Promise(function (resolve, reject) {
         modelWidget.getOneWidgetByID(req, res, user_widget.widget_id, (req, res, error, resultWidget) => {
             if (error) {
+                console.error(error)
                 return reject(error);
             } else {
                 user_widget.name = resultWidget[0].name
@@ -28,6 +30,37 @@ function addWidgetUserInformation(req, res, user_widget) {
 
 }
 
+function wrapperNameAndTypeParam(req, res, param) {
+    return new Promise(function (resolve, reject) {
+        modelParams.getOneWidgetByID(req, res, param.widget_param_id, (req, res, error, resultParam) => {
+            if (error) {
+                console.error(error)
+                return reject(error)
+            } else {
+                param.name = resultParam[0].name
+                param.type = resultParam[0].type
+                return resolve(param)
+            }
+        })
+    })
+}
+
+function getNameAndTypeParam(req, res, user_widget) {
+    return new Promise(function (resolve, reject) {
+        var promises = [];
+        user_widget.params.forEach(param => {
+            promises.push(wrapperNameAndTypeParam(req, res, param));
+        });
+        Promise.all(promises)
+            .then(function (data) {
+                return resolve(data)
+            })
+            .catch(function (err) {
+                return reject(err)
+            });
+    })
+}
+
 function addParamUserInformation(req, res, user_widget) {
     return new Promise(function (resolve, reject) {
         modelParamsUser.getUserWidgetParamsByUserWidgetID(req, res, user_widget.id, (req, res, error, resultParamsUser) => {
@@ -35,17 +68,9 @@ function addParamUserInformation(req, res, user_widget) {
                 return reject(error)
             } else {
                 user_widget.params = resultParamsUser
-                user_widget.params.forEach(param => {
-                    modelParams.getOneWidgetByID(req, res, user_widget.widget_id, (req, res, error, resultParam) => {
-                        if (error) {
-                            return reject(error)
-                        } else {
-                            param.name = resultParam[0].name
-                            param.type = resultParam[0].type
-                            return resolve(user_widget)
-                        }
-                    })
-                });
+                getNameAndTypeParam(req, res, user_widget).then(user_widget_info => {
+                    return resolve(user_widget_info)
+                }).catch((err) => setImmediate(() => { return reject(err) }))
             }
         })
     })
@@ -166,8 +191,8 @@ function addOneUserWidget(req, res) {
 
 function deleteOneUserWidget(req, res) {
     res.set('Content-Type', 'application/json');
-    let id = req.params.id
-    model.deleteOneUserWidget(req, res, id, (req, res, error, result) => {
+    let data = { id: req.params.id, user_id: req.params.user_id }
+    model.deleteOneUserWidget(req, res, data, (req, res, error, result) => {
         if (error) {
             console.error(error)
             res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error" } })
@@ -180,13 +205,27 @@ function deleteOneUserWidget(req, res) {
 
 function modifyPositionUserWidget(req, res) {
     res.set('Content-Type', 'application/json');
-    let data = { position: req.body.position, id: req.params.id }
+    let data = { position: req.body.position, id: req.params.id, user_id: req.body.user_id }
     model.changePositionUserWidget(req, res, data, (req, res, error, result) => {
         if (error) {
             console.error(error)
             res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error" } })
         } else {
             res.status(200).json({ status: 'success', code: 200 })
+        }
+    })
+    return
+}
+
+function getLastPositionUserWidget(req, res) {
+    res.set('Content-Type', 'application/json');
+    let data = { user_id: req.query.user_id }
+    model.getLastUserWidget(req, res, data, (req, res, error, result) => {
+        if (error) {
+            console.error(error)
+            res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error" } })
+        } else {
+            res.status(200).json({ status: 'success', code: 200, data: result[0].position })
         }
     })
     return
