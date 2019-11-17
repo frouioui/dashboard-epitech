@@ -25,7 +25,7 @@ This kind of architecture (micro-services) is used more and more by tech compani
 - Intranet Epitech Service API ([documentation](./api/intra/README.md))
 - Currency API ([documentation](./api/currency/README.md))
 - GitHub API ([documentation](./api/github/README.md))
-- Frontend
+- Frontend ([documentation](./docs/doc_ui_ux_dashboard.pdf))
 
 ## **Production deployement**
 
@@ -48,3 +48,39 @@ Every time a push or a pull requested is validated by ***Travis CI*** all the se
 Each push create a new versions of the APIs and the Frontend service.
 
 The production environment dashboard is accessible at: `https://pedafy.com`
+
+## **Frontend**
+
+The frontend (main application) is available at `http://localhost` (on local env).
+
+We used ReactJS. Why did we?
+
+We decided to use ReactJS beceause it is a framework used by more and more companies. It is a nice assets to know how to use this technology when looking for a job. Also, it is a easy framework and does not require a lot of work to get around it.
+
+## **Bonuses**
+
+- Micro services Architecture.
+    - 10 independant services.
+    - 12 factors app.
+    - Each API respects ISO rules and follow the Richardson Maturity Mode. 
+
+- Deploiement
+    - Travis CI deploys automatically to Google App Engine every single services
+
+- Database
+    - Usage of MySQL database
+    - PhpMyAdmin
+
+- Environment
+    - Two environment (Dev and Prod)
+    - Production servers
+        - 1 server for each service/API (beside PMA and SQL) for a total of 9 servers
+        - Code automatically pushed and run on servers for every push on branch master
+        - Managment of DNS
+        - SSL certificat
+        - Multiple routes (defines at the root of the repo './dispatch.yaml')
+
+- GitHub
+    - Huge usage of issue
+    - Huge usage of PR
+    - Daily meeting reports

@@ -8,6 +8,17 @@ v1.1.0
 
 - florent.poinsard@epitech.eu
 
+
+## **Tech choice**
+
+This API is a NodeJS based application.
+
+Why NodeJS? For this API we used a library that partially wraps GitHub API, this library is in Node JS, so here is why we used node js.
+
+As this API does a lot of database query (I/O) we needed somthing asynchronous and fast, so we used Node JS.
+
+Node JS allows us to use thread and async operation very easily.
+
 ## **Description**
 
 The widget API enable developer to interact with the widgets and services of Pedafy. They can retreive all the user's widgets, pedafy's services and available widets including their parameters. Users can also get their widgets' parameters.

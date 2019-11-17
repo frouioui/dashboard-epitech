@@ -8,6 +8,16 @@ v1.0.0
 
 - florent.poinsard@epitech.eu
 
+## **Tech choice**
+
+This API is a Golang (v1.12) based application.
+
+Why Golang? Golang is a fast and realiable language allowing us to deliver a fast and safe API.
+
+Goland is a programming language used more and more by companies, its reliability and speed makes him a great language.
+
+No frameworks were used.
+
 ## **Description**
 
 The Currency API enable developers to uses the wrapper of the [currency API](https://exchangeratesapi.io) we provide on pedafy.com.

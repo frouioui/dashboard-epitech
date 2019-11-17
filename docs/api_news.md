@@ -8,6 +8,15 @@ v1.0.0
 
 - florent.poinsard@epitech.eu
 
+
+## **Tech choice**
+
+This API is a Python 3.7 based application.
+
+We used python as the external API we used was proposing support for python.
+
+Python is a worldwide used language, a lot of company use it for many project.
+
 ## **Description**
 
 The News API enable developers to uses the services we provide on pedafy.com.
