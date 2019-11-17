@@ -87,7 +87,6 @@ function loginUserRoute(req, res) {
             res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error" } })
         } else if (result.length == 0) {
             console.log("No email found")
-            console.log(result)
             res.status(401).json({ status: 'failure', code: 401, data: { message: "No email found" } })
         } else {
             let hash = result[0].password

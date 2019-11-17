@@ -160,7 +160,6 @@ class Allwidgets extends React.Component {
         break;
 
       case "Exchange rate currency":
-        console.log(widget.params)
         getCurrency(widget.params).then(res2 => {
           var from = Object.keys(res2.data.data.rates)[0]
           widget.value = (
@@ -174,7 +173,6 @@ class Allwidgets extends React.Component {
         break;
 
       case "Calculate money to currency":
-        console.log(widget.params)
         getCurrencyTranslation(widget.params).then(res2 => {
           widget.value = (
             <div>

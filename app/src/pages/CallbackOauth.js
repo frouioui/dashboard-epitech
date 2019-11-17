@@ -14,7 +14,6 @@ class CallbackOauth extends React.Component {
   }
 
   callCodeOauth() {
-    console.log(this.state.code)
     codeOauthGitHub(this.state.code).then(res => {
       const cookies = new Cookies();
       cookies.set('user_id', res.data.id, { path: '/' });
