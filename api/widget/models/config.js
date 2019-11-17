@@ -17,7 +17,7 @@ function connectToMySQL() {
     } else {
         console.log("Connecting to production MySQL")
         con = mysql.createConnection({
-            host: "34.76.133.198", // TODO: Use environment variable
+            host: "34.76.133.198",
             user: process.env.USER_DATABASE || "root",
             password: process.env.PASSWORD_DATABASE || "test",
         });
@@ -50,7 +50,7 @@ function connectToDatabase() {
     } else {
         console.log("Connecting to production api_widget database")
         con = mysql.createConnection({
-            host: "34.76.133.198", // TODO: Use environment variable
+            host: "34.76.133.198",
             user: process.env.USER_DATABASE || "root",
             password: process.env.PASSWORD_DATABASE || "test",
             database: "api_widget",

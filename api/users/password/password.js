@@ -6,7 +6,7 @@ module.exports = {
 }
 
 function hashPassword(password) {
-    return bcrypt.hashSync(password, 10) // TODO: replace salt by actual secret from environment
+    return bcrypt.hashSync(password, 10)
 }
 
 function comparePassword(password, hash) {

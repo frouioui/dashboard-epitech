@@ -8,7 +8,6 @@ client = models.newsClient()
 
 @app.route('/v1/news/search', methods=['GET'])
 def search():
-    # TODO: check header / client ID
     query = request.args.get('q', type = str)
     lang = request.args.get('lang', default='en', type=str)
     if query is None:
@@ -25,7 +24,6 @@ def search():
 
 @app.route('/v1/news/headlines', methods=['GET'])
 def headlines():
-    # TODO: check header / client ID
     query = request.args.get('q', type = str)
     lang = request.args.get('lang', default='en', type=str)
     if query is None:
@@ -42,7 +40,6 @@ def headlines():
 
 @app.route('/v1/news/headlines/country', methods=['GET'])
 def countryHeadlines():
-    # TODO: check header / client ID
     country = request.args.get('country', type = str)
     lang = request.args.get('lang', default='en', type=str)
     if country is None:
