@@ -47,6 +47,9 @@ module.exports = function (app) {
         .get(widgetsUser.getAllUserWidget)
         .post(widgetsUser.addOneUserWidget)
 
+    app.route('/v1/widgets/user/timer')
+        .put(widgetsUser.updateWidgetTimer)
+
     app.route('/v1/widgets/user/last/position')
         .get(widgetsUser.getLastPositionUserWidget)
 

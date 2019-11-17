@@ -9,7 +9,8 @@ module.exports = {
     addOneUserWidget,
     deleteOneUserWidget,
     changePositionUserWidget,
-    getLastUserWidget
+    getLastUserWidget,
+    changeTimeUserWidget
 }
 
 function getAllUserWidgets(req, res, dataHandler) {
@@ -43,7 +44,7 @@ function getUserWidgetsByUserIDOrderPosition(req, res, user_id, dataHandler) {
 }
 
 function addOneUserWidget(req, res, data, dataHandler) {
-    con.query(`INSERT INTO api_widget.widgets_user (user_id, widget_id, position) VALUES (` + data.user_id + `, ` + data.widget_id + `, ` + data.position + `)`, function (error, results, fields) {
+    con.query(`INSERT INTO api_widget.widgets_user (user_id, widget_id, position, timer) VALUES (` + data.user_id + `, ` + data.widget_id + `, ` + data.position + `, ` + data.timer + `)`, function (error, results, fields) {
         dataHandler(req, res, error, results)
     })
 }
@@ -84,5 +85,11 @@ function changePositionUserWidget(req, res, data, dataHandler) {
                 })
             })
         })
+    })
+}
+
+function changeTimeUserWidget(req, res, data, dataHandler) {
+    con.query(`UPDATE api_widget.widgets_user SET timer = '` + data.timer + `' WHERE id = ` + data.id, (error, results) => {
+        dataHandler(req, res, error, results)
     })
 }

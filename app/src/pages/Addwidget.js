@@ -17,7 +17,8 @@ class AddWidget extends React.Component {
             params: [],
             currentWidget: 0,
             redirectMainPage: false,
-            lastPosition: 0
+            lastPosition: 0,
+            currentTimer: 1
         }
     }
 
@@ -75,11 +76,11 @@ class AddWidget extends React.Component {
         })
     }
 
-    addWidgetUser(position, widget_id) {
+    addWidgetUser(position, widget_id, timer) {
         var cookies = new Cookies()
         var user_id = cookies.get('user_id')
 
-        addUserWidget(user_id, position, widget_id).then(res => {
+        addUserWidget(user_id, position, widget_id, timer).then(res => {
             this.state.params.map(param => {
                 this.addParams(user_id, param.value, param.id, res.data.data)
             })
@@ -100,7 +101,7 @@ class AddWidget extends React.Component {
     }
 
     handleOnClick = (e) => {
-        this.addWidgetUser(1, this.state.currentWidget)
+        this.addWidgetUser(this.state.lastPosition, this.state.currentWidget, this.state.currentTimer)
     }
 
     handleValueChange = (id, e) => {
@@ -113,6 +114,12 @@ class AddWidget extends React.Component {
         })
         this.setState({
             params: tt
+        })
+    }
+
+    handleValueTimerChange = (e) => {
+        this.setState({
+            currentTimer: e.target.value
         })
     }
 
@@ -302,10 +309,18 @@ class AddWidget extends React.Component {
                                 {this.displayParamsDependingOnWidget(parametres)}
                             </div>
                         ))}
+                        <div className="test">
+                            <td>Position</td>
+                        </div>
                         <div className="box">
                             <input type="number" value={this.state.lastPosition} name="position"></input>
                         </div>
-
+                        <div className="test">
+                            <td>Refresh rate (in minutes)</td>
+                        </div>
+                        <div className="box">
+                            <input type="number" value={this.state.currentTimer} onChange={this.handleValueTimerChange.bind(this)} name="timer"></input>
+                        </div>
                         <div className="submit">
                             <button onClick={() => this.handleOnClick(this)}>Add</button>
                         </div>

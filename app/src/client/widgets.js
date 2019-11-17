@@ -51,6 +51,7 @@ function deleteOneWidgetParam(param_id) {
 }
 
 function deleteOneWidget(user_id, widget_id) {
+    console.log("ttoooo")
     return new Promise(function (resolve, reject) {
         fetch(getURL() + '/v1/widgets/user/' + user_id + '/delete/widget/' + widget_id, { method: 'delete' }).then(res => res.json())
             .then(json => {
@@ -86,9 +87,9 @@ function getLastWidgetPosition(user_id) {
     })
 }
 
-function addUserWidget(user_id, position, widget_id) {
+function addUserWidget(user_id, position, widget_id, timer) {
     return new Promise(function (resolve, reject) {
-        axios.post(getURL() + '/v1/widgets/user', { user_id: user_id, position: position, widget_id: widget_id }).then(res => {
+        axios.post(getURL() + '/v1/widgets/user', { user_id: user_id, position: position, widget_id: widget_id, timer: timer }).then(res => {
             console.log(res)
             resolve(res)
         }).catch((err) => setImmediate(() => { reject(err) }))

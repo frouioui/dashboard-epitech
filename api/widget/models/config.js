@@ -196,7 +196,7 @@ function tableWidgetCreate() {
 
 function tableWidgetUserCreate() {
     return new Promise(function (resolve, reject) {
-        let sqlTableWidgetsUser = "CREATE TABLE IF NOT EXISTS widgets_user (id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, position INT(11) NOT NULL, user_id INT(11) NOT NULL, widget_id INT(11) NOT NULL, CONSTRAINT fk_widget_id FOREIGN KEY (widget_id) REFERENCES widgets(id), CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES api_users.users(id))";
+        let sqlTableWidgetsUser = "CREATE TABLE IF NOT EXISTS widgets_user (id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, position INT(11) NOT NULL, timer INT(11) NOT NULL, user_id INT(11) NOT NULL, widget_id INT(11) NOT NULL, CONSTRAINT fk_widget_id FOREIGN KEY (widget_id) REFERENCES widgets(id), CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES api_users.users(id))";
         con.query(sqlTableWidgetsUser, function (err, result) {
             if (err) { reject(err); };
             console.log("Table widgets_user created");

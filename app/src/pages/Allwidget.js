@@ -52,7 +52,6 @@ class Allwidgets extends React.Component {
 
       case "Marks":
         getMarks(widget.params).then(res2 => {
-          console.log(res2)
           widget.value = (
             <div>
               {res2.data.data.map(e => (
@@ -72,7 +71,6 @@ class Allwidgets extends React.Component {
 
       case "Logtime":
         getNetsoul(widget.params).then(res2 => {
-          console.log(res2)
           if (res2.data.data > 50)
             widget.value = (
               <div class="LogValid">
@@ -94,7 +92,6 @@ class Allwidgets extends React.Component {
 
       case "Search news":
         getNewsKeyword(widget.params).then(res2 => {
-          console.log(res2)
           widget.value = (
             <div>
               <hr />
@@ -110,7 +107,6 @@ class Allwidgets extends React.Component {
 
       case "Headlines news":
         getHeadlines(widget.params).then(res2 => {
-          console.log(res2)
           widget.value = (
             <div>
               <h4>{res2.data.data.title}</h4>
@@ -125,7 +121,6 @@ class Allwidgets extends React.Component {
 
       case "Headlines country":
         getHeadlinesCountry(widget.params).then(res2 => {
-          console.log(res2)
           widget.value = (
             <div>
               <h4>{res2.data.data.title}</h4>
@@ -140,7 +135,6 @@ class Allwidgets extends React.Component {
 
       case "Repo last issue":
         getLastIssueRepo(widget.params, this.state.auth).then(res2 => {
-          console.log(res2)
           widget.value = (
             <div>
               <h4> <b>#{res2.data.data.number}</b> -> {res2.data.data.name}</h4>
@@ -154,7 +148,6 @@ class Allwidgets extends React.Component {
 
       case "Repo last PR":
         getLastIssuePull(widget.params, this.state.auth).then(res2 => {
-          console.log(res2)
           widget.value = (
             <div>
               <h4> <b>#{res2.data.data.number}</b> -> {res2.data.data.name}</h4>
@@ -169,7 +162,6 @@ class Allwidgets extends React.Component {
       case "Exchange rate currency":
         console.log(widget.params)
         getCurrency(widget.params).then(res2 => {
-          console.log(res2)
           var from = Object.keys(res2.data.data.rates)[0]
           widget.value = (
             <div>
@@ -184,7 +176,6 @@ class Allwidgets extends React.Component {
       case "Calculate money to currency":
         console.log(widget.params)
         getCurrencyTranslation(widget.params).then(res2 => {
-          console.log(res2)
           widget.value = (
             <div>
               <h4>{res2.data.data.from_amount} {res2.data.data.from} = {res2.data.data.amount} {res2.data.data.to}</h4>
@@ -203,7 +194,8 @@ class Allwidgets extends React.Component {
 
 
   getAllWidgetsUser() {
-    getAllWidgetsOfOneUser(this.state.user_id).then(res => {
+    var user = this.state.user_id
+    getAllWidgetsOfOneUser(user).then(res => {
       this.setState({
         userWidgets: res.data,
         userWidgetLoaded: true
@@ -219,12 +211,13 @@ class Allwidgets extends React.Component {
     }))
   }
 
-  deleteWidget(widget) {
+  deleteWidget = (widget) => {
+
     var promises = [];
     widget.params.forEach(param => {
       promises.push(deleteOneWidgetParam(param.id));
     });
-    Promise.all(promises).then(function (data) {
+    Promise.all(promises).then(data => {
       deleteOneWidget(this.state.user_id, widget.id).then(res => {
         this.getAllWidgetsUser()
       }).catch(err => { console.error(err) })
@@ -247,8 +240,6 @@ class Allwidgets extends React.Component {
     )
   }
 
-
-
   footer() {
     return (
       <div>
@@ -261,8 +252,6 @@ class Allwidgets extends React.Component {
     )
   }
 
-
-
   displayWidgets() {
     return (
       <div>
@@ -274,9 +263,14 @@ class Allwidgets extends React.Component {
               <hr />
               <h3>{widget.loaded === true ? widget.value : "loading ..."}</h3>
               <br></br>
-              <button onClick={() => this.deleteWidget(widget)}><b>Delete</b></button>
+              <button onClick={this.deleteWidget.bind(this, widget)}>Delete</button>
               <div className="modify_widget">
                 <button><a href={"/modify/widget/" + widget.id}>Modify</a></button>
+              </div>
+              <div>
+                {setInterval(() => {
+                  this.fetchDataWidget(widget, this.state.userWidgets)
+                }, widget.timer * 60 * 1000)}
               </div>
             </div>
           </div>

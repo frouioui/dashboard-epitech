@@ -10,7 +10,8 @@ module.exports = {
     addOneUserWidget,
     deleteOneUserWidget,
     modifyPositionUserWidget,
-    getLastPositionUserWidget
+    getLastPositionUserWidget,
+    updateWidgetTimer
 }
 
 function addWidgetUserInformation(req, res, user_widget) {
@@ -177,7 +178,7 @@ function getUserWidgetsByValue(req, res) {
 
 function addOneUserWidget(req, res) {
     res.set('Content-Type', 'application/json');
-    let data = { position: req.body.position, user_id: req.body.user_id, widget_id: req.body.widget_id }
+    let data = { position: req.body.position, user_id: req.body.user_id, widget_id: req.body.widget_id, timer: req.body.timer }
     model.addOneUserWidget(req, res, data, (req, res, error, result) => {
         if (error) {
             console.error(error)
@@ -225,7 +226,25 @@ function getLastPositionUserWidget(req, res) {
             console.error(error)
             res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error" } })
         } else {
+            if (result.length == 0) {
+                res.status(200).json({ status: 'success', code: 200, data: result })
+                return
+            }
             res.status(200).json({ status: 'success', code: 200, data: result[0].position })
+        }
+    })
+    return
+}
+
+function updateWidgetTimer(req, res) {
+    res.set('Content-Type', 'application/json');
+    let data = { id: req.body.id, timer: req.body.timer }
+    model.changeTimeUserWidget(req, res, data, (req, res, error, result) => {
+        if (error) {
+            console.error(error)
+            res.status(500).json({ status: 'failure', code: 500, data: { message: "API server error" } })
+        } else {
+            res.status(200).json({ status: 'success', code: 200, data: "done" })
         }
     })
     return
