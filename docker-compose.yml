@@ -9,10 +9,19 @@ services:
     environment:
       REACT_APP_DEV_ENV: "TRUE"
     image: frontend-dashboard
-    volumes:
-      - "./app:/app"
     ports:
       - 80:8080
+
+  server:
+    container_name: server
+    build: 
+      context: ./api/server
+      dockerfile: Dockerfile
+    environment:
+      DEV_ENV: "TRUE"
+    image: server-dashboard
+    ports:
+      - 8080:8080
 
   users_api:
     container_name: users_api

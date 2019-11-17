@@ -35,6 +35,7 @@ function App(props) {
           <Route path="/admin" component={Admin} />
           <Route path="/modify/widget/:widget_id" component={Modifywidget} />
           <Route path="/auth/github" component={CallbackOauth} />
+
         </div>
       </Router>
     </AuthContext.Provider>
